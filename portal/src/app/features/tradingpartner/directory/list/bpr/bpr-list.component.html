@@ -1,0 +1,333 @@
+<div class="ot-faceted-content" [hidden]="showapprovetp">
+    <!-- Search panel -->
+    <div class="ot-filter-container bpr" *ngIf="isSearchClicked">
+        <div class="ot-toolbar-container">
+            <h2>{{'tpdir.search.title'| translate}}</h2>
+        </div>
+        <ot-accordion [multiple]="false">
+            <ot-accordionTab header="{{'common.company'| translate}}" [selected]="true">
+                &nbsp;&nbsp;&nbsp;
+                <ot-radioButton name="nameGroup" value="companyName" label="{{'tpdir.read.companyName'| translate}}"
+                    [(ngModel)]="searchAttribute"></ot-radioButton>
+                <ot-radioButton name="nameGroup" value="displayName" label="{{'tpdir.read.displayName'| translate}}"
+                    [(ngModel)]="searchAttribute"></ot-radioButton>
+                <div class="ot-ui-g">
+                    <div class="ot-ui-g-12">
+                        <input class="cm-filter-input"
+                            [disabled]="searchAttribute!='companyName' && searchAttribute!='displayName'" type="text"
+                            (keyup.enter)="searchData()" maxlength='120'
+                            placeholder="{{(searchAttribute=='companyName' ? 'tpdir.read.companyName' : 'tpdir.read.displayName')| translate}}"
+                            [(ngModel)]="companyName" />
+                        <!-- <input *ngIf="searchAttribute=='displayName'" type="text"  (keyup.enter)="searchData()" placeholder="{{'tpdir.read.displayName'| translate}}" [(ngModel)]="companyName" /> -->
+                    </div>
+                </div>
+
+                &nbsp;&nbsp;&nbsp;
+                <ot-radioButton name="nameGroup" value="companyId" label="{{'tpdir.read.buId'| translate}}"
+                    [(ngModel)]="searchAttribute"></ot-radioButton>
+                <div class="ot-ui-g">
+                    <div class="ot-ui-g-12">
+                        <input class="cm-filter-input" type="text" [disabled]="searchAttribute!='companyId'"
+                            (keyup.enter)="searchData()" placeholder="{{'tpdir.read.buId'| translate}}" minlength="2"
+                            maxlength="25" [(ngModel)]="partnerCompanyId" />
+                    </div>
+                </div>
+
+                &nbsp;&nbsp;&nbsp;
+
+                <ot-radioButton name="nameGroup" value="ediAddress" label="{{'tpdir.read.ediAddresses'| translate}}"
+                    [(ngModel)]="searchAttribute"></ot-radioButton>
+                <div class="ot-ui-g">
+                    <div class="ot-ui-g-3">
+                        <input class="cm-filter-input" type="text" maxlength="4"
+                            [disabled]="searchAttribute!='ediAddress'"
+                            placeholder="{{'tpdir.search.qualifier'| translate}}" [(ngModel)]="qualifier" />
+                    </div>
+                    <div class="ot-ui-g-9">
+                        <input class="cm-filter-input" type="text" maxlength="39"
+                            [disabled]="searchAttribute!='ediAddress'" (keyup.enter)="searchData()"
+                            placeholder="{{'tpdir.search.ediAddress'| translate}}" [(ngModel)]="ediAddress" />
+                    </div>
+                </div>
+                <button class="ot-micro-primary" type="button" (click)="searchData()"
+                    [disabled]="(!((searchAttribute=='companyName' || searchAttribute=='displayName') && companyName && companyName.trim().length>0)
+            && !(searchAttribute=='ediAddress' && ediAddress && ediAddress.trim().length>0) && !(searchAttribute=='companyId' && partnerCompanyId && partnerCompanyId.trim().length>0)) || (searchAttribute=='ediAddress' && qualifier && !ediAddress)">{{'common.Apply'| translate}}
+                </button>
+                <button class="ot-micro-secondary" type="button"
+                    (click)="clearSearchCriteria()">{{'common.Cancel'| translate}}
+                </button>
+            </ot-accordionTab>
+        </ot-accordion>
+    </div>
+    <!-- Search panel ends -->
+
+    <!-- Filter panel starts -->
+    <div class="ot-filter-container" *ngIf="isFilterClicked">
+        <div class="ot-toolbar-container">
+            <h2>{{'common.filter.header'| translate}}</h2>
+        </div>
+        <ot-accordion [multiple]="false">
+            <ot-accordionTab header="{{'common.company'| translate}}" [selected]="true">
+
+                <div class="ot-ui-g">
+                    <div class="ot-ui-g-12"> {{'common.status'| translate}} </div>
+                </div>
+                <div class="ot-ui-g filterStatus">
+                    <div class="ot-col-md-12" *ngFor="let status of bprStatus; let i =index">
+
+                        <ot-checkbox name="status.name|translate{{i}}" [value]="status.value"
+                            [label]="(status.name|translate)" [(ngModel)]="selectedstatus"></ot-checkbox>
+
+                    </div>
+                </div>
+                <br> &nbsp;&nbsp;&nbsp;{{'tpdir.read.TPRActiveDate'| translate}}
+                <div class="ot-ui-g">
+                    <label class="ot-form-control-label  cm-filter-label"
+                        for="usr">{{'tpdir.read.from'| translate}}</label>
+                    <div class="ot-ui-g-12">
+
+                        <ot-calendar  [locale]="currentLanguage" [maxDate]="dateTime" (input)="onDateSelect()"
+                            (onSelect)="onDateSelect()" appendTo="body" inputStyleClass="exp-cal"
+                             [monthNavigator]="true"  [yearNavigator]="true"  yearRange="1990:2050" name="dateFrom"
+                             [(ngModel)]="dateFrom"  dateFormat="mm/dd/yy"
+                             placeholder="{{'tpdir.read.dateFormatMMDDYYYY'| translate}}" showButtonBar="true"
+                            [showIcon]="true"></ot-calendar>
+                    </div>
+                </div>
+
+                <div class="ot-ui-g">
+
+                    <label class="ot-form-control-label cm-filter-label"
+                        for="usr">{{'tpdir.read.to'| translate}}</label>
+                    <div class="ot-ui-g-12">
+
+                        <ot-calendar [locale]="currentLanguage"  [maxDate]="dateTime" (input)="onDateSelect()"
+                            (onSelect)="onDateSelect()" appendTo="body" inputStyleClass="exp-cal"
+                             [monthNavigator]="true"  [yearNavigator]="true"  yearRange="1990:2050" name="dateTo"
+                             [(ngModel)]="dateTo"  dateFormat="mm/dd/yy"
+                             placeholder="{{'tpdir.read.dateFormatMMDDYYYY'| translate}}" showButtonBar="true"
+                            [showIcon]="true" dataType="string"></ot-calendar>
+                    </div>
+                    <div *ngIf="!dateValid">
+                        <div class="ot-error h2-required">
+                            {{'tpdir.company.contacts.dateFormatValidation'| translate}}
+                        </div>
+                    </div>
+                </div>
+                <button class="ot-micro-primary" type="button" (click)="filterData()"
+                    [disabled]="disabled()">{{'common.Apply'| translate}}
+                </button>
+                <button class="ot-micro-secondary" type="button"
+                    (click)="displayFilterPanel()">{{'common.Cancel'| translate}}
+                </button>
+            </ot-accordionTab>
+        </ot-accordion>
+    </div>
+    <!-- Filter panel ends -->
+
+    <div [ngClass]="(isFilterClicked||isSearchClicked)? 'ot-datatabale-container-shrinked' : 'ot-datatable-container'">
+        <div class="ot-chipset-header" [style.height.em]="isFilterApplied ? 3 : 0"
+            [style.display]="isFilterApplied  ? 'block' : 'none'">
+            <div id="comapanyName" class="ot-chipset"
+                *ngIf="selectedFilters.companyName!=undefined&&selectedFilters.companyName.length>0">
+                {{'tpdir.read.companyName'| translate}}: {{selectedFilters.companyName}}
+                <span class="ot-image-close-chipset" (click)='clearCompanyChipset()'></span>
+            </div>
+            <div id="comapanyDispName" class="ot-chipset"
+                *ngIf="selectedFilters.displayName!=undefined&&selectedFilters.displayName.length>0">
+                {{'tpdir.read.displayName'| translate}}: {{selectedFilters.displayName}}
+                <span class="ot-image-close-chipset" (click)='clearCompanyChipset()'></span>
+            </div>
+            <div id="partnerComapanyId" class="ot-chipset"
+                *ngIf="selectedFilters.partnerCompanyId!=undefined&&selectedFilters.partnerCompanyId.length>0">
+                {{'tpdir.read.companyID'| translate}}: {{selectedFilters.partnerCompanyId}}
+                <span class="ot-image-close-chipset" (click)='clearCompanyIdChipset()'></span>
+            </div>
+            <div id="ediAddress" class="ot-chipset"
+                *ngIf="(selectedFilters.qualifier!=undefined&&selectedFilters.qualifier.length>0) || (selectedFilters.ediAddress!=undefined&&selectedFilters.ediAddress.length>0)">
+                {{'tpdir.search.ediAddress'| translate}}: {{selectedFilters.qualifier}}
+                {{(selectedFilters.qualifier && selectedFilters.ediAddress)?":":""}}
+                {{selectedFilters.ediAddress}}
+                <span class="ot-image-close-chipset" (click)='clearEdiChipset()'></span>
+            </div>
+
+            <div id="status" class="ot-chipset"
+                *ngIf="selectedFilters.status!=undefined&&selectedFilters.status.length>0">
+                {{'tpdir.read.status'| translate}}:
+                <span *ngFor="let status of selectedFilters.status"
+                    class="cm-chipset-status">{{'status.bpr.'+(status|titlecase)|translate}}</span>
+                <span class="ot-image-close-chipset" (click)='clearStatusChipset()'></span>
+            </div>
+            <div id="dateRange" class="ot-chipset" *ngIf="(selectedFilters.dateFrom)">
+                {{'tpdir.company.contacts.dateRange'| translate }}: {{selectedFilters.dateFrom|date: 'MM/dd/yyyy'}} {{'tpdir.company.contacts.to'|
+                    translate}} {{selectedFilters.dateTo |date: 'MM/dd/yyyy'}}
+                <span class="ot-image-close-chipset" (click)='clearCreatedDateChispset()'></span>
+            </div>
+
+
+            <div *ngIf="numberOfFiltersApplied>3" class="ot-clear-all-chipset" (click)="clearFilter()">
+                <span class="ot-image-close-chipset"></span> {{'common.clear.filter'|translate}}
+            </div>
+        </div>
+
+        <div class="ot-toolbar-container ot-tab">
+            <span (click)="displaySearchPanel()"
+                [ngClass]="isSearchClicked ? 'ot-toolbar-item-selected' : 'ot-toolbar-item'">
+                <div class="ot-icon ot-icon-toolbar ot-icon-toolbar-search"
+                    tooltip="{{'common.tooltip.search'|translate}}"></div>
+            </span>
+            <span (click)="displayFilterPanel()"
+                [ngClass]="isFilterClicked ? 'ot-toolbar-item-selected' : 'ot-toolbar-item'">
+                <div class="ot-icon ot-icon-toolbar ot-icon-toolbar-filter"
+                    tooltip="{{'common.tooltip.filter'|translate}}"></div>
+            </span>
+            <span *ngxPermissionsOnly="permissions.enablingOnboarding" class="ot-toolbar-item"
+                (click)="op.toggle($event)">
+                <div class="ot-icon ot-icon-toolbar ot-icon-multi-add" tooltip="{{'common.tooltip.addTP'|translate}}">
+                </div>
+            </span>
+
+            <ot-menu-overlayPanel #op>
+                <ul class="ot-submenu">
+                        <li (click)="op.hide();addTPModel('SINGLE_TP');handleClickEventForPiwik('Single')">
+                        <span>{{'tpdir.create.addtp'| translate}}</span>
+                    </li>
+                        <li (click)="op.hide();addTPModel('BULK_TP');handleClickEventForPiwik('Multiple')">
+                        <span>{{'tpdir.create.bulktp'| translate}}</span>
+                    </li>
+                </ul>
+            </ot-menu-overlayPanel>
+
+                <span *ngxPermissionsOnly="permissions.enablingOnboarding" (click)="selectImportCustomFields()" [ngClass]="isFilterClicked ? 'ot-toolbar-item-selected' : 'ot-toolbar-item'">
+
+                <div class="ot-icon ot-icon-toolbar ot-icon-import-data"
+                    tooltip="{{'common.tooltip.importfields'|translate}}"></div>
+            </span>
+
+            <span class="ot-vertical-line"></span>
+            <span *ngIf="bplist?.length>0" class="ot-toolbar-item ot-panel-span"
+                (click)="exportAll()">{{'common.exportAll'| translate}}
+            </span>
+            <span (click)="refresh()" class="ot-toolbar-item ot-ui-pull-right">
+                <div class="ot-icon ot-icon-toolbar ot-icon-refresh" tooltip="{{'common.tooltip.refresh'| translate}}">
+                </div>
+            </span>
+            <span class="ot-toolbar-item ot-ui-pull-right" [routerLink]="['graph']" *ngIf="isGraphSubscribed">
+                <div class="ot-icon ot-icon-toolbar cm-icon-tpgraph" tooltip="{{'common.tooltip.tpgraph'|translate}}">
+                </div>
+            </span>
+        </div>
+        <div [ngClass]="!(isFilterApplied) ?'cm-datatable':'cm-datatable-shrinked'">
+            <ot-dataTable name="bpr-list-datatable" [locale]="currentLanguage" #tpdt [(value)]="bplist"
+                [rows]="filterOptions?.rowsPerPage" [paginator]="true" [headerCheckboxToggleAllPages]="false"
+                scrollable="false" [lazy]="true" [responsive]="false" (onLazyLoad)="lazyLoadBPRList($event)"
+                [totalRecords]="totalRecords" [rowsPerPageOptions]="[30,60,100]" [scrollHeight]="isFilterApplied">
+                <ot-column [style]="{'width':'3%'}" selectionMode="multiple"></ot-column>
+                <ot-column [style]="{'width':'22%'}" field="partnerCompanyName"
+                    header="{{'tpdir.read.companyName'| translate}}">
+                    <ng-template let-col let-company="rowData" pTemplate="body">
+                        <a class="ot-block-anchor" (click)="redirectToEdit(company)">
+                            {{company.partnerCompanyName}}
+                        </a>
+                    </ng-template>
+                </ot-column>
+                <div *ngxPermissionsOnly="permissions.enablingOnboarding">
+                    <ot-column [sortable]="true" sortField="partnerCompanyDisplayName" [style]="{'width':'22%'}"
+                        field="partnerCompanyDisplayName" header="{{'tpdir.read.displayName'| translate}}">
+
+                        <ng-template let-col let-company="rowData" pTemplate="body">
+                            <div *ngIf="!company?.editDispName" class="cm-custom-template-datatable">
+                                <span style="flex-grow:1">{{company.partnerCompanyDisplayName}}</span>
+                                <div class="ot-hover-widgets">
+                                        <span class="ot-icon ot-icon-action-edit" (click)="company.editDispName=true;company.partnerCompanyDisplayNameTemp=company.partnerCompanyDisplayName;editDisplayName()"></span>
+                                </div>
+                            </div>
+                            <div *ngIf="company?.editDispName" class="cm-custom-template-datatable">
+                                <input type="text" [(ngModel)]="company.partnerCompanyDisplayNameTemp" maxlength="120">
+                                &nbsp;
+                                <i class="ot-fa ot-fa-check-square ot-fa-lg" (click)="editFacades(company)"></i>&nbsp;
+                                <i class="ot-fa ot-fa-times ot-fa-lg" (click)="company.editDispName=false;"></i>
+                            </div>
+                        </ng-template>
+
+                    </ot-column>
+                </div>
+                <div *ngxPermissionsExcept="permissions.enablingOnboarding">
+                    <ot-column [sortable]="true" sortField="partnerCompanyDisplayName" [style]="{'width':'22%'}"
+                        field="partnerCompanyDisplayName" header="{{'tpdir.read.displayName'| translate}}">
+
+                        <ng-template let-col let-company="rowData" pTemplate="body">
+                            <span>{{company.partnerCompanyDisplayName}}</span>
+                        </ng-template>
+                    </ot-column>
+
+                </div>
+
+                <ot-column [style]="{'width':'22%'}" field="facadeCompanyId"
+                    header="{{'tpdir.read.companyID'| translate}}">
+                </ot-column>
+                <!--<ot-column [style]="{'width':'12%'}" field="partnerShipStatus" header="{{'common.companyStatus'| translate}}">
+                    </ot-column>-->
+                <ot-column [style]="{'width':'9%'}" field="bprStatus" header="{{'common.status'| translate}}">
+                    <ng-template let-col let-company="rowData" pTemplate="body">
+                        <a class="ot-block-anchor" (click)="retrieveRegData(company)"
+                            *ngIf="(company.bprStatus=='Testing');else elseBlock">
+                            {{('status.bpr.'+company.bprStatus) |translate}}
+                        </a>
+                        <ng-template #elseBlock>
+                            {{('status.bpr.'+company.bprStatus) |translate}}
+                        </ng-template>
+                    </ng-template>
+
+                </ot-column>
+                <ot-column [style]="{'width':'10%'}" header="{{'tpdir.read.ediAddress'| translate}}">
+                    <ng-template let-col let-edis="rowData" pTemplate="body">
+                        <a class="ot-block-anchor"
+                            (click)="showEdi(edis.bprId,edis.partnerCompanyDisplayName)">{{'tpdir.read.viewEDI'| translate}}
+                            <!-- <a class="view-edi" (click)="showBprEdis(edis)">
+                                               {{'tpdir.read.viewEDI'| translate}}-->
+                        </a>
+                    </ng-template>
+                </ot-column>
+                <ot-column [style]="{'width':'12%'}" [sortable]="true" sortField="partnershipActivationDate"
+                    sortOrder="1" sortByDefault="true" order="desc" field="partnerShipActivationDate"
+                    header="{{'tpdir.read.TPRActiveDate'| translate}}">
+                    <ng-template pTemplate="body" let-row="rowData">
+                        {{row.partnerShipActivationDate | otDateTimePipe}}
+                    </ng-template>
+                </ot-column>
+            </ot-dataTable>
+        </div>
+    </div>
+</div>
+
+
+<div class="cm-addTpModel">
+    <ot-modal *ngIf="display" [visible]="true">
+        <div class="ot-form-container ">
+            <div class="ot-modal-header">
+                {{'tpdir.read.ediCount'| translate}}
+                <div (click)="display=false" class="ot-modal-close-icon ot-ui-pull-right"
+                    tooltip="{{'common.tooltip.close'|translate}}">
+                </div>
+            </div>
+            <div class="cm-modal-content-footerless">
+                <span class="cm-model-header-edi-label">{{'tpdir.read.ediMsg'| translate}} {{ediCompanyName}} </span>
+                <ot-dataList [value]="edis" [locale]="currentLanguage" [alwaysShowPaginator]="true"
+                    [rowsPerPageOptions]="[20,50,100]" [paginator]="true" [rows]="limit" [alwaysShowPaginator]="false"
+                    [totalRecords]="totalEdiRecords">
+                    <!-- [lazy]="true" (onLazyLoad)="lazyLoadEdiData($event)" -->
+                    <ng-template let-edi pTemplate="item">
+                        {{edi.qualifier}}:{{edi.address}}
+                        <!-- {{edi}} -->
+                    </ng-template>
+                </ot-dataList>
+            </div>
+        </div>
+    </ot-modal>
+</div>
+<workflow-selection [(workflowList)]="workflowList" [(bulkUpload)]="isBulkInvite" [(showModal)]="showWorkflowModal"
+    (workflowParams)="getWorkflowParams($event)"></workflow-selection>
+<bulk-import [(invitationId)]="invitationId" [(invitationName)]="invitationName" [(workflowId)]="workflowId"
+    [(workflowDisplayName)]="workflowDisplayName" [(showBulkImportModal)]="isImportCustomFields"
+    [(bulkImportType)]="bulkImportType" (showBulkImport)="setBulkImport($event)"></bulk-import>

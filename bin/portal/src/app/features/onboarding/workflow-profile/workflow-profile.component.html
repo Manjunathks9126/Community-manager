@@ -1,0 +1,17 @@
+<div class="ot-form-container">
+  <div class="ot-form-header-container">
+    <div class="ot-form-header">
+      <h4>{{workflowName}}</h4>
+    </div>
+  </div>
+  <div class="ot-tab">
+    <ul>
+      <li ><a [routerLink]="['overview']" routerLinkActive="ot-active" skipLocationChange>{{'onboarding.overview'|translate}}</a></li>
+      <li *ngIf="showInvTab"><a [routerLink]="['invitations']" routerLinkActive="ot-active" skipLocationChange>{{'onboarding.invitationTab'|translate}}</a></li>
+      <li *ngIf="showTaskTab"><a [routerLink]="['tasks']" routerLinkActive="ot-active" skipLocationChange>{{'onboarding.tasksTab'|translate}}</a></li>
+    </ul>
+  </div>
+  <div class="ot-tab-content-container">
+    <router-outlet></router-outlet>
+  </div>
+</div>

@@ -1,0 +1,16 @@
+
+<div #tileTooltip class="cm-tile-tooltiptext">
+  <div class="cm-tile-tooltip-header">
+    <div class="cm-tile-tooltip-header-text">{{toolTipHeader_text}}</div>
+    <div class="tile-tooltip-header-icon"></div>
+  </div>
+  <div class="cm-tile-tooltip-body">
+    <div class="tooltip-content-details">
+      <div class="cm-tooltip-content-detail-row" *ngFor="let data of toolTipContentDetail">
+        <div class="cm-tooltip-content-detail-row-left">{{data?.key}}</div>
+        <div class="cm-tooltip-content-detail-row-right">{{data?.value}}</div>
+      </div>
+    </div>
+  </div>
+  <div id="tooltipArrow" class="tooltip-arrow"></div>
+</div>

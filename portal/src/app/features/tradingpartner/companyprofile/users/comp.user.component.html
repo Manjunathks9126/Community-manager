@@ -1,0 +1,81 @@
+<div class="cm-contact-form-content-section">
+  <!--  left portion -->
+    <div class="ot-col-sm-12">
+      <div class="ot-col-sm-6">
+        <div  class="ot-row ot-row-custom"></div>
+        <div class="ot-row ot-row-custom">
+          <div class="ot-col-sm-5">
+            <label class="ot-form-control-label">{{'tpdir.company.user.firstName'|translate}}</label>
+            <label class="ot-form-value-label">{{userDetail.firstName}}</label>
+          </div>
+          <div class="ot-col-sm-5"> 
+            <label class="ot-form-control-label">{{'tpdir.company.user.lastName'|translate}}</label>
+            <label class="ot-form-value-label">{{userDetail.lastName}} </label>
+          </div>
+        </div>
+        <div class="ot-row ot-row-custom">
+          <div class="ot-col-sm-10">
+            <label class="ot-form-control-label">{{'tpdir.company.user.email'|translate}}</label>
+            <label class="ot-form-value-label">{{userDetail.contactInformation.email}} </label>
+          </div>
+        </div>
+        <div class="ot-row ot-row-custom">
+          <div class="ot-col-sm-5">
+            <label class="ot-form-control-label">{{'tpdir.company.user.phone'|translate}}</label>
+            <label class="ot-form-value-label">{{userDetail.contactInformation.telephone}} </label>
+          </div>
+          <div class="ot-col-sm-5">
+            <label class="ot-form-control-label">{{'tpdir.company.user.mobile'|translate}}</label>
+            <label class="ot-form-value-label">{{userDetail.contactInformation.mobileNumber}} </label>
+          </div>
+        </div>
+       
+      </div>
+
+     <!--  Rit portion -->
+      <div class="ot-col-sm-6">
+        
+        <div class="ot-row ot-row-custom">
+        </div>
+        <div class="ot-row ot-row-custom">
+          <div class="ot-col-sm-5">
+            <label class="ot-form-control-label">{{'tpdir.company.user.addressLine1'|translate}}</label>
+            <label class="ot-form-value-label">{{userDetail.address.addressLine1}} </label>
+          </div>
+          <div class="ot-col-sm-5">
+            <label class="ot-form-control-label">{{'tpdir.company.user.addressLine2'|translate}}</label>
+            <label class="ot-form-value-label">{{userDetail.address.addressLine2}}</label>
+          </div>
+        </div>
+        <div class="ot-row ot-row-custom">
+          <div class="ot-col-sm-5">
+              <label class="ot-form-control-label">{{'tpdir.company.user.country'|translate}}</label>
+              <label class="ot-form-value-label">{{userDetail.address.countryCode}} </label>
+           
+          </div>
+          <div class="ot-col-sm-5">
+              <label class="ot-form-control-label">{{'tpdir.company.user.city'|translate}}</label>
+              <label class="ot-form-value-label">{{userDetail.address.city}}</label>
+          </div>
+        </div>
+        <div class="ot-row ot-row-custom">
+          <div class="ot-col-sm-5">
+              <label class="ot-form-control-label">{{'tpdir.company.user.state'|translate}}</label>
+            <label class="ot-form-value-label">{{userDetail.address.state}} </label>
+          </div>
+          <div class="ot-col-sm-5">
+              <label class="ot-form-control-label">{{'tpdir.company.user.postalCode'|translate}}</label>
+              <label class="ot-form-value-label">{{userDetail.address.postalCode}} </label>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+<footer class="ot-page-footer-container">
+    <div class="ot-form-footer">
+      <!-- <button type="submit" id="submitCert" class="ot-primary">{{'common.save'|translate}}</button> -->
+      <button type="button" id="cancelCert" class="ot-secondary" [routerLink]="['../../']">{{'common.Cancel'|translate}}</button>
+    </div>
+</footer>
+
+

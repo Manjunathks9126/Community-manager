@@ -1,0 +1,58 @@
+{
+	"companyInfo.companyName": {
+		"MAXLENGTH": 100
+	},
+	"companyInfo.companyId": {
+		"MAXLENGTH": 25,
+		"PATTERN": "[A-Za-z0-9\\s]+"
+	},
+	"companyInfo.addrLine1": {
+		"MAXLENGTH": 75,
+		"FORBIDDEN_PATTERN": "[$<>]"
+	},
+	"companyInfo.addrLine2": {
+		"MAXLENGTH": 75,
+		"FORBIDDEN_PATTERN": "[$<>]"
+	},
+	"companyInfo.city": {
+		"MAXLENGTH": 50,
+		"FORBIDDEN_PATTERN": "[<>//s]"
+	},
+	"companyInfo.state": {
+		"MAXLENGTH": 50,
+		"FORBIDDEN_PATTERN": "[.<>]"
+	},
+	"companyInfo.postalCode": {
+		"MAXLENGTH": 25,
+		"FORBIDDEN_PATTERN": "[.,<>]"
+	},
+	"companyInfo.country": {
+		"COUNTRY_CODE": ""
+	},
+	"companyInfo.companyPhone": {
+		"MAXLENGTH": 25,
+		"PATTERN": "[A-Za-z0-9\\s]+"
+	},
+	"companyInfo.companyEmail": {
+		"MAXLENGTH": 80,
+		"EMAIL": ""
+	},
+	"companyInfo.website": {
+		"MAXLENGTH": 75,
+		"FORBIDDEN_PATTERN": "[<>]"
+	},
+	"contactInfo.firstName": {
+		"MAXLENGTH": 50
+	},
+	"contactInfo.lastName": {
+		"MAXLENGTH": 50
+	},
+	"contactInfo.email": {
+		"MAXLENGTH": 80,
+		"EMAIL": ""
+	},
+	"contactInfo.phone": {
+		"MAXLENGTH": 25,
+		"PATTERN": "[A-Za-z0-9\\s]+"
+	}
+}

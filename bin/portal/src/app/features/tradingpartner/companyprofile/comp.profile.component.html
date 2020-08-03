@@ -1,0 +1,91 @@
+<div class="ot-form-container" [style.height]="'calc(100% - 5.5em)'" *ngIf="company">
+  <div class="ot-form-header-container">
+    <div class="ot-form-header">
+      <span>
+        <h4>{{companyDisplayName ? companyDisplayName : company.companyName}}</h4>
+      </span>
+      <span></span>
+    </div>
+    <div class="ot-form-header-data">
+      <div class="ot-form-data-group">
+        <label class="pre-space">{{'tpdir.company.history.onboarding.compInfo.id'| translate}}: </label>
+        <label>{{buId}} </label>
+      </div>
+      <div class="ot-form-data-group">
+        <label class="pre-space">{{'tpdir.company.created'|translate}}: </label>
+        <label>{{company.createdOn|otDatePipe}}</label>
+      </div>
+      <div class="ot-form-data-group">
+        <label class="pre-space">{{'tpdir.company.updated'|translate}}: </label>
+        <label>{{company.updatedOn|otDatePipe}}</label>
+      </div>
+      <div class="ot-form-data-group">
+        <label class="pre-space">{{'tpdir.company.status'|translate}}: </label>
+        <label>{{('status.company.'+company.status) |translate}}</label>
+      </div>
+
+    </div>
+  </div>
+  <div class="ot-tab">
+    <ul>
+      <li>
+        <a (click)="getCompanyById(buId)" [routerLink]="['overview']" [queryParams]="privateViewQueryParam"
+          routerLinkActive="ot-active" skipLocationChange>{{'tpdir.company.overview'|translate}}</a>
+      </li>
+      <!-- <li *ngIf="!isPrivateView">
+        <a>{{'tpdir.company.divisions'|translate}}</a>
+      </li> -->
+      <li *ngIf="!isPrivateView">
+        <a [routerLink]="['contacts']" routerLinkActive="ot-active" skipLocationChange>{{'tpdir.company.contacts.title'|translate}}</a>
+      </li>
+      <li *ngIf="!isPrivateView">
+        <a routerLinkActive="ot-active" (click)="edipanel.toggle($event)" skipLocationChange>{{'tpdir.company.edicommns'|translate}}
+          <span class="ot-icon-down-caret"></span>
+        </a>
+        <ot-menu-overlayPanel #edipanel>
+          <ul class="ot-submenu">
+            <li (click)="edipanel.hide()">
+              <a [routerLink]="['edicomms/ediaddress']" skipLocationChange>{{'tpdir.read.tprcount'|translate}}</a>
+            </li>
+          </ul>
+        </ot-menu-overlayPanel>
+      </li>
+
+      <li *ngIf="isPrivateView && ediOrDocFlag">
+        <a [routerLink]="['ediAndDocs']" [queryParams]="privateViewQueryParam" routerLinkActive="ot-active" skipLocationChange>{{'tpdir.company.edicommns'|translate}}</a>
+      </li>
+
+      <li *ngIf="otherInfoFlag">
+        <a [routerLink]="['otherInfo']" [queryParams]="privateViewQueryParam" routerLinkActive="ot-active" skipLocationChange>{{'otherInfo.title'|translate}}</a>
+      </li>
+
+      <li *ngIf="!isPrivateView">
+        <a [routerLink]="['customdata']" [queryParams]="privateViewQueryParam" routerLinkActive="ot-active" skipLocationChange>{{'tpdir.company.customdata'|translate}}</a>
+      </li>
+      <!-- <li *ngIf="!isPrivateView">
+        <a>{{'tpdir.company.activities'|translate}}</a>
+      </li>
+      <li *ngIf="!isPrivateView">
+        <a>{{'tpdir.company.files'|translate}}</a>
+      </li> -->
+      <li *ngIf="!isPrivateView">
+        <a routerLinkActive="ot-active" (click)="historypanel.toggle($event)" skipLocationChange>{{'tpdir.company.history.title'|translate}}
+          <span class="ot-icon-down-caret"></span>
+        </a>
+        <ot-menu-overlayPanel #historypanel>
+          <ul class="ot-submenu">
+            <li (click)="historypanel.hide()">
+              <a [routerLink]="['history/auditlog']" skipLocationChange>{{'tpdir.company.history.auditlog.title'|translate}}</a>
+            </li>
+            <li (click)="historypanel.hide()">
+              <a [routerLink]="['history/onboarding/tpsetup']" skipLocationChange>{{'tpdir.company.history.onboarding.link.label'|translate}}</a>
+            </li>
+          </ul>
+        </ot-menu-overlayPanel>
+      </li>
+    </ul>
+  </div>
+  <div class="ot-tab-content-container">
+    <router-outlet></router-outlet>
+  </div>
+</div>

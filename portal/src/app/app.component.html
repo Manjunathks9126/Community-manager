@@ -1,0 +1,9 @@
+<http-loader></http-loader>
+<homepage-header></homepage-header>
+<ot-notification></ot-notification>
+<idle-session-tracker (keepAliveFn)="keepAlive()" (logoutMethod)="logout($event)" [idleTime]=1620 [warningTime]=120>
+</idle-session-tracker>
+<ot-breadcrumb></ot-breadcrumb>
+<div class="ot-container-application-main-content">
+    <router-outlet></router-outlet>
+</div>

@@ -1,0 +1,177 @@
+<div class="ot-tab-content-form-section" style="padding: 0 0 0 0;" [perfectScrollbar]="scrollConfig">
+  <div *ngIf="bprStatus == 'Error'" class="ot-col-sm-12 cm-errorStatus-headlineDiv ">
+    <span class="cm-invitation-recipients-label">
+
+      <i class="ot-fa-exclamation-circle ot-notification-icon-error cm-icon-errorStatus"></i>
+      <span>
+        <h4>
+          {{'tpdir.company.errorStatus'|translate}}
+          <a class="ot-block-anchor link-style " (click)="displayErrorStatus()">
+            {{'tpdir.company.errorLink'|translate}}</a>{{'tpdir.company.moreDetails'|translate}}</h4>
+      </span>
+    </span>
+
+  </div>
+  <!-- <div class="ot-row ot-row-custom">
+    <div class="ot-col-sm-12 ">
+      <h4>{{'tpdir.company.info'|translate}}</h4>
+    </div>
+  </div> -->
+  <form #companyProfileForm="ngForm">
+    <div class="ot-col-sm-12 cm-form-align">
+      <h3>{{'tpdir.company.info'|translate}}</h3>
+    </div>
+    <div class="ot-row ot-row-custom cm-row-changes">
+      <div class="ot-col-sm-4">
+        <label class="ot-form-control-label">{{'tpdir.company.profile.companyName'|translate}}</label>
+        <label class="ot-form-value-label">{{company.companyName}}</label>
+      </div>
+      <div class="ot-col-sm-4">
+        <label class="ot-form-control-label">{{'tpdir.company.profile.display.name'|translate}}</label>
+        <label *ngIf="!editMode" class="ot-form-value-label">{{companyDisplayNameEdit?companyDisplayNameEdit:company.companyName}}</label>
+        <input *ngIf="editMode" type="text" #displayName="ngModel" class="ot-form-control cm-facade-input-text" name="displayName"
+          minlength="2" maxlength="120" (blur)="setFacadeData()" [(ngModel)]="companyDisplayNameTempEdit" trim="blur" />
+        &nbsp;&nbsp;
+      </div>
+
+      <div class="ot-col-sm-4" *ngIf="!globalDirFlag">
+        <label class="ot-form-control-label">{{'tpdir.company.profile.company.id'|translate}}</label>
+        <label *ngIf="!editMode" class="ot-form-value-label"> {{company.facadeCompanyId}}</label>
+        <div *ngIf="editMode">
+          <input type="text" [ngClass]="companyId.errors &&companyId.invalid &&(companyId.dirty || companyId.touched) ? 'ot-error cm-facade-input-text':' ot-form-control cm-facade-input-text'"
+            name="companyId" (blur)="setFacadeData()" [(ngModel)]="companyIDEdit" (keydown.space)="$event.preventDefault()"
+            #companyId="ngModel" trim="blur" minlength="2" maxlength="25" [pattern]="companyIdRegx">
+          <span *ngIf="companyId.errors && companyId.invalid && companyIDEdit">
+            <span class="companyID-error-msg">{{'tpdir.create.validationMessages.companyIdValidation'|translate}}</span>
+          </span>
+        </div>
+      </div>
+    </div>
+  </form>
+  <div class="ot-col-sm-12 cm-form-align">
+    <h3>{{'tpdir.company.profile.addressInformation' |translate}}</h3>
+  </div>
+  <hr>
+
+  <div class="ot-row ot-row-custom cm-row-changes">
+    <div class="ot-col-sm-4">
+      <label class="ot-form-control-label">{{'tpdir.company.profile.addline1'|translate}}</label>
+      <label class="ot-form-value-label">{{company.compAddr1}} </label>
+    </div>
+    <div class="ot-col-sm-4">
+      <label class="ot-form-control-label">{{'tpdir.company.profile.addline2'|translate}}</label>
+      <label class="ot-form-value-label">{{company.compAddr2}}</label>
+    </div>
+    <div class="ot-col-sm-4">
+      <label class="ot-form-control-label">{{'tpdir.company.profile.country'|translate}}</label>
+      <label class="ot-form-value-label">{{company.country}}</label>
+    </div>
+
+  </div>
+
+  <div class="ot-row ot-row-custom cm-row-changes">
+    <div class="ot-col-sm-4">
+      <label class="ot-form-control-label">{{'tpdir.company.profile.city'|translate}}</label>
+      <label class="ot-form-value-label">{{company.city}}</label>
+    </div>
+    <div class="ot-col-sm-4">
+      <label class="ot-form-control-label">{{'tpdir.company.profile.state'|translate}}</label>
+      <label class="ot-form-value-label"> {{company.state}}</label>
+    </div>
+    <div class="ot-col-sm-4">
+      <label class="ot-form-control-label">{{'tpdir.company.profile.postal.code'|translate}}</label>
+      <label class="ot-form-value-label">{{company.postalCode}}</label>
+    </div>
+  </div>
+  <div class="ot-row ot-row-custom cm-row-changes">
+    <div class="ot-col-sm-4">
+      <label class="ot-form-control-label">{{'tpdir.company.profile.website'|translate}}</label>
+      <label class="ot-form-value-label">{{company.website}}</label>
+
+    </div>
+
+    <div class="ot-col-sm-4">
+      <label class="ot-form-control-label">{{'tpdir.company.profile.phone'|translate}}</label>
+
+
+    </div>
+
+    <div class="ot-col-sm-4">
+      <label class="ot-form-control-label">{{'tpdir.company.profile.email'|translate}}</label>
+
+    </div>
+  </div>
+  <hr>
+  <ot-accordion-panel headerTitle="{{'tpdir.company.profile.additional.info'|translate}}" headerClass="cm-left-padding-accordian">
+    <div class="ot-row ot-row-custom cm-row-changes">
+      <div class="ot-col-sm-3">
+        <label class="ot-form-control-label">{{'tpdir.company.profile.duns.no'|translate}}</label>
+        <label class="ot-form-value-label">{{company.dunsNo}}</label>
+      </div>
+      <div class="ot-col-sm-3">
+        <label class="ot-form-control-label">{{'tpdir.company.profile.global.location.number'|translate}}</label>
+        <label class="ot-form-value-label">{{company.globalLocationNumber}}</label>
+      </div>
+      <div class="ot-col-sm-3">
+        <label class="ot-form-control-label">{{'tpdir.company.profile.vat.id'|translate}}</label>
+        <label class="ot-form-value-label">{{company.vatId}}</label>
+      </div>
+      <div class="ot-col-sm-3">
+        <label class="ot-form-control-label">{{'tpdir.company.profile.federal.tax'|translate}}</label>
+        <label class="ot-form-value-label">{{company.federalTaxId}}</label>
+      </div>
+
+    </div>
+    <div class="ot-row ot-row-custom cm-row-changes">
+      <div class="ot-col-sm-3">
+        <label class="ot-form-control-label">{{'tpdir.company.profile.naics'|translate}}</label>
+        <label class="ot-form-value-label">{{company.naics}}</label>
+      </div>
+      <div class="ot-col-sm-3">
+        <label class="ot-form-control-label">{{'tpdir.company.profile.sic'|translate}}</label>
+        <label class="ot-form-value-label">{{company.sic}}</label>
+      </div>
+
+    </div>
+  </ot-accordion-panel>
+</div>
+
+<footer class="ot-page-footer-container footer">
+  <div class="ot-form-footer">
+    <ng-container *ngIf="editMode; else footer">
+      <button type="button" class="ot-primary cm-btn_space" [disabled]="!companyProfileForm.valid" (click)="saveData()">{{'common.save'|translate}}</button>
+      <button type="button" class="ot-secondary" (click)="toggleEditMode()">{{'common.Cancel'|translate}}</button>
+    </ng-container>
+    <ng-template #footer>
+  <span *ngxPermissionsOnly="permissions.enablingOnboarding">
+      <button *ngIf="!isPrivateView && bprId " type="button" class="ot-primary" (click)="toggleEditMode()">{{'common.edit'|translate}}</button>
+  </span>
+      <button type="button" class="ot-primary cm-btn_space" *ngIf="isPrivateView " (click)="connect()">{{'common.connect'|translate}}</button>
+      <button type="button" class="ot-secondary" [routerLink]="globalDirFlag ? ['/globalDirectory']:['/tpdir']"
+        [queryParams]="{gd: 't'}" skipLocationChange>{{'common.Cancel'|translate}}</button>
+    </ng-template>
+  </div>
+</footer>
+
+<div class="cm-addTpModel">
+  <ot-modal *ngIf="display" [visible]="true">
+    <div class="ot-form-container ">
+      <div class="ot-modal-header">
+        {{'tpdir.read.ediCount'| translate}}
+        <div (click)="display=false" class="ot-modal-close-icon ot-ui-pull-right" tooltip="{{'common.tooltip.close'|translate}}">
+        </div>
+      </div>
+      <div class="cm-modal-content-footerless ">
+        <span class="cm-model-header-edi-label">{{'tpdir.read.ediMsg'| translate}} {{ediCompanyName}} </span>
+        <ot-dataList [value]="edis" [alwaysShowPaginator]="true" [rowsPerPageOptions]="[20,50,100]" [paginator]="true"
+          [rows]="limit" [alwaysShowPaginator]="false" [totalRecords]="totalEdiRecords">
+          <!-- [lazy]="true" (onLazyLoad)="lazyLoadEdiData($event)" -->
+          <ng-template let-edi pTemplate="item">
+            {{edi.qualifier}}:{{edi.address}}
+          </ng-template>
+        </ot-dataList>
+      </div>
+    </div>
+  </ot-modal>
+</div>
+<workflow-selection [(workflowList)]="workflowList" [(showModal)]="showWorkflowModal"></workflow-selection>

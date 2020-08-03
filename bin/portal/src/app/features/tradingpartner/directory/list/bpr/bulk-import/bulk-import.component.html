@@ -1,0 +1,54 @@
+
+<!-- Bulk Invite/Import Custom Fields -->
+<ot-modal size="sm" *ngIf="showBulkImportModal==true" [visible]="true" class="cm-upload-modal">
+
+        <div class="ot-form-container ">
+                <div class="ot-modal-header">
+                    {{getKey+'.title'| translate}}
+                    <div (click)="closeWorkflowmodal()" class="ot-modal-close-icon ot-ui-pull-right" tooltip="{{'common.tooltip.close'|translate}}">
+                    </div>
+                </div>
+                <div class="ot-modal-content" [ngStyle]="{'height':'calc( 100% - 5rem )', 'padding':'1em'}" [perfectScrollbar]="scrollConfig">
+                    <div>
+                        <ng-container *ngIf="fileUpload?.status==='completed'; else beforeUpload">
+                            <div class="cm-middle-align-block">
+                                <div class="ot-row"><label class="ot-col-sm-5 cm-align-text-right">{{getKey+'.selected'
+                                        |translate}}</label>
+                                    <label class="cm-color-anchor ot-col-sm-7 cm-align-text-left">{{uploadedFileName}}</label></div>
+                                <div class="ot-row"><label class="ot-col-sm-5 cm-align-text-right">{{getKey+'.totalrecord'
+                                        |translate}}</label>
+                                    <label class="ot-col-sm-7 cm-align-text-left">{{fileUpload.message.rows}}</label></div>
+                                <div class="ot-row" *ngIf="bulkImportType=='BULK_CUSTOM_FIELD'"><label class="ot-col-sm-5 cm-align-text-right">{{getKey+'.totalfields'
+                                            |translate}}</label>
+                                        <label class="ot-col-sm-7 cm-align-text-left">{{fileUpload.message.columns}}</label></div>
+                            </div>
+                            <label class="note-red">{{getKey+'.notemsg' |translate}}</label>
+                            <hr>
+                            <label> {{getKey+'.wrongfile' |translate}}</label>
+                        </ng-container>
+                        <ng-template #beforeUpload>
+                            <label>{{getKey+'.instruction' |translate}}</label>
+                            <label class="cm-color-anchor" *ngIf="uploadedFileName">{{uploadedFileName}}</label>
+                        </ng-template>
+                    </div>
+                    <div [style.margin]="'0.5em 0'">
+                        <label for="excelUpload" class="cm-file-selector">{{getKey+'.selectfile' |translate}}</label>
+                        <input type="file" id="excelUpload" accept=".xls,.xlsx" style="display: none" (change)="onSelectFile($event)" />
+                        <span> <label class="ot-form-control-label"> &nbsp; {{getKey+'.limit' |translate}}</label></span>
+                    </div>
+                    <div>
+                        <span class="cm-instruction">{{getKey+'.supported' |translate}}: XLS, XLSX </span>
+                        <span *ngIf="fileUpload?.status!='completed'" class="cm-instruction"> &nbsp; | &nbsp;<a (click)="downloadTemplate()">{{getKey+'.templateDown'
+                                |translate}}</a></span>
+                    </div>
+                </div>
+                <div class="ot-modal-footer ">
+                    <div class="ot-form-footer">
+                        <button class="ot-primary" *ngIf="myFile" type="button" (click)="submit()">{{'common.submit.title'|translate}}</button>
+                        <button class="ot-secondary ot-margin-left-1em" type="button" (click)="closeWorkflowmodal()">{{'common.Cancel'|translate}}</button>
+                    </div>
+                </div>
+            </div>
+
+</ot-modal>
+

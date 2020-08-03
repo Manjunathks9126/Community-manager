@@ -1,0 +1,178 @@
+<div class="ot-form-container" class="cm-onbaording-facet" [perfectScrollbar]="scrollConfig">
+    <div>
+        <form #tgmsForm="ngForm">
+            <div class="ot-row ot-row-custom">
+                <div class="ot-col-sm-5">
+                    <label class="ot-form-control-label">
+                        {{'tpmsg.fields.ediAddress'|translate}}</label>
+                </div>
+                <div class="ot-col-sm-5">
+                    <label class="ot-form-control-label ot-required">
+                        {{'tpmsg.fields.selectVAN'|translate}} </label>
+                </div>
+                <div class="ot-col-sm-5">
+                    <input type="text" style="border:none;pointer-events: none"
+                        value="{{workFlow.provisioningRequestData.registrationData.tradingAddress.prodtp.qualifier}} : {{workFlow.provisioningRequestData.registrationData.tradingAddress.prodtp.address}}">
+                </div>
+                <div class="ot-col-sm-5">
+                    <ot-select-dropdown name="vanProvider" [options]="vanProvidersList"
+                        placeholder="{{'common.default.select.txt'| translate}}" styleClass="cm-p-dropdown"
+                        [disabled]="vanDisableFlag" [editable]="false"
+                        [(ngModel)]="workFlow.provisioningRequestData.registrationData.tradingAddress.vanProvider"
+                        #vanProvider="ngModel" required></ot-select-dropdown>
+                </div>
+            </div>
+
+            <div class="ot-row ot-row-custom">
+                <span class="cm-hr-custom"></span>
+                <div class="ot-col-sm-12" style="margin: 1em 0 1em;">
+                    <label class="ot-form-control-label ot-required">
+                        {{'tpmsg.fields.selectYourAddresses'|translate}} </label>
+                </div>
+
+                <div class="ot-col-sm-12">
+                    <div id="cm-txtarea_div" [perfectScrollbar]="config" (psYReachEnd)="onScrollToEnd($event)"
+                        style="left: 0px;padding: .5em;">
+                        <div class=" form-row-am" *ngFor="let keys of yourAddrs">
+                            <ot-checkbox required name="{{keys.label}}" value="{{keys.value}}" label="{{keys.label}}"
+                                [(ngModel)]="selectedAddress"></ot-checkbox>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="ot-row ot-row-custom">
+                <span class="cm-hr-custom"></span>
+                <ot-accordion-panel headerTitle="{{'tpmsg.legends.billingOptions'|translate}}"
+                    headerClass="cm-left-padding-accordian">
+                    <div class="ot-row ot-row-custom">
+                        <!-- Split charges -->
+                        <ot-radioButton name="splitCharges" required value="SPLIT"
+                            label="{{'tpmsg.fields.splitCharges'|translate}}" (click)="billingOptionSelected()"
+                            [(ngModel)]="billingOption" [disabled]="billingOptionsDisabled"></ot-radioButton>
+
+                        <div class="cm-tgms-split_payment">
+                            <div class="ot-col-sm-12" style="margin: 1em 0 1em;">
+                                <label class="ot-form-control-label">
+                                    {{'tpmsg.fields.splitChargeMSG'|translate}} </label>
+                            </div>
+
+                            <div class="ot-col-sm-6">
+                                <label class="ot-form-control-label" style="margin-bottom:.5em">
+                                    {{'tpmsg.fields.sendingpaidBy'|translate}} </label>
+                                <div class="ot-col-sm-12 ot-col-sm-6">
+                                    <ot-radioButton name="sendingPaidBysender" required value="SENDER"
+                                        label="{{'tpmsg.fields.sender'|translate}}"
+                                        [disabled]="billingOptionsDisabled || splitFieldsDisabled"
+                                        [(ngModel)]="sendingPaidBy"></ot-radioButton>
+
+                                    <ot-radioButton name="sendingPaidByreceiver" required value="RECEIVER"
+                                        label="{{'tpmsg.fields.receiver'|translate}}"
+                                        [disabled]="billingOptionsDisabled || splitFieldsDisabled"
+                                        [(ngModel)]="sendingPaidBy"></ot-radioButton>
+
+                                </div>
+                            </div>
+                            <div class="ot-col-sm-6">
+                                <label class="ot-form-control-label" style="margin-bottom:.5em">
+                                    {{'tpmsg.fields.receingpaidBy'|translate}} </label>
+
+                                <div class="ot-col-sm-12 ot-col-sm-6">
+                                    <ot-radioButton name="receivingPaidBysender" required value="SENDER"
+                                        label="{{'tpmsg.fields.sender'|translate}}"
+                                        [disabled]="billingOptionsDisabled || splitFieldsDisabled"
+                                        [(ngModel)]="receivingPaidBy"></ot-radioButton>
+
+                                    <ot-radioButton name="receivingPaidByreceiver" required value="RECEIVER"
+                                        label="{{'tpmsg.fields.receiver'|translate}}"
+                                        [disabled]="billingOptionsDisabled || splitFieldsDisabled"
+                                        [(ngModel)]="receivingPaidBy"></ot-radioButton>
+
+                                </div>
+                            </div>
+
+                            <div class="ot-col-sm-12" style="margin: 1em 0 1em;">
+                                <label class="ot-form-control-label">
+                                    {{'tpmsg.fields.receiverMailboxStorageMSG'|translate}} </label>
+                            </div>
+                            <div class="ot-col-sm-6">
+                                <ot-radioButton name="storagePaidBysender" required value="SENDER"
+                                    label="{{'tpmsg.fields.sender'|translate}}"
+                                    [disabled]="billingOptionsDisabled || splitFieldsDisabled"
+                                    [(ngModel)]="receiverMailbxStoragePaidBy"></ot-radioButton>
+
+                                <ot-radioButton name="storagePaidByreceiver" required value="RECEIVER"
+                                    label="{{'tpmsg.fields.receiver'|translate}}"
+                                    [disabled]="billingOptionsDisabled || splitFieldsDisabled"
+                                    [(ngModel)]="receiverMailbxStoragePaidBy"></ot-radioButton>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="ot-row ot-row-custom">
+                        <div class="ot-col-sm-12">
+                            <ot-radioButton name="AllPaidBy" required value="ALL_CHARGES"
+                                label="{{'tpmsg.fields.allChargesPaidBy'|translate}}" [(ngModel)]="billingOption"
+                                (click)="billingOptionSelected()" [disabled]="billingOptionsDisabled"></ot-radioButton>
+                            <div class="cm-tgms-split_payment" style="margin-top:.5em">
+                                <div class="ot-col-sm-6">
+                                    <ot-radioButton name="AllPaidBysender" required value="SENDER"
+                                        label="{{'tpmsg.fields.sender'|translate}}"
+                                        [disabled]="billingOptionsDisabled || allChargesFieldsDisabled"
+                                        [(ngModel)]="allChargesPaidBy"></ot-radioButton>
+
+                                    <ot-radioButton name="AllPaidByreceiver" required value="RECEIVER"
+                                        label="{{'tpmsg.fields.receiver'|translate}}"
+                                        [disabled]="billingOptionsDisabled || allChargesFieldsDisabled"
+                                        [(ngModel)]="allChargesPaidBy"></ot-radioButton>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </ot-accordion-panel>
+            </div>
+        </form>
+    </div>
+</div>
+
+<footer class="ot-page-footer-container footer">
+    <div class="ot-form-footer">
+        <button class="ot-secondary" type="button" (click)="previous()">{{'common.previous'|translate}}</button>
+        <button class="ot-primary" type="button" [disabled]="!tgmsForm.form.valid"
+            (click)="next()">{{'common.next'|translate}}</button>
+        <button class="ot-secondary" type="button" (click)="cancel()">{{'common.Cancel'|translate}}</button>
+    </div>
+</footer>
+
+<ot-dialoguebox iconClass="ot-warning-icon" header="{{'common.cancelSetupHeader' |translate}}" name="cancelSetup"
+    acceptButton="{{'common.confirm' |translate}}" rejectButton="{{'common.Cancel' |translate}}">
+    <div dialog-message>
+        {{'common.cancelSetupText' |translate}}
+    </div>
+</ot-dialoguebox>
+<div class="cm-addTpModel">
+    <ot-modal *ngIf="showPopup" [visible]="true">
+        <div class="ot-form-container ">
+            <div class="ot-modal-header">
+                {{'tpmsg.tprValidation.multipleTprExistMsg'|translate}}
+                <div (click)="cancelTpDetailsPopUp()" class="ot-modal-close-icon ot-ui-pull-right"
+                    tooltip="{{'common.tooltip.close'|translate}}">
+                </div>
+            </div>
+            <div class="cm-modal-content-scroll">
+                <div class="muliple-tp-validation-popup"> {{'tpmsg.tprValidation.multipleHubEdiMsg'|translate}} </div>
+                <div class="ot-col-md-12">
+                    <ul style="list-style-type:none;">
+                        <li>
+                            {{'tpmsg.tprValidation.tpEdis'|translate}}
+                            {{workFlow.provisioningRequestData.registrationData.tradingAddress.prodtp.qualifier}}:{{workFlow.provisioningRequestData.registrationData.tradingAddress.prodtp.address}}
+                        </li>
+                        <li *ngFor="let edi of yourEdis">
+                            {{'tpmsg.tprValidation.yourEdis'|translate}} {{edi.value}}
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </ot-modal>
+</div>

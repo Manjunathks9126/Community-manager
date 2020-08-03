@@ -1,0 +1,51 @@
+<div class="ot-tab-content-section">
+    <div class="ot-tab-faceted-content">
+        <div class="ot-toolbar-container">
+            <span [ngClass]="'ot-toolbar-item'">
+                <div class="ot-icon ot-icon-toolbar ot-icon-toolbar-filter" tooltip="{{'common.tooltip.filter'|translate}}"></div>
+            </span>
+            <span class="ot-vertical-line"></span>
+        </div>
+
+        <div [style.height]="'calc( 100% - 2.5em)'">
+            <ot-dataTable name="company-auditlog-datable" [locale]="currentLanguage" [rowsPerPageOptions]="[30,60,100]" [value]="auditLogs"
+                [paginator]="true" scrollable="true" [responsive]="false" [rows]="limit" [lazy]="true" (onLazyLoad)="lazyLoadLogData($event)"
+                [totalRecords]="totalRecords">
+                <ot-column [style]="{'width':'1%','text-align':'center'}" selectionMode="multiple"></ot-column>
+                <ot-column [style]="{'width':'5%'}" field="dateLogged" header="{{'tpdir.company.history.auditlog.date'|translate}}">
+                    <ng-template pTemplate="body" let-row="rowData">
+                        <!-- {{row.dateLogged | date:'MM/dd/y'}} {{row.dateLogged | date:'shortTime'}} -->
+                        {{row.dateLogged | otDateTimePipe}}
+                    </ng-template>
+                </ot-column>
+                <ot-column [style]="{'width':'5%'}" field="userName" header="{{'tpdir.company.history.auditlog.userName'|translate}}"></ot-column>
+                <ot-column [style]="{'width':'9%'}" header="{{'tpdir.company.history.auditlog.log'|translate}}">
+                    <ng-template let-col let-auditLog="rowData" pTemplate="body">
+                        <span> {{auditLog.actionDetail}}
+                            <a class="ot-block-anchor" (click)="showDetailsPopup($event,auditLog.content)" *ngIf="auditLog.content">
+                                {{'tpdir.company.history.auditlog.viewDetails'|
+                                translate}}</a>
+                        </span>
+                    </ng-template>
+                </ot-column>
+            </ot-dataTable>
+        </div>
+
+    </div>
+</div>
+
+<div class="cm-addTpModel">
+    <ot-modal *ngIf="showDetails" [visible]="true">
+        <div class="ot-form-container ">
+            <div class="ot-modal-header">
+                {{'tpdir.company.history.auditlog.attributes'|
+                translate}}
+                <div (click)="showDetails=false" class="ot-modal-close-icon ot-ui-pull-right" tooltip="{{'common.tooltip.close'|translate}}">
+                </div>
+            </div>
+            <div class="cm-modal-content-scroll">
+                <json-tree [jsonNode]="auditDetails"></json-tree>
+            </div>
+        </div>
+    </ot-modal>
+</div>

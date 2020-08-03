@@ -1,0 +1,27 @@
+<div class="content" style="height: calc(100% - 4em)" [perfectScrollbar]>
+  <div class="oi-sidebar">
+    <div *ngFor="let data of leftNavList;let i=index">
+      <div class="oi-sidebar-card" tabindex="{{i}}" (click)="onTypeSelect(data)"
+        [ngClass]="data?.value == selectedType ? 'selected':''">
+        <div class="datalist-arrow" *ngIf="data?.value == selectedType"></div>
+        <div class="oi-heading" style="margin-bottom: .7em;"><span style="max-width: 15em">{{data?.value}}</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="oi-sidebar-content">
+    <!-- //schemaUrl  inputUrl-->
+    <json-schema-form [schemaJson]="templateJSON" [inputData]="outputJSON" renderingMode="R"
+      (singleFormOutput)="updateContent($event)"></json-schema-form>
+  </div>
+
+</div>
+
+<footer class="ot-page-footer-container footer">
+  <div class="ot-form-footer">
+    <button class="ot-primary" type="button" *ngIf="isEdit && canEdit" (click)="save()">{{'common.save' | translate}}
+    </button>
+    <button class="ot-secondary" type="button" (click)="cancel()">{{'common.Cancel'|
+      translate}}</button>
+  </div>
+</footer>

@@ -1,0 +1,4 @@
+<div class="ot-container-feature-content">
+    <custom-task-executor *ngIf="customTaskFlag" [customGrpData]="FieldGroups" (customTask)="onSaveFn($event)" 
+    (cancleData)="reloadGroupData()" (returnToPage)="cancle($event)" (fileNotification)="handleFileNotification($event)"></custom-task-executor> 
+</div>

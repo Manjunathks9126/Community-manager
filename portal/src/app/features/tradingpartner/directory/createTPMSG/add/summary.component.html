@@ -1,0 +1,330 @@
+<div class="ot-form-container" class="cm-onbaording-facet" [perfectScrollbar]="scrollConfig">
+    <div>
+
+
+        <div class="ot-row ot-row-custom">
+            <div class="ot-col-sm-12 ">
+                <h2>{{'tpdir.create.form.formTitle'|translate}}</h2>
+            </div>
+        </div>
+
+        <div class="ot-row ot-row-custom">
+            <div class="ot-col-sm-4">
+                <label class="ot-form-control-label ">{{'tpdir.create.form.companyName'|translate}}</label>
+                <label class="ot-text-as-label">{{workFlow.provisioningRequestData.registrationData.businessUnit.companyName}}</label>
+            </div>
+            <div class="ot-col-sm-4">
+                <label class="ot-form-control-label ">{{'tpdir.create.form.addressLine1'|translate}}</label>
+                <label class="ot-text-as-label">{{workFlow.provisioningRequestData.registrationData.businessUnit.companyAddress.addressLine1}}</label>
+            </div>
+            <div class="ot-col-sm-4">
+                <label class="ot-form-control-label">{{'tpdir.create.form.addressLine2'|translate}}</label>
+                <label class="ot-text-as-label">{{workFlow.provisioningRequestData.registrationData.businessUnit.companyAddress.addressLine2}}</label>
+            </div>
+        </div>
+
+
+        <div class="ot-row ot-row-custom">
+            <div class="ot-col-sm-4">
+                <label class="ot-form-control-label ">{{'tpdir.create.form.displayName'|translate}}</label>
+                <label class="ot-text-as-label">{{workFlow.provisioningRequestData.registrationData.businessUnit.displayName}}</label>
+            </div>
+            <div class="ot-col-sm-4">
+                <label class="ot-form-control-label ">{{'tpdir.create.form.city'|translate}}</label>
+                <label class="ot-text-as-label">{{workFlow.provisioningRequestData.registrationData.businessUnit.companyAddress.city}}</label>
+            </div>
+            <div class="ot-col-sm-4">
+                <label class="ot-form-control-label">{{'tpdir.create.form.state'|translate}}</label>
+                <label class="ot-text-as-label">{{workFlow.provisioningRequestData.registrationData.businessUnit.companyAddress.state}}</label>
+            </div>
+        </div>
+
+        <div class="ot-row ot-row-custom">
+            <!-- <div class="ot-col-sm-4">
+                <label class="ot-form-control-label ">{{'tpdir.create.form.tradingPartnerType'|translate}}</label>
+                <label class="ot-text-as-label"></label>
+            </div> -->
+            <div class="ot-col-sm-4">
+                <label class="ot-form-control-label ">{{'tpdir.create.form.postalCode'|translate}}</label>
+                <label class="ot-text-as-label">{{workFlow.provisioningRequestData.registrationData.businessUnit.companyAddress.postalCode}}</label>
+            </div>
+            <div class="ot-col-sm-4">
+                <label class="ot-form-control-label">{{'tpdir.create.form.country'|translate}}</label>
+                <label class="ot-text-as-label">{{workFlow.provisioningRequestData.registrationData.businessUnit.companyAddress.countryCode.countryDescription}}</label>
+            </div>
+        </div>
+
+
+        <div class="ot-row ot-row-custom">
+            <div class="ot-col-sm-4">
+                <label class="ot-form-control-label ">{{'tpdir.create.form.phone'|translate}}</label>
+                <label class="ot-text-as-label">{{workFlow.provisioningRequestData.registrationData.businessUnit.companyNumber}}
+                </label>
+            </div>
+            <div class="ot-col-sm-4">
+                <label class="ot-form-control-label ">{{'tpdir.create.form.email'|translate}}</label>
+                <label class="ot-text-as-label">{{workFlow.provisioningRequestData.registrationData.businessUnit.companyEmail}}
+                </label>
+            </div>
+        </div>
+
+        <div class="ot-row ot-row-custom">
+            <div class="ot-col-sm-4">
+                <label class="ot-form-control-label ">{{'tpdir.create.form.companyId'|translate}}</label>
+                <label class="ot-text-as-label">{{workFlow.provisioningRequestData.registrationData.businessUnit.customCompanyId}}</label>
+            </div>
+            <div class="ot-col-sm-4">
+                <label class="ot-form-control-label ">{{'tpdir.create.form.website'|translate}}</label>
+                <label class="ot-text-as-label">{{workFlow.provisioningRequestData.registrationData.businessUnit.companyAddress.website}}</label>
+            </div>
+        </div>
+        <span class="cm-hr-custom"></span>
+        <div class="ot-row ot-row-custom" >
+            <div class="ot-col-sm-12 ">
+                <h2>{{'tpmsg.legends.contactInfo'|translate}}</h2>
+            </div>
+        </div>
+
+        <div class="ot-row ot-row-custom">
+            <div class="ot-col-sm-3">
+                <label class="ot-form-control-label ">{{'tpdir.create.form.cfirstName'|translate}}</label>
+                <label class="ot-text-as-label">{{workFlow.provisioningRequestData.registrationData.technicalPointOfContact.firstName}}</label>
+            </div>
+            <div class="ot-col-sm-3">
+                <label class="ot-form-control-label ">{{'tpdir.create.form.clastName'|translate}}</label>
+                <label class="ot-text-as-label">{{workFlow.provisioningRequestData.registrationData.technicalPointOfContact.lastName}}</label>
+            </div>
+            <div class="ot-col-sm-3">
+                <label class="ot-form-control-label ">{{'tpdir.create.form.cemail'|translate}}</label>
+                <label class="ot-text-as-label">{{workFlow.provisioningRequestData.registrationData.technicalPointOfContact.contactInformation.email}}</label>
+            </div>
+            <div class="ot-col-sm-3">
+                <label class="ot-form-control-label ">{{'tpdir.create.form.userPhone'|translate}}</label>
+                <label class="ot-text-as-label">{{workFlow.provisioningRequestData.registrationData.technicalPointOfContact.contactInformation.telephone}}</label>
+            </div>
+        </div>
+
+
+
+        <div *ngIf="isTGMSClient else bjTemplate">
+            <span class="cm-hr-custom"></span>
+            <div class="ot-row ot-row-custom">
+                <div class="ot-col-sm-12 ">
+                    <h2>{{'tpdir.createTpMsg.ediInfo'|translate}}</h2>
+                </div>
+            </div>
+
+            <div class="ot-col-sm-12">
+                <div class="form-row-am" *ngFor="let keys of selectedEDI">
+                    <div class="ot-col-sm-12" style="padding-bottom:1em">
+                        <span class="ot-check-icon" style="margin-top:0!important"></span>
+                        <div style="float: left;">{{keys}}</div>
+                    </div>
+                </div>
+            </div>
+            <span class="cm-hr-custom"></span>
+            <div class="ot-row ot-row-custom">
+                <div class="ot-col-sm-12 ">
+                    <h2>{{'tpmsg.legends.billingInfo'|translate}}</h2>
+                </div>
+            </div>
+
+            <div class="form-row-am" *ngFor="let keys of billingInfo">
+                <div class="ot-col-sm-12" style="padding-bottom:1em">
+                    <span class="ot-check-icon" style="margin-top:0!important"></span>
+                    <div style="float: left;">{{keys}}</div>
+                </div>
+            </div>
+
+        </div>
+
+
+        <ng-template #bjTemplate>
+            <span class="cm-hr-custom"></span>
+            <div class="ot-row ot-row-custom">
+                <div class="ot-col-sm-12 ">
+                    <h2>{{'tpmsg.legends.sendReceiverDetails'|translate}}</h2>
+                </div>
+            </div>
+
+            <div class="ot-row ot-row-custom">
+                <div class="ot-col-sm-4">
+                    <label class="ot-form-control-label ">{{'tpmsg.fields.ediStnd'|translate}}</label>
+                    <label class="ot-text-as-label">{{workFlow.provisioningRequestData.registrationData.tradingAddress.ediStadard}}</label>
+                </div>
+                <div class="ot-col-sm-4">
+                    <label class="ot-form-control-label ">{{'tpmsg.fields.connectivityType'|translate}}</label>
+                    <label class="ot-text-as-label">{{workFlow.provisioningRequestData.registrationData.tradingAddress.connectivityType}}</label>
+                </div>
+                <div class="ot-col-sm-4">
+                    <label class="ot-form-control-label ">{{'tpmsg.fields.vanName'|translate}}</label>
+                    <label class="ot-text-as-label">{{workFlow.provisioningRequestData.registrationData.tradingAddress.vanProvider}}</label>
+                </div>
+            </div>
+            <div class="ot-row ot-row-custom">
+                <div class="ot-col-sm-12 ">
+                    <h2>Selected Map</h2>
+                </div>
+            </div>
+            <!-- show map here -->
+            <div class="ot-col-sm-12 clear-bottom" style="pointer-events:none!important">
+
+                <div [style.height]="!(isFilterApplied) ?'calc( 100% - 4em )':'calc( 100% - 6em)'">
+                    <ot-dataTable class="msgdetails-datatable" [locale]="currentLanguage" #tpdt [(value)]="workFlow.provisioningRequestData.registrationData.tgtsProfiles.maps"
+                        [headerCheckboxToggleAllPages]="false" [lazy]="true" [responsive]="true" [scrollHeight]="isFilterApplied">
+                        <ot-column [style]="{'width':'15%'}" field="mapName" header="{{'tpdir.read.mapName'| translate}}"></ot-column>
+                        <ot-column [style]="{'width':'10%'}" field="docType" header="{{'tpdir.read.docType'| translate}}"></ot-column>
+                        <ot-column [style]="{'width':'15%'}" field="docVersion" header="{{'tpdir.read.docVersion'| translate}}"></ot-column>
+                        <ot-column [style]="{'width':'8%'}" field="direction" header="{{'tpdir.read.direction'| translate}}"></ot-column>
+                        <ot-column [style]="{'width':'8%'}" field="usedBy" header="{{'tpdir.read.usedBy'| translate}}"></ot-column>
+                        <ot-column [style]="{'width':'25%'}" field="tableEntries" header="{{'tpdir.read.tableEntries'| translate}}">
+                            <ng-template let-col let-map="rowData" pTemplate="body" let-i="rowIndex">
+                                <div class="cm-custom-template-datatable" *ngIf="map.direction == 'Outbound' else inboundRow">
+                                    <input type="text" [(ngModel)]="map.tableEntries" name="tableEntries{{i}}" (change)="trimTableEntries()"
+                                        style="margin-right: 1em;width:100%!important;border:none;" placeholder="{{'tpdir.read.preXrefLookup'| translate}}"
+                                        maxlength="120">
+                                    <input type="text" [(ngModel)]="map.acr" name="acr{{i}}" (change)="trimTableEntries()"
+                                        style="margin-right: 1em;width:100%!important;border:none;" placeholder="{{'tpdir.read.applicationCrossReference'| translate}}"
+                                        maxlength="120">
+                                </div>
+                                <ng-template #inboundRow>
+                                    <div class="cm-custom-template-datatable required">
+                                        <input type="text" [(ngModel)]="map.edi_dc40_test" name="edi_test{{i}}"
+                                            (change)="trimTableEntries()" style="margin-right: 1em;width:48%!important;border:none;"
+                                            placeholder="{{'tpdir.read.EDI_DC40_TEST'| translate}}" maxlength="120">
+                                        <input type="text" [(ngModel)]="map.edi_dc40_prod" name="edi_prod{{i}}"
+                                            (change)="trimTableEntries()" style="margin-right: 1em;width:48%!important;border:none;"
+                                            placeholder="{{'tpdir.read.EDI_DC40_PROD'| translate}}" maxlength="120">
+                                    </div>
+                                </ng-template>
+                                &nbsp;
+                            </ng-template>
+                        </ot-column>
+                    </ot-dataTable>
+                </div>
+
+            </div>
+
+            <div class="ot-row ot-row-custom">
+                <div class="ot-col-sm-12 ">
+                    <h2>{{'tpmsg.legends.prodDetails'|translate}}</h2>
+                </div>
+            </div>
+            <div class="ot-row ot-row-custom">
+                <div class="ot-col-sm-4">
+                    <label class="ot-form-control-label ">{{'tpmsg.fields.yourProdAdd'|translate}}</label>
+                    <label class="ot-text-as-label">{{workFlow.provisioningRequestData.customer.tradingAddresses.prod.qualifier}}:{{workFlow.provisioningRequestData.customer.tradingAddresses.prod.address}}</label>
+                </div>
+                <div class="ot-col-sm-4">
+                    <label class="ot-form-control-label ">{{'tpmsg.fields.yourProdGSID'|translate}}</label>
+                    <label class="ot-text-as-label">{{workFlow.provisioningRequestData.customer.tradingAddresses.prod.gsId}}</label>
+                </div>
+            </div>
+            <div class="ot-row ot-row-custom">
+                <div class="ot-col-sm-4">
+                    <label class="ot-form-control-label ">{{'tpmsg.fields.tpProdAdd'|translate}}</label>
+                    <label class="ot-text-as-label">{{workFlow.provisioningRequestData.registrationData.tradingAddress.prodtp.qualifier}}:{{workFlow.provisioningRequestData.registrationData.tradingAddress.prodtp.address}}</label>
+                </div>
+                <div class="ot-col-sm-4">
+                    <label class="ot-form-control-label ">{{'tpmsg.fields.tpProdGSID'|translate}}</label>
+                    <label class="ot-text-as-label">{{workFlow.provisioningRequestData.registrationData.tradingAddress.prodtp.gsId}}</label>
+                </div>
+            </div>
+            <span class="cm-hr-custom"></span>
+            <div class="ot-row ot-row-custom">
+                <div class="ot-col-sm-12 ">
+                    <h2>{{'tpmsg.legends.testDetails'|translate}}</h2>
+                </div>
+            </div>
+            <div class="ot-row ot-row-custom">
+                <div class="ot-col-sm-4">
+                    <label class="ot-form-control-label ">{{'tpmsg.fields.yourTestAdd'|translate}}</label>
+                    <label class="ot-text-as-label">{{workFlow.provisioningRequestData.customer.tradingAddresses.test.qualifier}}:{{workFlow.provisioningRequestData.customer.tradingAddresses.test.address}}</label>
+                </div>
+                <div class="ot-col-sm-4">
+                    <label class="ot-form-control-label ">{{'tpmsg.fields.yourTpGSID'|translate}}</label>
+                    <label class="ot-text-as-label">{{workFlow.provisioningRequestData.customer.tradingAddresses.test.gsId}}</label>
+                </div>
+                <div class="ot-col-sm-4" *ngIf="workFlow.provisioningRequestData.registrationData.tgtsProfiles.messageDetails.customerTestISAindicator == 'Y'">
+                    <span class="ot-check-icon"></span>
+                    <label class="ot-text-as-label">{{'tpmsg.fields.youUseISA'|translate}}</label>
+                </div>
+            </div>
+            <div class="ot-row ot-row-custom">
+                <div class="ot-col-sm-4">
+                    <label class="ot-form-control-label ">{{'tpmsg.fields.tpTestAdd'|translate}}</label>
+                    <label class="ot-text-as-label">{{workFlow.provisioningRequestData.registrationData.tradingAddress.testtp.qualifier}}:{{workFlow.provisioningRequestData.registrationData.tradingAddress.testtp.address}}</label>
+                </div>
+                <div class="ot-col-sm-4">
+                    <label class="ot-form-control-label ">{{'tpmsg.fields.tpTestGSID'|translate}}</label>
+                    <label class="ot-text-as-label">{{workFlow.provisioningRequestData.registrationData.tradingAddress.testtp.gsId}}</label>
+                </div>
+                <div class="ot-col-sm-4" *ngIf="workFlow.provisioningRequestData.registrationData.tgtsProfiles.messageDetails.tpTestISAindicator == 'Y'">
+                    <span class="ot-check-icon"></span>
+                    <label class="ot-text-as-label">{{'tpdir.company.history.onboarding.senderRecieverInformation.tpISAIndicator'|translate}}</label>
+                </div>
+            </div>
+
+            <span class="cm-hr-custom"></span>
+            <div class="ot-row ot-row-custom">
+                <div class="ot-col-sm-12 ">
+                    <h2>{{'tpmsg.legends.msgDetails'|translate}}</h2>
+                </div>
+            </div>
+
+            <div class="ot-row ot-row-custom" *ngIf="workFlow.provisioningRequestData.registrationData.tgtsProfiles.messageDetails.functionalAck == 'Y'">
+                <div class="ot-col-sm-12">
+                    <span class="ot-check-icon"></span>
+                    <label class="ot-text-as-label">{{'tpmsg.fields.reqFunctionAck'|translate}}</label>
+                </div>
+            </div>
+            <div class="ot-row ot-row-custom">
+                <div class="ot-col-sm-4">
+                    <label class="ot-form-control-label ">{{'tpmsg.fields.segTerminator'|translate}}</label>
+                    <label class="ot-text-as-label">{{workFlow.provisioningRequestData.registrationData.tgtsProfiles.messageDetails.segmentTerminator}}</label>
+                </div>
+                <div class="ot-col-sm-4">
+                    <label class="ot-form-control-label ">{{'tpmsg.fields.elemSeprator'|translate}}</label>
+                    <label class="ot-text-as-label">{{workFlow.provisioningRequestData.registrationData.tgtsProfiles.messageDetails.elementSeparator}}</label>
+                </div>
+                <div class="ot-col-sm-4">
+                    <label class="ot-form-control-label ">{{'tpmsg.fields.sublemTerminator'|translate}}</label>
+                    <label class="ot-text-as-label">{{workFlow.provisioningRequestData.registrationData.tgtsProfiles.messageDetails.subelementTerminator}}</label>
+                </div>
+            </div>
+
+            <span class="cm-hr-custom"></span>
+            <div class="ot-row ot-row-custom">
+                <div class="ot-col-sm-12 ">
+                    <h2>{{'tpmsg.legends.setupDetails'|translate}}</h2>
+                </div>
+            </div>
+            <div class="ot-row ot-row-custom">
+                <div class="ot-col-sm-12" *ngIf="workFlow.provisioningRequestData.setup=='TESTING'">
+                    <span class="ot-check-icon"></span>
+                    <label class="ot-text-as-label">{{'tpmsg.setupdetails.testFirst'|translate}}</label>
+                </div>
+                <div class="ot-col-sm-12" *ngIf="workFlow.provisioningRequestData.setup=='FINAL'">
+                    <span class="ot-check-icon"></span>
+                    <label class="ot-text-as-label">{{'tpmsg.setupdetails.setupNow'|translate}}</label>
+                </div>
+            </div>
+        </ng-template>
+    </div>
+</div>
+
+<footer class="ot-page-footer-container footer">
+    <div class="ot-form-footer">
+        <button class="ot-secondary" type="button" (click)="previous()">{{'common.previous'|translate}}</button>
+        <button class="ot-primary" type="button" (click)="submit()">{{'common.submit.title'|translate}}</button>
+        <button class="ot-secondary" type="button" (click)="cancel()">{{'common.Cancel'|translate}}</button>
+    </div>
+</footer>
+
+<ot-dialoguebox iconClass="ot-warning-icon" header="{{'common.cancelSetupHeader' |translate}}" name="cancelSetup"
+  acceptButton="{{'common.confirm' |translate}}"
+  rejectButton="{{'common.Cancel' |translate}}">
+  <div dialog-message>
+    {{'common.cancelSetupText' |translate}}
+  </div>
+</ot-dialoguebox>

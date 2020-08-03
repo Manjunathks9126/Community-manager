@@ -1,0 +1,324 @@
+<div class="ot-modal ot-modal-lg-width">
+    <div class="ot-form-container-cent">
+        <div class="ot-modal-header">
+            <div class="adjust-icon">
+                <span class="ot-icon cm-custom-field-form-icon" [ngClass]="selectedFieldType?.displayIcon"></span>
+            </div>
+            <span class="cm-elipsis"
+                tooltip="{{newField.uniqueId ? newField.question : selectedFieldType?.displayText |translate}}">
+                {{(newField.uniqueId ? newField.question : selectedFieldType?.displayText) |translate}}
+            </span>
+            <div (click)="closeFieldModal();" class="ot-modal-close-icon ot-ui-pull-right"
+                tooltip="{{'common.tooltip.close'|translate}}">
+            </div>
+        </div>
+        <div class="ot-modal-content" [perfectScrollbar]="scrollConfig">
+            <form #fieldForm="ngForm">
+                <div class="ot-row magin-bottom ot-col-md-11">{{selectedFieldType.fieldType}}
+                    <div class="ot-col-md-3">
+                        <label class="ot-form-control-label">
+                            {{'customField.field.type' |translate}}</label>
+                        <div *ngIf="fieldType ==='Text' || fieldType === 'Text Area' "
+                            class="ot-col-md-12 cm-cfm-text-label">
+                            <label class="ot-form-control-label cm-cfm-textarea-label">
+                                <ot-radioButton name="customFieldType" value="Text"
+                                    label="{{'customField.field.type.label.Text'|translate}}"
+                                    [(ngModel)]="newField.customFieldType" inputId="customFieldType"
+                                    [disabled]="newField.uniqueId != undefined"></ot-radioButton>
+                            </label>
+                            <label class="ot-form-control-label cm-cfm-textarea-label">
+                                <ot-radioButton name="customFieldType" value="Text Area"
+                                    label="{{'customField.field.type.label.Text Area'|translate}}"
+                                    [(ngModel)]="newField.customFieldType" inputId="customFieldType"
+                                    [disabled]="newField.uniqueId != undefined"></ot-radioButton>
+                            </label>
+                        </div>
+                        <label *ngIf="selectedFieldType.displayLabel !== 'false'"
+                            class="ot-form-value-label">{{selectedFieldType?.displayText |translate}}</label>
+
+                    </div>
+                    <div class="ot-col-md-3">
+                        <label class="ot-form-control-label ot-required">
+                            {{'customField.field.name' |translate}}</label>
+                        <input class="ot-form-control" type="text" [focus]="true" maxlength=256 #fieldName="ngModel"
+                            name="fieldName" [(ngModel)]="newField.question" trim="blur" required>
+                        <ng-container *ngIf="fieldName.errors && fieldName.touched">
+                            <div class="ot-error" [hidden]="!fieldName.errors.required ">
+                                {{'customField.validation.fieldName'|translate}}
+                            </div>
+                        </ng-container>
+                    </div>
+                    <div class="ot-col-md-3">
+                        <label class="ot-form-control-label ot-required">
+                            {{'customField.field.id' |translate}}</label>
+                        <div *ngIf="customFieldIdEditFlag === true">
+                            <input class="ot-form-control" type="text" maxlength={{customValues.fieldId_max}}
+                                #fieldId="ngModel" minlength={{customValues.fieldId_min}}
+                                pattern={{customValues.fieldIdRegex}} name="fieldId"
+                                [(ngModel)]="newField.customFieldId" trim="blur" required>
+
+                            <ng-container *ngIf="fieldId.errors && fieldId.touched">
+                                <div class="ot-error" [hidden]="!fieldId.errors.required ">
+                                    {{'customField.validation.fieldId'|translate}}
+                                </div>
+                                <!--
+                                   <div class="ot-error" [hidden]="!fieldId.errors.pattern">
+                                    {{'customField.validation.fieldIdInvalid'|translate}}</div>
+                               -->
+                            </ng-container>
+                        </div>
+                        <label *ngIf="customFieldIdEditFlag === false"
+                            class="ot-form-value-label">{{newField.customFieldId}}</label>
+                    </div>
+                </div>
+                <div class="ot-row cm-margin-top ot-col-md-11" *ngIf="selectedFieldType?.showDefaultValue ==='true'">
+                    <div class="ot-col-md-3">
+                        <label class="ot-form-control-label">
+                            {{'customField.field.default' |translate}}</label>
+                        <input *ngIf="fieldType === 'Number'" class="ot-form-control" type="text"
+                        [attr.maxlength]="defaultMaxLength? defaultMaxLength: selectedFieldType?.maxLength" #defaultValue="ngModel" name="defaultValue"
+                            [(ngModel)]="newField.defaultAnswer" numeric
+                            [attr.disabled]="newField.customFieldType? null : true">
+                        <input *ngIf="fieldType === 'Text'" class="ot-form-control" type="text"
+                        [attr.maxlength]="defaultMaxLength? defaultMaxLength: selectedFieldType?.maxLength" #defaultValue="ngModel" name="defaultValue"
+                            [(ngModel)]="newField.defaultAnswer"
+                            [attr.disabled]="newField.customFieldType? null : true">
+                            <ng-container  *ngIf="(defaultMaxLength && newField.defaultAnswer) || (newField.defaultAnswer && defaultMinValue && defaultMaxValue) ">
+                                <div class="ot-error">
+                                   {{checkDefaultValue(newField.defaultAnswer,defaultMaxLength, defaultMinValue, defaultMaxValue)}}
+                                </div>
+                            </ng-container>
+                        <textarea *ngIf="newField.customFieldType === 'Text Area'"
+                            class="ot-form-control disable-resize" name="defaultValue"
+                            [(ngModel)]="newField.defaultAnswer" rows="6" maxlength="4000">
+                        </textarea>
+
+                    </div>
+                    <div class="ot-col-md-4" *ngIf="fieldType === 'Number'">
+                        <label class="ot-form-control-label">
+                            {{'customField.field.validationRule' |translate}}</label>
+                        <input class="ot-form-control cm-custom-input" type="text" maxlength="15"
+                            #defaultMinimumValue="ngModel" name="defaultMinimumValue" [(ngModel)]="defaultMinValue"
+                            placeholder="Min value" numeric>
+                        <span class="cm-cfm-hyphen">-</span>
+                        <input class="ot-form-control cm-custom-input" type="text" maxlength="15"
+                            #defaultMaximumValue="ngModel" name="defaultMaximumValue" [(ngModel)]="defaultMaxValue"
+                            placeholder="Max value" numeric>
+                        <ng-container
+                            *ngIf="((defaultMinimumValue.touched && defaultMinimumValue) || (defaultMinValue && defaultMaxValue === ''))">
+                            <div class="ot-error cm-error-msg-adjust"
+                                [hidden]="defaultMaxValue || defaultMinValue === ''">
+                                    {{checkNumberRange(defaultMinValue, defaultMaxValue)}}
+                            </div>
+                        </ng-container>
+                        <ng-container *ngIf="defaultMaxValue">
+                            <span class="ot-error cm-error-msg-adjust">
+                                    {{checkNumberRange(defaultMinValue, defaultMaxValue)}}
+                            </span>
+                        </ng-container>
+
+                    </div>
+                    <div class="ot-col-md-4" *ngIf="newField.customFieldType === 'Text'">
+                        <label class="ot-form-control-label">
+                            {{'customField.field.maxLength' |translate}}</label>
+                        <input class="ot-form-control cm-custom-input" type="text"
+                            name="defaultMaxLength" [(ngModel)]="defaultMaxLength" onlyDigits>
+                        <ng-container *ngIf="defaultMaxLength">
+                            <div class="ot-error">
+                                   {{checkCharacterLength(defaultMaxLength)}}
+                            </div>
+                        </ng-container>
+                    </div>
+
+                </div>
+
+                <div class="ot-row magin-bottom ot-col-md-11">
+                    <div class="ot-col-md-3">
+                        <label class="ot-form-control-label">&nbsp;</label>
+                        <div class="cm-checkboxRow-cfm">
+                            <ot-checkbox name="fieldMandatory" label="{{'customField.mandatory' |translate}}"
+                                binary=true [(ngModel)]="newField.mandatory"></ot-checkbox>
+                        </div>
+                    </div>
+                    <div class="ot-col-md-5">
+                        <label class="ot-form-control-label">&nbsp;</label>
+                        <div class="cm-checkboxRow-cfm">
+                            <ot-checkbox name="fieldDependent"
+                                label="{{'customField.field.makeDependentOn' |translate}}" binary=true
+                                [(ngModel)]="makeDependent" (onChange)="getAllFields()"></ot-checkbox>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="ot-row magin-bottom ot-col-md-11" [hidden]="!(makeDependent && optionDependent.length>0)">
+                    <div class="ot-col-md-offset-3 ot-col-md-5">
+                        <div class="ot-col-md-12 cm-custom-field-dependency-box">
+                            <div class="ot-row ot-col-md-12">
+                                <label
+                                    class="ot-form-control-label">{{'customField.field.dependentFieldname' |translate}}:</label>
+                                <ot-select-dropdown name="dependentField"
+                                    placeholder="{{'common.default.select.txt'| translate}}"
+                                    (onChange)="onDependentFieldSelection(dependentCustomfieldId,'change')"
+                                    [options]="optionDependent" [(ngModel)]="dependentCustomfieldId" [editable]="false"
+                                    [required]="makeDependent==true"></ot-select-dropdown>
+                            </div>
+                            <div class="ot-row ot-col-md-12">
+                                <label class="ot-form-control-label">{{'customField.field.answer' |translate}}:</label>
+                                <ot-multi-select name="ansDependent" [options]="answerDependent" optionLabel="value"
+                                    dataKey="id" [returnKeyOnly]="true"
+                                    [defaultLabel]="'common.default.select.txt'| translate" styleClass="cm-p-dropdown"
+                                    [(ngModel)]="newField.dependentChoiceIds" [required]="makeDependent==true">
+                                </ot-multi-select>
+                            </div>
+                            <div class="ot-row ot-col-md-12">
+                                <ot-radioButton name="answerGroup" value="AND"
+                                    label="{{'customField.field.and' |translate}}" [disabled]="isConjDisabled"
+                                    [(ngModel)]="newField.dependencyConjunction"></ot-radioButton>
+                                <ot-radioButton name="answerGroup" value="OR"
+                                    label="{{'customField.field.or' |translate}}" [disabled]="isConjDisabled"
+                                    [(ngModel)]="newField.dependencyConjunction"></ot-radioButton>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ot-row-custom ot-col-md-6 cm-margin-top" *ngIf="selectedFieldType.showChoices ==='true'">
+                    <div class="ot-datatable-container">
+                        <div class="ot-toolbar-container">
+                            <span *ngIf="newField.choices?.length<selectedFieldType.CHOICE_LIMIT"
+                                class="ot-toolbar-item" (click)="addChoice()">
+                                <div class="ot-icon ot-icon-toolbar ot-icon-toolbar-add"
+                                    tooltip="{{'common.tooltip.addChoice'|translate}}"></div>
+                            </span>
+                            <span *ngIf="newField.choices?.length<selectedFieldType.CHOICE_LIMIT"
+                                class="ot-vertical-line"></span>
+                            <span *ngIf="selectedChoices?.length>0" class="ot-toolbar-item ot-panel-span"
+                                (click)="deleteChoice()">{{'common.Delete'|
+                                translate}} </span>
+
+                            <div class="ot-ui-pull-right">
+                                <div *ngIf="newField.choices?.length>0" class="cm-custom-multi-pull-left">
+                                    <ot-checkbox name="makeFirstDefault" binary=true
+                                        label="{{'customField.field.firstDefault' |translate}}"
+                                        [(ngModel)]="makeFirstDefault"></ot-checkbox>
+
+                                </div>
+                                <div *ngIf="newField.choices?.length>0" class="cm-custom-multi-pull-left">
+                                    <ot-checkbox name="sortAlphabatically" binary=true
+                                        label="{{'customField.field.sortAlphabatic' |translate}}"
+                                        [(ngModel)]="sortAlphabatically"></ot-checkbox>
+                                </div>
+                            </div>
+                        </div>
+                        <div [style.height]="'22em'">
+                            <ot-dataTable name="custom-fields-add-checkbox" [locale]="currentLanguage" #fldAddChkboxDt
+                                [(value)]="newField.choices" [(selection)]="selectedChoices"
+                                [headerCheckboxToggleAllPages]="false" scrollable="false" responsive="false"
+                                editable="true">
+                                <ot-column [style]="{'width':'5%'}" selectionMode="multiple"></ot-column>
+                                <ot-column [style]="{'width':'50%'}" field="value"
+                                    header="{{'customField.label'| translate}}">
+                                    <ng-template let-col let-data="rowData" let-i="index" pTemplate="body">
+                                        <input name="ff" type="text" maxlength="200"
+                                            (ngModelChange)="isChoicesDirty=true" [ngModelOptions]="{standalone: true}"
+                                            [(ngModel)]="data[col.field]" trim>
+                                    </ng-template>
+                                </ot-column>
+                                <ot-column name="choice" [style]="{'width':'50%'}" field="choiceIdentifier"
+                                    header="{{'customField.identifier'| translate}}">
+                                    <ng-template let-col let-data="rowData" let-i="rowIndex" pTemplate="body">
+                                        <input *ngIf="!data.id" id="number{{i+1}}" name="choice" #choice="ngModel"
+                                            pattern={{customValues.fieldIdRegex}} type="text" maxlength="100"
+                                            (ngModelChange)="isChoicesDirty=true" [ngModelOptions]="{standalone: true}"
+                                            [(ngModel)]="data[col.field]" trim>
+                                        <label *ngIf="customFieldIdEditFlag === false && data.id"
+                                            class="ot-form-value-label">{{data[col.field]}}</label>
+                                        <span *ngIf="data[col.field]"
+                                            class="ot-error">{{checkError(data[col.field])}}</span>
+
+                                    </ng-template>
+                                </ot-column>
+                                <ot-column [style]="{'width':'45%'}">
+                                    <ng-template let-data="rowData" pTemplate="body">
+                                        <span [style.align-self]="'center'"
+                                            *ngIf="newField.defaultChoice?.id && newField.defaultChoice?.id==data?.id"
+                                            ngClass="ot-icon-tick"></span>
+                                    </ng-template>
+                                </ot-column>
+                            </ot-dataTable>
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf="fieldType ==='Date'">
+                    <div class="ot-row ot-col-md-11 magin-bottom">
+
+                        <div class="ot-col-md-3">
+                            <label class="ot-form-control-label">&nbsp;</label>
+                            <div class="cm-checkboxRow-cfm">
+                                <ot-checkbox name="fieldDefaultValue" binary=true [(ngModel)]="selectDefaultDate"
+                                    label="{{'customField.field.default' |translate}}"></ot-checkbox>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="ot-row ot-col-md-11">
+                        <div class="ot-col-md-3" *ngIf="selectDefaultDate === true">
+                            <div class="default-date-div-container">
+                                <ot-radioButton name="group2" value="current_date" label="Set current date"
+                                    [(ngModel)]="defaultAnswerchk" inputId="opt1"></ot-radioButton>
+                            </div>
+                            <div class="default-date-div-container">
+                                <ot-radioButton name="group2" value="select_date" label="Select date"
+                                    [(ngModel)]="defaultAnswerchk" inputId="opt2"></ot-radioButton>
+                            </div>
+                            <div class="default-date-div-container"
+                                *ngIf="defaultAnswerchk && defaultAnswerchk == 'select_date'">
+                                <ot-calendar [locale]="currentLanguage" appendTo="body"  inputStyleClass="exp-cal"  
+                                    [monthNavigator]="true"   [yearNavigator]="true"   yearRange="1990:2050"
+                                     name="dateFrom" [(ngModel)]="defaultAnswer"  dateFormat="mm/dd/yy"  
+                                    showButtonBar="true" [showIcon]="true" required></ot-calendar>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ot-row ot-col-md-11 cm-margin-top" *ngIf="fieldType === 'File Download'">
+                    <div class="ot-col-md-12">
+                        <label
+                            class="ot-form-control-label ot-required">{{'customField.addFiled.download.instruction'|translate}}</label>
+                        <label for="templateFile" class="attach-file-button">{{'common.attachFile'|translate}}</label>
+                        <input type="file" id="templateFile" name="templateFile" class="cm-cfm-file-upload"
+                            [(ngModel)]="fileUploaded" (change)="attachFile($event,fileObjects)" />
+                        <!-- <button type="button" class="ot-secondary" (click)="attachFile()">{{'common.attachFile'|translate}}</button> -->
+                    </div>
+                    <div class="ot-col-md-12 cm-cfm-file-download-section">
+                        <ul class="cm-cfm-file-object">
+                            <li *ngFor="let file of fileObjects let index=index">
+                                <span class="ot-hyperlink-imitation">{{file.fileName}}</span>
+                                <span tooltip="{{'common.tooltip.delete'|translate}}"
+                                    class="ot-icon ot-icon-row-delete ot-ui-pull-right"
+                                    (click)="clearSchemaFile(index)"></span>
+                                <span tooltip="{{'common.tooltip.download'|translate}}"
+                                    class="ot-icon-file-download ot-ui-pull-right"
+                                    (click)="download(file.fileId,file.fileName)"></span>
+
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="ot-modal-footer">
+
+            <div class="ot-form-footer">
+                <button type="submit" class="ot-primary"
+                    [disabled]="(fieldForm.invalid || !(isChoicesDirty || fieldForm.dirty)) || !validIdentifier"
+                    (click)="addField();">{{'common.save'|translate}}</button>
+                <button type="button" class="ot-secondary"
+                    (click)="closeFieldModal();">{{'common.Cancel'|translate}}</button>
+            </div>
+        </div>
+    </div>
+</div>

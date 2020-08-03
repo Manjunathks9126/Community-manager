@@ -1,0 +1,596 @@
+<div class="cm-onboarding-container-custom " [perfectScrollbar]="scrollConfig">
+    <form #invitationForm="ngForm">
+        <ng-container *ngIf="!editMode; else editInvitationDetails">
+            <div class="ot-faceted-content">
+                <div class="ot-row cm-row-onboarding ">
+                    <div class="ot-col-sm-5">
+                        <label
+                            class="ot-form-control-label ot-required">{{'onboarding.invitationForm.invitationName'|translate}}</label>
+                        <input type="text" trim
+                            [ngClass]="inviataionName.errors &&inviataionName.invalid &&(inviataionName.dirty || inviataionName.touched) ? 'ot-error':'ot-text'"
+                            name="inviataionName" [(ngModel)]="invitation.invitationName" #inviataionName="ngModel"
+                            maxlength="100" [pattern]="invitationRegx" required>
+                        <div *ngIf="!invitation.invitationName && (inviataionName.dirty || inviataionName.touched)">
+                            <div class="ot-error">
+                                {{'onboarding.invitationForm.validationMsgs.invitationName'|translate}}</div>
+                        </div>
+                        <div *ngIf="inviataionName.errors && inviataionName.invalid && invitation.invitationName">
+                            <div class="ot-error">
+                                {{'onboarding.invitationForm.validationMsgs.invalidInvitationName'|translate}}</div>
+                        </div>
+                    </div>
+                    <div class="ot-col-sm-5  ot-col-sm-offset-1  ">
+                        <label
+                            class="ot-form-control-label">{{'onboarding.invitationForm.description'|translate}}</label>
+                        <textarea class="ot-form-control ot-stnd-textarea" [(ngModel)]="invitation.invitationComments"
+                            resizable="false" rows="5" id="d" name="note" maxlength="4000"></textarea>
+                    </div>
+                </div>
+                <div class="ot-row cm-row-onboarding ">
+                    <div class="ot-col-sm-5">
+                        <label
+                            class="ot-form-control-label ot-required">{{'onboarding.invitationForm.invitationType.title'|translate}}</label>
+                        <ot-radioButton name="invitationType" value="UNIQUE" [disabled]="true"
+                            label="{{'onboarding.invitationForm.invitationType.unique'| translate}}"
+                            [(ngModel)]="invitation.invitationType" required></ot-radioButton>
+                        <ot-radioButton name="invitationType" value="GENERIC" [disabled]="true"
+                            label="{{'onboarding.invitationForm.invitationType.generic'| translate}}"
+                            [(ngModel)]="invitation.invitationType" required></ot-radioButton>
+                    </div>
+                    <div class="ot-col-sm-5 ot-col-sm-offset-1">
+                        <label
+                            class="ot-form-control-label ot-required">{{'onboarding.invitationForm.approvalType.title'|translate}}</label>
+                        <ot-radioButton name="approvalType" value="AUTO"
+                            label="{{'onboarding.invitationForm.approvalType.automatic'| translate}}"
+                            [(ngModel)]="invitation.approvalType" required></ot-radioButton>
+                        <ot-radioButton name="approvalType" value="MANUAL" [disabled]="true"
+                            label="{{'onboarding.invitationForm.approvalType.manual'| translate}}"
+                            [(ngModel)]="invitation.approvalType" required></ot-radioButton>
+                    </div>
+                </div>
+                <div class="ot-row cm-row-onboarding ">
+                    <div class="ot-col-sm-5">
+                        <label
+                            class="ot-form-control-label ot-required">{{'onboarding.invitationForm.inviteExpire'|translate}}</label>
+                        <ot-calendar  [locale]="currentLanguage" appendTo="body" inputStyleClass="exp-cal"
+                             [monthNavigator]="true"  [yearNavigator]="true"  yearRange="1990:2050" name="dateTo"
+                             [(ngModel)]="invitation.invitationExpirationDate"  dateFormat="mm/dd/yy"
+                             placeholder="{{'tpdir.company.contacts.dateFormatMMDDYYYY'| translate}}"
+                            showButtonBar="true" [showIcon]="true" [minDate]="minExpDateValue"
+                            (onInput)="onInput($event)" (onSelect)="onSelect($event)" required></ot-calendar>
+                        <div *ngIf="isDateValid==false">
+                            <div class="ot-error">
+                                {{'onboarding.invitationForm.validationMsgs.dateValidation'|translate}}</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Notification -->
+                <div class="ot-row cm-row-onboarding ">
+                    <hr>
+                    <h3>{{'onboarding.invitationForm.notification.title' |translate}}</h3>
+                </div>
+                <div class="ot-row cm-row-onboarding ">
+                    <div class="ot-col-sm-5">
+                        <label
+                            class="ot-form-control-label">{{'onboarding.invitationForm.notification.notificationRecipientsLabel' |translate}}
+                        </label>
+                        <input class="ot-form-control  cm-input-md "
+                            [(ngModel)]="invitation.notificationEmailRecipients" type="text" name="recipients"
+                            #recipients /> &nbsp;
+                        <button [disabled]="!invitation.notificationEmailRecipients" type="button" class="ot-primary"
+                            (click)="listOfRecipients('add',invitation.notificationEmailRecipients, 'notification')">{{'onboarding.invitationForm.notification.add'|translate}}</button>
+                        <div>
+                            <label class="ot-form-control-label cm-font-italic">
+                                {{'onboarding.invitationForm.notification.notificationRecipientsHelpTxt'|translate}}</label>
+                        </div>
+                        <div *ngIf="invalidRecipientMail && listRecipients.length &lt; 10 && !recipientLengthExceeded">
+                            <div class="ot-error">
+                                {{'onboarding.invitationForm.validationMsgs.invalidEmail'|translate}}</div>
+                        </div>
+                        <div *ngIf="invalidRecipientMail">
+                            <div *ngIf="!recipientLengthExceeded  && listRecipients.length==10" class="ot-error">
+                                {{'onboarding.invitationForm.validationMsgs.maxAllowedEmail'|translate}}</div>
+                            <div *ngIf="recipientLengthExceeded" class="ot-error">
+                                {{'onboarding.invitationForm.validationMsgs.emailMaxLength'|translate}}</div>
+                        </div>
+                    </div>
+                    <div class="ot-col-sm-6  ot-col-sm-offset-1  cm-inlineDisplay">
+                        <ot-checkbox name="suppressUsermail" #emailNotify="ngModel" [(ngModel)]="invitation.emailNotify"
+                            binary="true">
+                        </ot-checkbox>
+                        <label class="ot-form-control-label">
+                            {{'onboarding.invitationForm.notification.confirmationEmailLabel' |translate}}
+                        </label>
+                    </div>
+                </div>
+                <div class="ot-row cm-row-onboarding ">
+                    <div class="ot-col-sm-4 cm-onboarding-mail-box">
+                        <ul class="cm-display-recipients">
+                            <li *ngFor="let mail of listRecipients; let i= index; trackBy: TrackByFunction">
+                                <span *ngIf="!recipientseEditMode[i];"> {{listRecipients[i]}}
+                                    <div (click)="recipientseEditMode[i]=true;" class="ot-icon ot-icon-row-edit"></div>
+                                    <div (click)="listOfRecipients('delete',listRecipients[i], 'notification');"
+                                        class="ot-icon ot-icon-row-delete"></div>
+                                </span>
+                                <input *ngIf="recipientseEditMode[i]==true" [name]="'email_'+i"
+                                    [ngModel]="listRecipients[i]"
+                                    (ngModelChange)="emailChanged($event,i,'notification')" type="text"
+                                    (focus)="recipientseEditMode[i]" (blur)="recipientseEditMode[i]=false;"
+                                    maxlength="50">
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Trading relationship options -->
+                <div class="ot-row cm-row-onboarding">
+                    <hr>
+                    <h3>{{'onboarding.invitationForm.trOptions.title' |translate}}</h3>
+                </div>
+                <div class="ot-row cm-row-onboarding ">
+                    <div class="ot-col-sm-5  cm-inlineDisplay">
+                        <ot-checkbox name="suppressSendermail" binary=true [(ngModel)]="invitation.sendUserMail">
+                        </ot-checkbox>
+                        <label class="ot-form-control-label">
+                            {{'onboarding.invitationForm.trOptions.trSetupLabel' |translate}}
+                        </label>
+                    </div>
+                </div>
+                <div class="ot-row cm-row-onboarding">
+                    <div class="ot-col-sm-4">
+                        <label
+                            [ngClass]="isEdiAddressMandatory ? 'ot-form-control-label ot-required':'ot-form-control-label'">{{'onboarding.invitationForm.trOptions.inviteeEdiAddress'|translate}}</label>
+                        <ot-multi-select (onScrollEnd)="onScrollEvent($event)" [max]="20" name="invitingCoEdiAddr"
+                            [options]="ediAddressList" optionLabel="ediAddress"
+                            [defaultLabel]="'common.default.select.txt'| translate" styleClass="cm-p-dropdown"
+                            [(ngModel)]="invitation.invitingCoEdiAddr" [required]="isEdiAddressMandatory">
+                        </ot-multi-select>
+
+                    </div>
+                    <div class="ot-col-sm-4 ot-col-sm-offset-2">
+                        <label
+                            class="ot-form-control-label ot-required">{{'onboarding.invitationForm.trOptions.ediOptions'|translate}}</label>
+                        <ot-select-dropdown name="ediAddrCreateOption" [editable]="false"
+                            [(ngModel)]="invitation.ediAddrCreateOption" [options]="ediOptions"
+                            placeholder="{{'common.default.select.txt'| translate}}" required></ot-select-dropdown>
+                    </div>
+                </div>
+
+                <!-- Configure Invitation Email -->
+                <div class="ot-row cm-row-onboarding">
+                    <hr>
+                    <h3>{{'onboarding.invitationForm.emailConfiguration.title' |translate}}</h3>
+                </div>
+                <div class="ot-row cm-row-onboarding">
+                    <div class="ot-col-sm-5">
+                        <div>
+                            <div class="ot-col-sm-11">
+                                <label
+                                    class="ot-form-control-label ot-required">{{'onboarding.invitationForm.emailConfiguration.senderEmailAddr'|translate}}</label>
+                                <input type="text"
+                                    [ngClass]="senderEmailAddr.errors &&senderEmailAddr.invalid &&(senderEmailAddr.dirty || senderEmailAddr.touched) ? 'ot-error':'ot-text'"
+                                    name="senderEmailAddr" [(ngModel)]="invitation.senderEmailAddr"
+                                    #senderEmailAddr="ngModel" required [pattern]="emailRegex" maxlength="50">
+                                <div
+                                    *ngIf="!invitation.senderEmailAddr &&(senderEmailAddr.dirty || senderEmailAddr.touched)">
+                                    <div class="ot-error">
+                                        {{'onboarding.invitationForm.validationMsgs.senderEmailAddr'|translate}}</div>
+                                </div>
+                                <div
+                                    *ngIf="senderEmailAddr.errors &&senderEmailAddr.invalid && invitation.senderEmailAddr">
+                                    <div class="ot-error">
+                                        {{'onboarding.invitationForm.validationMsgs.invalidEmail'|translate}}</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="ot-col-sm-11 cm-row-invitation">
+                                <label
+                                    class="ot-form-control-label ot-required">{{'onboarding.invitationForm.emailConfiguration.invitationSubject'|translate}}</label>
+                                <input type="text"
+                                    [ngClass]="invitationSubject.errors &&invitationSubject.invalid &&(invitationSubject.dirty || invitationSubject.touched) ? 'ot-error':'ot-text'"
+                                    name="invitationSubject" [(ngModel)]="invitation.invitationSubject"
+                                    #invitationSubject="ngModel" required>
+                                <div
+                                    *ngIf="invitationSubject.errors &&invitationSubject.invalid &&(invitationSubject.dirty || invitationSubject.touched)">
+                                    <div class="ot-error">
+                                        {{'onboarding.invitationForm.validationMsgs.invitationSubject'|translate}}</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+
+                            <div class="ot-col-sm-11 cm-row-invitation">
+                                <label
+                                    class="ot-form-control-label">{{'onboarding.invitationForm.emailConfiguration.addCCRecipients' |translate}}
+                                </label>
+                                <input class="ot-form-control  cm-input-md " type="text"
+                                    [(ngModel)]="invitation.ccRecipients" name="ccRecipients" #ccRecipients /> &nbsp;
+                                <button [disabled]="!invitation.ccRecipients" type="button" class="ot-primary"
+                                    (click)="listOfRecipients('add',invitation.ccRecipients, 'invitation')">{{'onboarding.invitationForm.notification.add'|translate}}</button>
+                                <div>
+                                    <label class="ot-form-control-label cm-font-italic">
+                                        {{'onboarding.invitationForm.notification.notificationRecipientsHelpTxt'|translate}}</label>
+                                </div>
+                                <div *ngIf="invalidCCMail  && ccList.length &lt; 10 && !ccLengthExceeded">
+                                    <div class="ot-error">
+                                        {{'onboarding.invitationForm.validationMsgs.invalidEmail'|translate}}</div>
+                                </div>
+                                <div *ngIf="invalidCCMail">
+                                    <div *ngIf="!ccLengthExceeded && ccList.length==10 " class="ot-error">
+                                        {{'onboarding.invitationForm.validationMsgs.maxAllowedEmail'|translate}}</div>
+                                    <div *ngIf="ccLengthExceeded" class="ot-error">
+                                        {{'onboarding.invitationForm.validationMsgs.emailMaxLength'|translate}}</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="ot-col-sm-11 cm-onboarding-mail-box cm-row-invitation">
+                                <ul class="cm-display-recipients">
+                                    <li *ngFor="let mail of ccList; let i= index; trackBy: TrackByFunction">
+                                        <span *ngIf="!ccEditMode[i];"> {{ccList[i]}}
+                                            <div (click)="ccEditMode[i]=true;" class="ot-icon ot-icon-row-edit"></div>
+                                            <div (click)="listOfRecipients('delete',ccList[i], 'invitation');"
+                                                class="ot-icon ot-icon-row-delete"></div>
+                                        </span>
+                                        <input *ngIf="ccEditMode[i]==true" [name]="'email_'+i" [ngModel]="ccList[i]"
+                                            (ngModelChange)="emailChanged($event,i,'invitation')" type="text"
+                                            (focus)="ccEditMode[i]" (blur)="ccEditMode[i]=false;" maxlength="50">
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ot-col-sm-6 ot-col-sm-offset-1">
+                        <div>
+                            <div class="ot-col-md-8">
+                                <div class="cm-onboarding-invitn-header">
+                                    <label
+                                        class="ot-form-control-label ot-pull-left">{{'onboarding.invitationForm.emailConfiguration.invitationMsg' |translate}}
+                                    </label>
+                                    <button type="button" class="ot-primary ot-pull-right" id="invitation"
+                                        [routerLink]="['../preview']" (click)="preview()"
+                                        skipLocationChange>Preview</button>
+                                </div>
+                                <div class="cm-invtn-msg-Body">
+                                    <div class="cm-invtn-msg-input">
+                                        <label
+                                            class="ot-form-control-label ot-pull-left">{{'onboarding.invitationForm.emailConfiguration.language' |translate}}
+                                        </label>
+                                        <ot-select-dropdown name="language" [options]="languageList"
+                                            placeholder="{{'common.default.select.txt'| translate}}"
+                                            styleClass="cm-p-dropdown" [(ngModel)]="invitation.language">
+                                        </ot-select-dropdown>
+                                    </div>
+                                    <div>
+                                        <textarea class="ot-form-control ot-stnd-textarea" name="emailMessage"
+                                            [(ngModel)]="invitation.content"></textarea>
+                                    </div>
+                                </div>
+                                <div>
+                                    <label for="imageUpload"
+                                        class="cm-file-selector">{{'onboarding.invitationForm.emailConfiguration.selectfile' |translate}}
+                                    </label>
+                                    <input type="file" id="imageUpload" accept="image/*" style="display: none"
+                                        (change)="onSelectFile($event)" />
+                                    <div class="ot-pull-left cm-invitation-image-preview-container">
+                                        <img class="ot-pull-left cm-invitation-image-preview" *ngIf="url" [src]="url"
+                                            (error)="imgError($event)" height="200" width="400">
+                                        <span (click)="deleteImage()" *ngIf="url"
+                                            tooltip="{{'onboarding.invitationForm.tooltip.removeImage'|translate}}"
+                                            class="ot-pull-left cm-invitation-image-preview-close ot-modal-close-icon"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </ng-container>
+        <ng-template #editInvitationDetails>
+            <div class="ot-faceted-content">
+                <div class="ot-row cm-row-onboarding ">
+                    <!-- <div class="ot-col-sm-5">
+                        <label class="ot-form-control-label ot-required">{{'onboarding.invitationForm.invitationName'|translate}}</label>
+                        <label class="ot-form-value-label">{{invitation.invitationName}}</label>
+                    </div> -->
+                    <div class="ot-col-sm-5">
+                        <label
+                            class="ot-form-control-label ot-required">{{'onboarding.invitationForm.invitationName'|translate}}</label>
+                        <input type="text" trim
+                            [ngClass]="inviataionName.errors &&inviataionName.invalid &&(inviataionName.dirty || inviataionName.touched) ? 'ot-error':'ot-text'"
+                            name="inviataionName" [(ngModel)]="invitation.invitationName" #inviataionName="ngModel"
+                            maxlength="100" [pattern]="invitationRegx" required>
+                        <div *ngIf="!invitation.invitationName && (inviataionName.dirty || inviataionName.touched)">
+                            <div class="ot-error">
+                                {{'onboarding.invitationForm.validationMsgs.invitationName'|translate}}</div>
+                        </div>
+                        <div *ngIf="inviataionName.errors && inviataionName.invalid && invitation.invitationName">
+                            <div class="ot-error">
+                                {{'onboarding.invitationForm.validationMsgs.invalidInvitationName'|translate}}</div>
+                        </div>
+                    </div>
+                    <div class="ot-col-sm-5  ot-col-sm-offset-1  ">
+                        <label
+                            class="ot-form-control-label">{{'onboarding.invitationForm.description'|translate}}</label>
+                        <textarea class="ot-form-control ot-stnd-textarea" [(ngModel)]="invitation.invitationComments"
+                            resizable="false" rows="5" id="d" name="note" maxlength="4000"></textarea>
+                    </div>
+                </div>
+                <div class="ot-row cm-row-onboarding ">
+                    <div class="ot-col-sm-5">
+                        <label
+                            class="ot-form-control-label ot-required">{{'onboarding.invitationForm.invitationType.title'|translate}}</label>
+                        <label class="ot-form-value-label">{{invitation.invitationType}}</label>
+                    </div>
+                    <div class="ot-col-sm-5 ot-col-sm-offset-1">
+                        <label
+                            class="ot-form-control-label ot-required">{{'onboarding.invitationForm.approvalType.title'|translate}}</label>
+                        <label class="ot-form-value-label">{{invitation.approvalType}}</label>
+                    </div>
+                </div>
+                <div class="ot-row cm-row-onboarding ">
+                    <div class="ot-col-sm-5">
+                        <label
+                            class="ot-form-control-label ot-required">{{'onboarding.invitationForm.inviteExpire'|translate}}</label>
+                        <ot-calendar  [locale]="currentLanguage" appendTo="body" inputStyleClass="exp-cal"
+                             [monthNavigator]="true"  [yearNavigator]="true"  yearRange="1990:2050" name="dateTo"
+                             [(ngModel)]="invitation.invitationExpirationDate"  dateFormat="mm/dd/yy"
+                             placeholder="{{'tpdir.company.contacts.dateFormatMMDDYYYY'| translate}}"
+                            showButtonBar="true" [showIcon]="true" [minDate]="minExpDateValue"
+                            (onSelect)="onSelect($event)" (onInput)="onInput($event)" required></ot-calendar>
+                        <div *ngIf="isDateValid==false">
+                            <div class="ot-error">
+                                {{'onboarding.invitationForm.validationMsgs.dateValidation'|translate}}</div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Notification -->
+                <div class="ot-row cm-row-onboarding ">
+                    <hr>
+                    <h3>{{'onboarding.invitationForm.notification.title' |translate}}</h3>
+                </div>
+                <div class="ot-row cm-row-onboarding ">
+                    <div class="ot-col-sm-5">
+                        <label
+                            class="ot-form-control-label">{{'onboarding.invitationForm.notification.notificationRecipientsLabel' |translate}}
+                        </label>
+                        <input class="ot-form-control  cm-input-md " type="text" name="recipients" #recipients
+                            [(ngModel)]="invitation.notificationEmailRecipientsEdit" /> &nbsp;
+                        <button [disabled]="!invitation.notificationEmailRecipientsEdit" type="button"
+                            class="ot-primary"
+                            (click)="listOfRecipients('add',invitation.notificationEmailRecipientsEdit, 'notification')">{{'onboarding.invitationForm.notification.add'|translate}}</button>
+                        <div>
+                            <label class="ot-form-control-label cm-font-italic">
+                                {{'onboarding.invitationForm.notification.notificationRecipientsHelpTxt'|translate}}</label>
+                        </div>
+                        <div *ngIf="invalidRecipientMail && listRecipients.length &lt; 10 && !recipientLengthExceeded">
+                            <div class="ot-error">
+                                {{'onboarding.invitationForm.validationMsgs.invalidEmail'|translate}}</div>
+                        </div>
+                        <div *ngIf="invalidRecipientMail">
+                            <div *ngIf="!recipientLengthExceeded  && listRecipients.length==10" class="ot-error">
+                                {{'onboarding.invitationForm.validationMsgs.maxAllowedEmail'|translate}}</div>
+                            <div *ngIf="recipientLengthExceeded" class="ot-error">
+                                {{'onboarding.invitationForm.validationMsgs.emailMaxLength'|translate}}</div>
+                        </div>
+                    </div>
+                    <div class="ot-col-sm-6  ot-col-sm-offset-1  cm-inlineDisplay">
+                        <ot-checkbox name="suppressUsermail" #emailNotify="ngModel" [disabled]="true"
+                            [(ngModel)]="invitation.emailNotify" binary="true">
+                        </ot-checkbox>
+                        <label class="ot-form-control-label">
+                            {{'onboarding.invitationForm.notification.confirmationEmailLabel' |translate}}
+                        </label>
+                    </div>
+                </div>
+                <div class="ot-row cm-row-onboarding ">
+                    <div class="ot-col-sm-4 cm-onboarding-mail-box">
+                        <ul class="cm-display-recipients">
+                            <li *ngFor="let mail of listRecipients; let i= index; trackBy: TrackByFunction">
+                                <span *ngIf="!recipientseEditMode[i];"> {{listRecipients[i]}}
+                                    <div (click)="recipientseEditMode[i]=true;" class="ot-icon ot-icon-row-edit"></div>
+                                    <div (click)="listOfRecipients('delete',listRecipients[i], 'notification');"
+                                        class="ot-icon ot-icon-row-delete"></div>
+                                </span>
+                                <input *ngIf="recipientseEditMode[i]==true" [name]="'email_'+i"
+                                    [ngModel]="listRecipients[i]"
+                                    (ngModelChange)="emailChanged($event,i,'notification')" type="text"
+                                    (focus)="recipientseEditMode[i]" (blur)="recipientseEditMode[i]=false;"
+                                    maxlength="50">
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+
+                <!-- Trading relationship options -->
+                <div class="ot-row cm-row-onboarding">
+                    <hr>
+                    <h3>{{'onboarding.invitationForm.trOptions.title' |translate}}</h3>
+                </div>
+                <div class="ot-row cm-row-onboarding ">
+                </div>
+                <div class="ot-row cm-row-onboarding">
+                    <div class="ot-col-sm-4">
+                        <label
+                            [ngClass]="isEdiAddressMandatory ? 'ot-form-control-label ot-required':'ot-form-control-label'">{{'onboarding.invitationForm.trOptions.inviteeEdiAddress'|translate}}</label>
+                        <div class="invitation-ediAddreess-read-only-menu">
+                            <ot-multi-select name="inviteeEdiAddress" [readonlyMenuItems]="true"
+                                #inviteeEdiAddress="ngModel" [(ngModel)]="invitation.inviteeEdiAddress">
+                            </ot-multi-select>
+                        </div>
+                    </div>
+                    <div class="ot-col-sm-4 ot-col-sm-offset-2">
+                        <label
+                            class="ot-form-control-label ot-required">{{'onboarding.invitationForm.trOptions.ediOptions'|translate}}</label>
+                        <label class="ot-form-value-label">{{invitation.ediAddrCreateOptionLabel}}</label>
+                    </div>
+                </div>
+
+                <!-- Configure Invitation Email -->
+                <div class="ot-row cm-row-onboarding">
+                    <hr>
+                    <h3>{{'onboarding.invitationForm.emailConfiguration.title' |translate}}</h3>
+                </div>
+                <div class="ot-row cm-row-onboarding">
+                    <div class="ot-col-sm-5">
+                        <div>
+                            <div class="ot-col-sm-11">
+                                <label
+                                    class="ot-form-control-label ot-required">{{'onboarding.invitationForm.emailConfiguration.senderEmailAddr'|translate}}</label>
+                                <input type="text"
+                                    [ngClass]="senderEmailAddr.errors &&senderEmailAddr.invalid &&(senderEmailAddr.dirty || senderEmailAddr.touched) ? 'ot-error':'ot-text'"
+                                    name="senderEmailAddr" [(ngModel)]="invitation.senderEmailAddr"
+                                    #senderEmailAddr="ngModel" required [pattern]="emailRegex" maxlength="50">
+                                <div
+                                    *ngIf="!invitation.senderEmailAddr &&(senderEmailAddr.dirty || senderEmailAddr.touched)">
+                                    <div class="ot-error">
+                                        {{'onboarding.invitationForm.validationMsgs.senderEmailAddr'|translate}}</div>
+                                </div>
+                                <div
+                                    *ngIf="senderEmailAddr.errors &&senderEmailAddr.invalid && invitation.senderEmailAddr">
+                                    <div class="ot-error">
+                                        {{'onboarding.invitationForm.validationMsgs.invalidEmail'|translate}}</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="ot-col-sm-11 cm-row-invitation">
+                                <!-- <label class="ot-form-control-label ot-required">{{'onboarding.invitationForm.emailConfiguration.invitationSubject'|translate}}</label>
+                                <label class="ot-form-value-label">{{invitation.subject}}</label> -->
+                                <label
+                                    class="ot-form-control-label ot-required">{{'onboarding.invitationForm.emailConfiguration.invitationSubject'|translate}}</label>
+                                <input type="text"
+                                    [ngClass]="invitationSubject.errors &&invitationSubject.invalid &&(invitationSubject.dirty || invitationSubject.touched) ? 'ot-error':'ot-text'"
+                                    name="invitationSubject" [(ngModel)]="invitation.subject"
+                                    #invitationSubject="ngModel" required>
+                                <div
+                                    *ngIf="invitationSubject.errors &&invitationSubject.invalid &&(invitationSubject.dirty || invitationSubject.touched)">
+                                    <div class="ot-error">
+                                        {{'onboarding.invitationForm.validationMsgs.invitationSubject'|translate}}</div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div>
+                            <div class="ot-col-sm-11 cm-row-invitation">
+                                <label
+                                    class="ot-form-control-label">{{'onboarding.invitationForm.emailConfiguration.addCCRecipients' |translate}}
+                                </label>
+                                <input class="ot-form-control  cm-input-md " type="text" name="ccRecipients"
+                                    #ccRecipients [(ngModel)]="invitation.ccRecipientsEdit" /> &nbsp;
+                                <button [disabled]="!invitation.ccRecipientsEdit" type="button" class="ot-primary"
+                                    (click)="listOfRecipients('add',invitation.ccRecipientsEdit, 'invitation')">{{'onboarding.invitationForm.notification.add'|translate}}</button>
+                                <div>
+                                    <label class="ot-form-control-label cm-font-italic">
+                                        {{'onboarding.invitationForm.notification.notificationRecipientsHelpTxt'|translate}}</label>
+                                </div>
+                                <div *ngIf="invalidCCMail  && ccList.length &lt; 10 && !ccLengthExceeded">
+                                    <div class="ot-error">
+                                        {{'onboarding.invitationForm.validationMsgs.invalidEmail'|translate}}</div>
+                                </div>
+                                <div *ngIf="invalidCCMail">
+                                    <div *ngIf="!ccLengthExceeded && ccList.length==10 " class="ot-error">
+                                        {{'onboarding.invitationForm.validationMsgs.maxAllowedEmail'|translate}}</div>
+                                    <div *ngIf="ccLengthExceeded" class="ot-error">
+                                        {{'onboarding.invitationForm.validationMsgs.emailMaxLength'|translate}}</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="ot-col-sm-11 cm-onboarding-mail-box  cm-row-invitation">
+                                <ul class="cm-display-recipients">
+                                    <li *ngFor="let mail of ccList; let i= index; trackBy: TrackByFunction">
+                                        <span *ngIf="!ccEditMode[i];"> {{ccList[i]}}
+                                            <div (click)="ccEditMode[i]=true;" class="ot-icon ot-icon-row-edit"></div>
+                                            <div (click)="listOfRecipients('delete',ccList[i], 'invitation');"
+                                                class="ot-icon ot-icon-row-delete"></div>
+                                        </span>
+                                        <input *ngIf="ccEditMode[i]==true" [name]="'email_'+i" [ngModel]="ccList[i]"
+                                            (ngModelChange)="emailChanged($event,i,'invitation')" type="text"
+                                            (focus)="ccEditMode[i]" (blur)="ccEditMode[i]=false;" maxlength="50">
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ot-col-sm-6 ot-col-sm-offset-1">
+                        <div>
+
+                            <div class="ot-col-md-9">
+                                <div class="cm-onboarding-invitn-header">
+                                    <label
+                                        class="ot-form-control-label ot-pull-left">{{'onboarding.invitationForm.emailConfiguration.invitationMsg' |translate}}
+                                    </label>
+                                    <button type="button" class="ot-primary ot-pull-right" id="invitation"
+                                        (click)="preview()">{{'preview.title'|translate}}</button>
+                                </div>
+                                <div class="cm-invtn-msg-Body">
+                                    <div class="cm-invtn-msg-input">
+                                        <label
+                                            class="ot-form-control-label ot-pull-left">{{'onboarding.invitationForm.emailConfiguration.language' |translate}}
+                                        </label>
+                                        <ot-select-dropdown name="language" [options]="languageList"
+                                            placeholder="{{'common.default.select.txt'| translate}}"
+                                            styleClass="cm-p-dropdown" [(ngModel)]="invitation.language">
+                                        </ot-select-dropdown>
+                                    </div>
+                                    <div>
+                                        <div>
+                                            <textarea class="ot-form-control ot-stnd-textarea" name="emailMessage"
+                                                [(ngModel)]="invitation.content"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="ot-col-md-4">
+                                <span>
+                                    <label for="imageUpload"
+                                        class="cm-file-selector">{{'onboarding.invitationForm.emailConfiguration.selectfile' |translate}}
+                                    </label>
+                                    <input type="file" id="imageUpload" accept="image/*" style="display: none"
+                                        (change)="onSelectFile($event)" />
+                                    <div class="ot-pull-left cm-invitation-image-preview-container">
+                                        <img class="ot-pull-left cm-invitation-image-preview" *ngIf="url" [src]="url"
+                                            height="200" width="400">
+                                        <span (click)="deleteImage()" *ngIf="url"
+                                            tooltip="{{'onboarding.invitationForm.tooltip.removeImage'|translate}}"
+                                            class="ot-pull-left cm-invitation-image-preview-close ot-modal-close-icon"></span>
+                                    </div>
+                                    <div *ngIf="invitation.imageContent">
+                                        <img class="ot-pull-left cm-invitation-image-preview"
+                                            [src]="'data:image/'+invitation.imageType+';base64,'+invitation.imageContent"
+                                            height="200" width="400" />
+                                        <span (click)="deleteImage()" *ngIf="invitation.imageContent"
+                                            tooltip="{{'onboarding.invitationForm.tooltip.removeImage'|translate}}"
+                                            class="ot-pull-left cm-invitation-image-preview-close ot-modal-close-icon"></span>
+                                    </div>
+                                </span>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </ng-template>
+    </form>
+</div>
+<footer class="ot-page-footer-container footer">
+    <div class="ot-form-footer">
+        <button class="ot-primary" type="submit" [disabled]="!invitationForm.form.valid"
+            (click)="onSave()">{{'common.save'|translate}}</button>
+        <button *ngIf="!editMode" class="ot-secondary" type="button" [routerLink]="['../']"
+            skipLocationChange>{{'common.Cancel'|translate}}</button>
+        <button *ngIf="editMode" class="ot-secondary" type="button"
+            (click)="cancel()">{{'common.Cancel'|translate}}</button>
+
+    </div>
+</footer>

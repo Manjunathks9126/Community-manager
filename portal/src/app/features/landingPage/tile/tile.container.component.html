@@ -1,0 +1,11 @@
+<div class="cm-tile-perspective">
+  <div class="ot-container-fluid">
+    <div class="ot-row ">
+        <div *ngFor="let tile of tiles; let i=index;" id="{{tile.serviceInstanceId}}" [ngStyle]="{'padding-right':i==2 ? '0':'16px'}" class="ot-col-xs-12 ot-col-sm-6  ot-col-md-4 ot-col-lg-3 ot-col-xl-4" name="tiles-drg">
+          <ot-tile [tile]="tile">
+          </ot-tile>
+        </div>        
+    </div>
+  </div>
+</div>
+<tooltip></tooltip>

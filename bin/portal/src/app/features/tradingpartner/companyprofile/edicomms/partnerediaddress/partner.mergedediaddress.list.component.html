@@ -1,0 +1,74 @@
+<div class="ot-tab-content-section">
+    <div class="ot-tab-faceted-content">
+        <div [ngClass]="'ot-tab-datatable-container'">
+
+            <div class="ot-toolbar-container">
+        <span [ngClass]="'ot-toolbar-item'">
+          <div class="ot-icon ot-icon-toolbar ot-icon-toolbar-filter" tooltip="{{'common.tooltip.filter'|translate}}"></div>
+        </span>
+            </div>
+            <div [style.height]="'calc(100% - 3em )'">
+                <ot-dataTable name="partner-edi-list-datatable" [locale]="currentLanguage" [rowsPerPageOptions]="[30,60,100]" [(value)]="ediList" [paginator]="true" scrollable="false" [lazy]="true" [responsive]="false" [rows]="limit" (onLazyLoad)="lazyEDIList($event)"
+                    [totalRecords]="itemCount">
+                    <!-- <ot-column [style]="{'width':'4em','text-align':'center'}" selectionMode="multiple"></ot-column> -->
+                    <ot-column field="ediAddress" header="{{'edicomms.addrs.partnerEDIAddressQual'|translate}}"></ot-column>
+                    <ot-column field="gsid" header="{{'edicomms.addrs.gsId'|translate}}"></ot-column>
+                    <ot-column header="{{'edicomms.addrs.comms'|translate}}">
+                        <ng-template let-col let-edis="rowData" pTemplate="body">
+                            <a class="ot-block-anchor" (click)="showComms($event,edis)">
+                {{'edicomms.addrs.commslink'| translate}}</a>
+                        </ng-template>
+                    </ot-column>
+                    <ot-column field="partnershipDirection" header="{{'edicomms.addrs.direction'|translate}}"></ot-column>
+                    <ot-column field="billingsplit" header="{{'edicomms.addrs.billing'| translate}}">
+                        <ng-template let-col let-edis="rowData" pTemplate="body">
+                            <a class="ot-block-anchor" (click)="showBillingSplit($event,edis)">
+                {{'edicomms.addrs.billinglink'| translate}}</a>
+                        </ng-template>
+                    </ot-column>
+                    <ot-column field="createTimeStamp" header="{{'edicomms.addrs.createdDate'|translate}}"></ot-column>
+                </ot-dataTable>
+            </div>
+
+        </div>
+    </div>
+    <ot-modal *ngIf="displayBilling" [visible]="true">
+        <div class="ot-form-container ">
+            <div class="ot-modal-header">
+                {{'edicomms.addrs.billingSplitLabel'| translate}}
+                <div (click)="displayBilling=false" class="ot-modal-close-icon ot-ui-pull-right" tooltip="{{'common.tooltip.close'|translate}}">
+                </div>
+            </div>
+            <div class="cm-modal-content-footerless ">
+                <ot-dataList [value]="billingSplit">
+                    <ng-template let-billing pTemplate="item">
+                        <b>{{billing.partnershipDirection}}:</b>
+                        <b>{{'edicomms.addrs.transactionCharges'| translate}}</b>
+
+                        <br>{{'edicomms.addrs.sendPayeeLabel'| translate}}
+                        <br> {{billing.sendPayee}}
+                        <br>
+                        <br> {{'edicomms.addrs.receivePayeeLabel'| translate}}
+                        <br> {{billing.receivePayee}}
+                        <br>
+                        <br>{{'edicomms.addrs.receivermailboxstorage'| translate}}
+                        <br> {{'edicomms.addrs.storagePayeeLabel'| translate}}
+                        <br> {{billing.storagePayee}}
+                    </ng-template>
+                </ot-dataList>
+            </div>
+        </div>
+    </ot-modal>
+
+    <ot-modal *ngIf="displayComms" [visible]="true">
+        <div class="ot-form-container ">
+            <div class="ot-modal-header">
+                {{'edicomms.addrs.comms'| translate}}
+                <div (click)="displayComms=false" class="ot-modal-close-icon ot-ui-pull-right" tooltip="{{'common.tooltip.close'|translate}}">
+                </div>
+            </div>
+            <div class="cm-modal-content-footerless ">
+                <b> {{ediComms}}</b>
+            </div>
+        </div>
+    </ot-modal>

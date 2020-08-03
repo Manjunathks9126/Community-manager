@@ -1,0 +1,23 @@
+target
+webbuild
+portal/node_modules
+portal/dist
+.project
+.classpath
+src/main/java/com/ot/cm/interceptor/CommunityMgrHandlerInterceptor.java
+.settings
+.idea
+.orig
+pom.xml
+portal/npm-debug.log
+syntax: glob
+portal/src/app/features/tradingpartner/partnerGraph/renderGraph/abc.js
+src/main/java/com/ot/cm/config/mvc/JMSConfiguration2.java
+context.xml
+web.xml
+server.xml
+portal/package-lock.json
+src/main/java/com/ot/cm/config/mvc/ActuatorConfig.java
+TGOCP-CM.iml
+portal/src/assets/images/sort_up.svg
+portal/src/assets/images/sort_down.svg

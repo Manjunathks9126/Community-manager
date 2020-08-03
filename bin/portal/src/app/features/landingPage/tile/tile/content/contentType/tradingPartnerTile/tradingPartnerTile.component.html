@@ -1,0 +1,23 @@
+<ng-container *ngFor="let element of tpDirectoryContent?.elements;let index=index" class="atomic">
+    <div *ngIf="!element.children" (click)="clickUrl(element.src);isSelected=index" class="{{isSelected==index ? 'cm-tile-content-item tile-active':'cm-tile-content-item'}}" #tileItem>
+            <div class="cm-tile-content-label" *ngFor="let row of element.lines;let i = index" (click)="showTooltip($event,element.contentMeta,row)">
+                <div class="cm-tile_content_label_span">
+                    <div class="cm-tile_content_label_span_left">
+                        <a *ngIf="i==0;else subHeading">
+                            <span>{{row[0]?.headerText}}</span>
+                        </a>
+                        <ng-template #subHeading>
+                            <span class="cm-heading">{{row[0]?.headerText}}</span>
+                        </ng-template>
+                        <span class="cm-subtext">{{row[0]?.subtext}}</span>
+                    </div>
+                    <div class="cm-tile_content_label_span_right">
+                        <a>
+                            <span class="cm-heading" >{{row[1]?.headerText}}</span>
+                        </a>
+                        <span class="cm-subtext">{{row[1]?.subtext | otDateTimePipe :'MM/dd/yyyy h:mm:ss a z'}}</span>
+                    </div>
+                </div>
+            </div>
+    </div>
+</ng-container>

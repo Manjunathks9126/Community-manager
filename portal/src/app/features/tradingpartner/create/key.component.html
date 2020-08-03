@@ -1,0 +1,26 @@
+<form #keysForm="ngForm" class="cm-custom-key-form">
+    <div class="cm-custom-key-div">
+
+        <div class="ot-row ot-row-custom">
+            <div class="ot-col-sm-12 ">
+                <h2>{{'tpdir.create.form.keyTitle'|translate}}</h2>
+            </div>
+        </div>
+        <label class="ot-row-custom ot-required">{{'tpdir.create.form.selectMap' | translate}}</label>
+        <div id="cm-txtarea_div">
+            <div class="ot-row-custom">
+                <div class=" form-row-am" *ngFor="let keys of listkeys">
+                    <ot-checkbox required name="{{keys.label}}" value="{{keys.value}}" label="{{keys.label}}" [(ngModel)]="selectedKeys"></ot-checkbox>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+    <footer class="ot-page-footer-container footer">
+        <div class="ot-form-footer">
+            <button class="ot-primary" type="submit" [disabled]="!keysForm.form.valid" (click)="onSubmit()">{{'common.create'|translate}}</button>
+            <button class="ot-secondary" type="button"  (click)="onCancel()" title="{{'common.Cancel'|translate}}" [routerLink]="['/tpdir']">{{'common.Cancel'|translate}}</button>
+        </div>
+    </footer>
+</form>

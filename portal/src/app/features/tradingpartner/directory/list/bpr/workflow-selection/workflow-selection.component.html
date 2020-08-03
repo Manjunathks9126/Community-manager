@@ -1,0 +1,41 @@
+<div>
+    <ot-modal *ngIf="showModal==true" [visible]="true" class="cm-workflow-modal" [size]="sm">
+
+        <div class="ot-form-container ">
+            <div class="ot-modal-header">
+                {{'tpdir.create.model.addtp'| translate}}
+                <div (click)="closeWorkflowmodal()" class="ot-modal-close-icon ot-ui-pull-right" tooltip="{{'common.tooltip.close'|translate}}">
+                </div>
+            </div>
+            <div class="ot-modal-content" [perfectScrollbar]="scrollConfig">
+                <!-- <p>Select Workflow:</p> -->
+                <div class="exp-cal-elements" *ngFor="let workflow of workflowList; let i =index">
+                    <div class="ot-form-group">
+                        <ot-radioButton name="workflowName" class="workkFlowName" value="workflow.workflowId" label="{{workflow.displayName}}"
+                            (onClick)="fetchInvitationData(workflow)"></ot-radioButton>
+                        <ot-select-dropdown *ngIf="selectedWorkflow?.workflowId==workflow.workflowId && selectedInvitationList?.length>0 "
+                             [options]="selectedInvitationList" dataKey="invitationName" optionLabel="invitationName"
+                            placeholder="{{'common.default.select.invitation.txt'| translate}}" styleClass="cm-wfs-dropdown-menu"
+                            [editable]=false name="selectedInvitation{{i}}" [(ngModel)]="selectedInvitation"></ot-select-dropdown>
+                        <ot-select-dropdown *ngIf="selectedWorkflow?.workflowId!=workflow.workflowId ||
+                            selectedInvitationList?.length==0" [options]="disabledDropdownList" appendTo="body"
+                            placeholder="{{'common.default.select.invitation.txt'| translate}}" styleClass="cm-wfs-dropdown-menu"
+                            name="selectedInvitation{{i}}" disabled=true>
+                        </ot-select-dropdown>
+                    </div>
+                </div>
+            </div>
+            <div class="ot-modal-footer ">
+                <div class="ot-form-footer">
+                    <button  *ngIf="isInvitationPresent"class="ot-primary" type="button" [disabled]="!selectedInvitation || !selectedWorkflow"
+                        (click)="addTp()">{{'tpdir.create.model.continue'|translate}}</button>
+                        <button *ngIf="!isInvitationPresent" class="ot-primary" type="button" [disabled]="!selectedWorkflow"
+                        (click)="addTp()">{{'tpdir.create.model.continue'|translate}}</button>
+                    <button class="ot-secondary" type="button" (click)="closeWorkflowmodal()">{{'common.Cancel'|translate}}</button>
+                </div>
+            </div>
+        </div>
+
+    </ot-modal>
+</div>
+

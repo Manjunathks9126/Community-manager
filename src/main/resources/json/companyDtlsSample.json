@@ -1,0 +1,314 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "Company Details",
+    "type": "object",
+    "definitions" : {
+        "userType": {
+			"title": "User",
+			"type": "object",
+			"properties": {
+				"firstName": {
+					"title": "First Name",
+                    "type": "string",
+                    "mandatory": "true"
+				},
+				"lastName": {
+					"title": "Last Name",
+					"type": "string"
+                }
+            }
+         }
+    },
+    "properties": {
+      "companyInfo": {
+              "title": "Company Information",
+              "type": "object",
+              "properties": {
+                  "companyName": {
+                      "title": "Company Name",
+                      "maximum": 20,
+                      "minimum": 5,
+                      "pattern": "[a-zA-Z ]*",
+                      "type": "string",
+                      "mandatory": true
+                  },
+                  "addrLine1": {
+                      "title": "Address line 1",
+                      "type": "string",
+                      "mandatory": false
+                  },
+                  "addrLine2": {
+                      "title": "Address line 2",
+                      "type": "string",
+                      "mandatory": false
+                  },
+                  "city": {
+                      "title": "City",
+                      "type": "string",
+                      "maximum": 20,
+                      "minimum": 7,
+                      "pattern": "[a-zA-Z ]*",
+                      "description": "*Required for Country Belgium",
+                      "mandatory": true
+                  },
+                  "state": {
+                      "title": "State",
+                      "type": "string",
+                      "dropdownUrl": "assets/state.json",
+                      "mandatory": false,
+                      "dependentData":{
+                                        "dependentField": "city",
+                                        "dependentUrl":"assets/cities"
+                                     }
+                  },
+                  "tradingPartnerType": {
+                      "title": "Trading Partner Type",
+                      "type": "string",
+                      "format" : "textarea",
+                      "mandatory": false
+                  },
+                  "postalCode": {
+                      "title": "Postal code",
+                      "type": "string",
+                      "mandatory": false
+                  },
+                  "country": {
+                      "title": "Country",
+                      "type": "string",
+                      "dropdownOptions": [
+                     {
+                            "label": "INDIA",
+                            "value": "ind"
+                     },
+                    {
+                            "label": "USA",
+                            "value": "us"
+                     }
+                    ],
+                    "mandatory": true
+                  },
+                  "companyPhone": {
+                      "title": "Company phone",
+                      "type": "string",
+                      "description": "*Required for Country Brazil, Canada, Spain and United States",
+                      "mandatory": false
+                  },
+                  "companyEmail": {
+                      "title": "Company Email Address",
+                      "type": "string",
+                      "mandatory": false
+                  },
+                  "companyId": {
+                      "title": "Company ID",
+                      "type": "string",
+                      "readOnly": true,
+                      "description": "*Required for Country Brazil",
+                      "mandatory": false
+                  },
+                  "website": {
+                      "title": "Website",
+                      "type": "string",
+                      "description": "*Required for Country Brazil",
+                      "mandatory": false
+                  },
+                  "signNonSubscriberDocumentsWithPDFContainer": {
+                                             "type": "array",
+                                             "mandatory": false,
+                                             "items": {
+                                                            "type": "integer",
+                                                            "enum": [
+                                                                           1,
+                                                                           2,
+                                                                           3,
+                                                                           4,
+                                                                           5,
+                                                                           6,
+                                                                           7,
+                                                                           9,
+                                                                           10,
+                                                                           11,
+                                                                           13,
+                                                                           15,
+                                                                           16,
+                                                                           17,
+                                                                           18,
+                                                                           14
+                                                            ],
+                                                            "enumNames": [
+                                                                           "Canonical File",
+                                                                           "Receiver File",
+                                                                           "Invoice Image Copy",
+                                                                           "Digitally Signed Document/Compliant Invoice (As applicable)",
+                                                                           "Audit Trail File",
+                                                                           "Attachment Files",
+                                                                           "Tax Exempt Document File",
+                                                                           "Digital Signature Report",
+                                                                           "Digital Signature Evidence/Detached Signature (As applicable)",
+                                                                           "Read me",
+                                                                           "Native File",
+                                                                           "Acknowledgement Files",
+                                                                           "Provisional Invoice Image Copy",
+                                                                           "Digitally Signed Provisional Document",
+                                                                           "PDF Container File",
+                                                                           "Invoice Submission Response"
+                                                            ]
+                                             },
+                                             "default": [
+                                                            1,
+                                                            2,
+                                                            3,
+                                                            4,
+                                                            5,
+                                                            6,
+                                                            7,
+                                                            9,
+                                                            10,
+                                                            11,
+                                                            13,
+                                                            15,
+                                                            16,
+                                                            17,
+                                                            18,
+                                                            14
+                                             ],
+                                             "uniqueItems": true,
+                                             "format": "select"
+                              }
+
+            },
+            "required": ["companyName","city","country"]
+        },
+        "contactInfo": {
+              "title": "Contact Info",
+              "type": "object",
+              "layoutColumns": 4,
+              "properties": {
+                  "firstName": {
+                      "title": "First Name",
+                      "type": "string",
+                      "mandatory": true
+                  },
+                  "lastName": {
+                      "title": "Last Name",
+                      "type": "string",
+                      "mandatory": true
+                  },
+                  "email": {
+                      "title": "Email",
+                      "type": "string",
+                      "pattern": "^[a-z0-9._%+-]+@[a-z0-9.-]+[.][a-z]{2,4}$",
+                      "mandatory": true
+                  },
+                  "phone": {
+                      "title": "Phone",
+                      "type": "string",
+                      "maximum": 10,
+                      "pattern": "[0-9]{10}",
+                      "mandatory": true
+                  }
+                },
+            "required": ["firstName","lastName","email","phone"]
+        },
+          "senderORreceiverInfo": {
+            "title": "Sender/Receiver Information",
+              "type": "object",
+              "layoutColumns": 3,
+              "properties": {
+                  "ediStandard": {
+                      "title": "EDI standard",
+                      "type": "string",
+                      "format": "select",
+                      "dropdownOptions": [
+                            {
+                            "label": "ANSI ASC X12",
+                            "value": "x12"
+                            },
+                            {
+                            "label": "ANSI ASC X13",
+                            "value": "x13"
+                            }
+                    ],
+                    "mandatory": true
+                  },
+                  "connectivityType": {
+                      "title": "Connectivity type",
+                      "type": "string",
+                      "format": "select",
+                      "dropdownOptions": [
+                            {
+                            "label": "VAN",
+                            "value": "van"
+                            },
+                            {
+                            "label": "BAM",
+                            "value": "bam"
+                            }
+                    ],
+                    "mandatory": true
+                  },
+                  "vanName": {
+                      "title": "VAN name",
+                      "type": "string",
+                      "dropdownOptions": [
+                        {
+                            "label": "GXS Company",
+                            "value": "gxs"
+                        },
+                        {
+                            "label": "Opentext",
+                            "value": "ot"
+                        }
+                    ],
+                    "mandatory": true     
+                  },
+                  "phone": {
+                      "title": "Phone",
+                      "type": "string",
+                      "maximum": 10,
+                      "pattern": "[0-9]{10}",
+                      "mandatory": false
+                  }
+                },
+            "required": ["ediStandard","connectivityType","vanName"]
+          },
+          "productionDetails": {
+              "title": "Production Details",
+              "type": "object",
+              "layoutColumns": 3,
+              "properties": {
+                  "prodAddress": {
+                      "title": "Your Prod address",
+                      "type": "string",
+                      "enum" : ["ZZ:BJCOMPEDI01TEST","AA:BJCOMPEDI02TEST"],
+                      "enumNames" : ["ZZ:BJCOMPEDI01TEST","AA:BJCOMPEDI02TEST"],
+                      "mandatory": true
+                  },
+                  "gsId": {
+                      "title": "Your Prod GS ID",
+                      "type": "string",
+                      "mandatory": true
+                  },
+                  "tpProdAddr": {
+                      "title": "TP Prod address",
+                      "type": "string",
+                      "pattern": "^[a-z0-9._%+-]+@[a-z0-9.-]+[.][a-z]{2,4}$",
+                      "mandatory": false
+                  },
+                  "tpGsId": {
+                      "title": "TP Prod GS ID",
+                      "type": "string",
+                      "maximum": 10,
+                      "pattern": "[0-9]{10}",
+                      "mandatory": true
+                  }
+                },
+            "required": ["prodAddress","gsId","tpGsId"]
+        }
+    },
+      "required": [
+                  "legalEntityType_SENDER",
+                  "reprocess_SENDER",
+                  "signBatchEDIType"
+              ]
+  }
+  

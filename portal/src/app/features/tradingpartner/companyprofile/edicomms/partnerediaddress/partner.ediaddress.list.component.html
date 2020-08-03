@@ -1,0 +1,161 @@
+<div class="ot-tab-content-section">
+    <div class="ot-tab-faceted-content">
+        <div [ngClass]="'ot-tab-datatable-container'">
+
+            <div class="ot-filter-container" *ngIf="isSearchClicked">
+                <div class="ot-toolbar-container">
+                    <h2>{{'tpdir.search.title'| translate}}</h2>
+                </div>
+                <ot-accordion [multiple]="false">
+                    <ot-accordionTab header="{{'edicomms.title'| translate}}" [selected]="true">
+                        &nbsp;&nbsp;&nbsp;
+                        <ot-radioButton name="nameGroup" value="ediAddress" label="{{'tpdir.read.ediAddresses'| translate}}"
+                            [(ngModel)]="searchAttribute">
+                        </ot-radioButton>
+
+                        <div class="ot-ui-g">
+                            <div class="ot-ui-g-3">
+                                <input type="text" maxlength="4" [disabled]="searchAttribute!='ediAddress'" placeholder="{{'tpdir.search.qualifier'| translate}}"
+                                    [(ngModel)]="qualifier" />
+                            </div>
+                            <div class="ot-ui-g-9">
+                                <input type="text" maxlength="39" [disabled]="searchAttribute!='ediAddress'"
+                                    (keyup.enter)="getPartnerEDIAddresses()" placeholder="{{'tpdir.search.ediAddress'| translate}}"
+                                    [(ngModel)]="partnerediaddress" />
+                            </div>
+                        </div>
+                        <br> &nbsp;&nbsp;&nbsp;
+                        <ot-radioButton name="nameGroup" value="createddate" label="{{'edicomms.addrs.createdDate'|translate}}"
+                            [(ngModel)]="searchAttribute">
+                        </ot-radioButton>
+                        <div class="ot-ui-g">
+                            <label class="ot-form-control-label  cm-filter-label" for="usr">{{'edicomms.search.from'|translate}}</label>
+                            <div class="ot-ui-g-12">
+                                <ot-calendar  [locale]="currentLanguage" [maxDate]="dateTime" (input)="onDateSelect()" (onSelect)="onDateSelect()"
+                                      appendTo="body" inputStyleClass="exp-cal"  [monthNavigator]="true"
+                                     [yearNavigator]="true"  yearRange="1990:2050" name="dateFrom"  [(ngModel)]="searchObject.dateFrom"
+                                     dateFormat="mm/dd/yy"  placeholder="{{'edicomms.search.dateFormatMMDDYYYY'| translate}}"
+                                    showButtonBar="true" [showIcon]="true" dataType="string" [disabled]="searchAttribute!='createddate'"></ot-calendar>
+                            </div>
+                        </div>
+
+                        <div class="ot-ui-g">
+                            <label class="ot-form-control-label  cm-filter-label" for="usr">{{'edicomms.search.to'|translate}}</label>
+                            <div class="ot-ui-g-12">
+                                <ot-calendar [locale]="currentLanguage" [maxDate]="dateTime" (input)="onDateSelect()" (onSelect)="onDateSelect()"
+                                     appendTo="body" inputStyleClass="exp-cal"  [monthNavigator]="true"
+                                     [yearNavigator]="true"  yearRange="1990:2050" name="dateTo"  [(ngModel)]="searchObject.dateTo"
+                                     dateFormat="mm/dd/yy"  placeholder="{{'edicomms.search.dateFormatMMDDYYYY'| translate}}"
+                                    showButtonBar="true" [showIcon]="true" dataType="string" [disabled]="searchAttribute!='createddate'"></ot-calendar>
+                            </div>
+                            <div *ngIf="!dateValid">
+                                <div class="ot-error h2-required">{{'tpdir.company.contacts.dateFormatValidation'|
+                                    translate}}</div>
+                            </div>
+                        </div>
+
+
+                        <button class="ot-micro-primary" type="button" [disabled]="isApplyBtnDisable()" (click)="getPartnerEDIAddresses()">{{'common.Apply'|
+                            translate}}</button>
+                        <button class="ot-micro-secondary" type="button" (click)="clearSearchCriteria()">{{'common.Cancel'|
+                            translate}}</button>
+                    </ot-accordionTab>
+                </ot-accordion>
+            </div>
+            <div [ngClass]="(isSearchClicked)? 'ot-datatabale-container-shrinked' : 'ot-datatable-container'">
+
+                <div class="ot-chipset-header" [style.height.em]="isFilterApplied ? 3 : 0" [style.display]="isFilterApplied  ? 'block' : 'none'">
+                    <div id="partnerediaddress" class="ot-chipset" *ngIf="(tprSearchQuery.qualifier!=undefined&&tprSearchQuery.qualifier.length>0) || (tprSearchQuery.partnerediaddress!=undefined&&tprSearchQuery.partnerediaddress.length>0)">
+                        {{'tpdir.search.ediAddress'| translate}}: {{tprSearchQuery.qualifier}}
+                        {{(tprSearchQuery.qualifier && tprSearchQuery.partnerediaddress)?":":""}}
+                        {{tprSearchQuery.partnerediaddress}}
+                        <span class="ot-image-close-chipset" (click)='clearEdiChipset()'></span>
+                    </div>
+                    <div id="dateFrom" class="ot-chipset" *ngIf="(tprSearchQuery.dateFrom)">
+                        {{'edicomms.search.dateRange'|translate}}:{{tprSearchQuery.dateFrom}}
+                        {{'edicomms.search.to'|translate}} {{tprSearchQuery.dateTo}}
+                        <span class="ot-image-close-chipset" (click)='clearDateChispset()'></span>
+                    </div>
+
+                    <div *ngIf="numberOfFiltersApplied>2" class="ot-clear-all-chipset" (click)="clearFilter()">
+                        <span class="ot-image-close-chipset"></span> {{'common.clear.filter'|translate}}
+                    </div>
+                </div>
+                <div class="ot-toolbar-container">
+                    <span (click)="displaySearchPanel()" [ngClass]="isSearchClicked ? 'ot-toolbar-item-selected' : 'ot-toolbar-item'">
+                        <div class="ot-icon ot-icon-toolbar ot-icon-toolbar-search" tooltip="{{'common.tooltip.search'|translate}}"></div>
+                    </span>
+                </div>
+                <div [style.height]="!(isFilterApplied) ?'calc( 100% - 2.625em)':'calc( 100% - 5.625em)'">
+                    <ot-dataTable name="partner-ediaddress-datatable" [locale]="currentLanguage" [rowsPerPageOptions]="[30,60,100]" [(value)]="ediList"
+                        [paginator]="true" scrollable="false" [lazy]="true" [responsive]="false" [rows]="limit"
+                        (onLazyLoad)="lazyEDIList($event)" [totalRecords]="itemCount" [scrollHeight]="isFilterApplied">
+                        <!-- <ot-column [style]="{'width':'4em','text-align':'center'}" selectionMode="multiple"></ot-column> -->
+                        <ot-column field="partnerEDIAddress" header="{{'edicomms.addrs.partnerEDIAddressQual'|translate}}"></ot-column>
+                        <ot-column field="ownerEDIAddress" header="{{'edicomms.addrs.yourEDIAddressQual'|translate}}">
+                        </ot-column>
+                        <!-- <ot-column field="gsid" header="{{'edicomms.addrs.gsId'|translate}}"></ot-column> -->
+                        <ot-column header="{{'edicomms.addrs.comms'|translate}}">
+                            <ng-template let-col let-edis="rowData" pTemplate="body">
+                                <a class="ot-block-anchor" (click)="showComms($event,edis)">
+                                    {{'edicomms.addrs.commslink'| translate}}</a>
+                            </ng-template>
+                        </ot-column>
+                        <ot-column field="partnershipDirection" header="{{'edicomms.addrs.direction'|translate}}">
+                            <ng-template let-col let-dir="rowData" pTemplate="body">
+                                {{ ( dir.partnershipDirection==='SEND' ? 'edicomms.addrs.sender' :
+                                'edicomms.addrs.receiver' ) | translate }}
+                            </ng-template>
+                        </ot-column>
+
+
+                        <ot-column field="billingSplit" header="{{'edicomms.addrs.billing'| translate}}">
+                            <ng-template let-col let-edis="rowData" pTemplate="body">
+                                <a class="ot-block-anchor" (click)="showBillingSplit($event,edis)">
+                                    {{'edicomms.addrs.billinglink'| translate}}</a>
+                            </ng-template>
+                        </ot-column>
+                        <ot-column field="createTimeStamp" header="{{'edicomms.addrs.createdDate'|translate}}">
+                        </ot-column>
+                    </ot-dataTable>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <ot-modal class="cm-edi-coms-modal" *ngIf="displayBilling" [visible]="true" size="sm">
+        <div class="ot-modal-header">
+            {{'edicomms.addrs.billingSplitLabel'| translate}}
+            <div (click)="displayBilling=false" class="ot-modal-close-icon ot-ui-pull-right" tooltip="{{'common.tooltip.close'|translate}}">
+            </div>
+        </div>
+        <div class="cm-modal-content-footerless  override-modal-content-footerless">
+            <div class="section-title">{{'edicomms.addrs.transactionCharges'| translate}}</div>
+            <div class="ot-row-custom ot-col-xs-12">
+                <div class="ot-form-control-label">{{'edicomms.addrs.sendPayeeLabel'| translate}}</div>
+                <div class="ot-form-value-label"> {{billingSplit?.sendPayee}}</div>
+                <br>
+                <div class="ot-form-control-label"> {{'edicomms.addrs.receivePayeeLabel'| translate}}</div>
+                <div class="ot-form-value-label"> {{billingSplit?.receivePayee}}</div>
+            </div>
+
+            <div class="section-title">{{'edicomms.addrs.receivermailboxstorage'| translate}}</div>
+            <div class="ot-row-custom ot-col-xs-12">
+                <div class="ot-form-control-label"> {{'edicomms.addrs.storagePayeeLabel'| translate}}</div>
+                <div class="ot-form-value-label"> {{billingSplit?.storagePayee}}</div>
+            </div>
+        </div>
+    </ot-modal>
+
+    <ot-modal class="cm-edi-coms-modal" *ngIf="displayComms" [visible]="true" size="sm">
+        <div class="ot-modal-header">
+            {{'edicomms.addrs.comms'| translate}}
+            <div (click)="displayComms=false" class="ot-modal-close-icon ot-ui-pull-right" tooltip="{{'common.tooltip.close'|translate}}">
+            </div>
+        </div>
+        <div class="cm-modal-content-footerless  override-modal-content-footerless">
+            <span class="cm-edi-modal-content-padded">
+                <div class="section-title"> {{ediComms}}</div>
+            </span>
+        </div>
+    </ot-modal>

@@ -1,0 +1,34 @@
+<div class="cm-onboarding-container-custom " [perfectScrollbar]="scrollConfig">
+    <form #taskForm="ngForm">
+        <div class="ot-faceted-content">
+
+            <div class="ot-row cm-row-onboarding ">
+                <div class="ot-col-sm-5">
+                    <label class="ot-form-control-label">{{'onboarding.task.name'|translate}}</label>
+                    <label class="ot-form-value-label">{{taskDetail.task.displayName}}</label>
+                </div>
+                <!-- <div class="ot-col-sm-5  ot-col-sm-offset-1  ">
+                        <label class="ot-form-control-label">Description</label>
+                        <label class="ot-form-value-label">DDDDDDDDDDDDD</label>
+
+                    </div> -->
+            </div>
+
+            <div class="ot-row cm-row-onboarding ">
+                <hr>
+                <h3>{{'onboarding.task.fgTitle'|translate}}</h3>
+            </div>
+
+            <ot-multi-select name="fieldgroup" [readonlyMenuItems]="true"  #fieldgroup="ngModel"  [(ngModel)]="displayFG"></ot-multi-select>
+
+        </div>
+
+    </form>
+</div>
+
+<footer class="ot-page-footer-container footer">
+    <div class="ot-form-footer">
+        <button type="button" class="ot-primary" (click)="editTask(taskDetail.task.taskId)">{{'common.edit'|translate}}</button>
+        <button type="button" id="cancel" class="ot-secondary" [routerLink]="['../../']" skipLocationChange>{{'common.Cancel'|translate}}</button>
+    </div>
+</footer>

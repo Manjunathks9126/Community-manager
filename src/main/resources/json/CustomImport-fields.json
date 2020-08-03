@@ -1,0 +1,70 @@
+{
+	"fields": [
+		{
+			"label": "BUID",
+			"key" : "BUID",
+			"required": true,
+			"validationRules": {
+				"MAXLENGTH" : 25,
+				"PATTERN": "[A-Za-z0-9\\s]+"
+			}
+		},
+		{
+			"label": "Company Name",
+			"key" : "Company Name",
+			"required": true,
+			"validationRules": {
+				"MAXLENGTH" : 100,
+				"FORBIDDEN_PATTERN": "[|*\\:?/<>]"
+			}
+		},
+		{
+			"label": "Company ID",
+			"key" : "Company ID",
+			"validationRules": {
+				"MAXLENGTH" : 25,
+				"PATTERN": "[A-Za-z0-9_\\s]+"
+			}
+		},
+		{
+			"label": "Display Name",
+			"key" : "Display Name",
+			"validationRules": {
+				"MAXLENGTH" : 25,
+				"FORBIDDEN_PATTERN": "[|*\\:?/<>]"
+			}
+		},
+		{
+			"label": "Text",
+			"key" : "Text",
+			"validationRules": {
+				"MAXLENGTH" : 120,
+				"FORBIDDEN_PATTERN": "[|*\\:?/<>]"
+			}
+		},
+		{
+			"label": "Textarea",
+			"key" : "Textarea",
+			"validationRules": {
+				"MAXLENGTH" : 4000,
+				"FORBIDDEN_PATTERN": "[|*\\:?/<>]"
+			}
+		},
+		{
+			"label": "Date",
+			"key" : "Date",
+			"validationRules": {
+				"MAXLENGTH" : 25,
+				"PATTERN": "^(1[0-2]|0[1-9])/(3[01]|[12][0-9]|0[1-9])/[0-9]{4}$"
+			}
+		},
+		{
+			"label": "Number",
+			"key" : "Number",
+			"validationRules": {
+				"MAXLENGTH" : 100,
+				"PATTERN": "^[0-9]*$"
+			}
+		}
+	]
+}

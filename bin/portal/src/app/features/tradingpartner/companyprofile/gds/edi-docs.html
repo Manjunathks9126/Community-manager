@@ -1,0 +1,43 @@
+<div style="height: calc(100% - 4em);;padding: .5em">
+  <ot-accordion-panel headerTitle="{{'edicomms.addrs.title'| translate}}" headerClass="cm-left-padding-accordian" [showBody]="true">
+    <div class="acc-1" style="padding: .5em;height: 9em;" [perfectScrollbar]>
+      <!-- <div class="cm-modal-content-footerless ">
+        <ot-dataList [value]="EDI_DATA" [rowsPerPageOptions]="[20,50,100]" [paginator]="true" [rows]=20
+          [totalRecords]="2">
+
+          <ng-template let-edi pTemplate="item">
+            {{edi}}
+          </ng-template>
+        </ot-dataList>
+      </div> -->
+      <div class="ot-col-sm-3" *ngIf="EDI_DATA.length ==0">
+        {{'common.noRecords'| translate}}
+      </div>
+      <div class="ot-col-sm-3" *ngIf="EDI_DATA.length >0">
+        <div *ngFor="let edi of EDI_DATA">
+          <label class="ot-form-value-label">{{edi}}</label>
+        </div>
+      </div>
+    </div>
+  </ot-accordion-panel>
+  <hr style="border-bottom: 0;">
+  <ot-accordion-panel headerTitle="{{'globalDirectory.documents'| translate}}" headerClass="cm-left-padding-accordian"
+    [showBody]="true">
+    <div class="acc-1" style="padding: .5em;height: 9em;" [perfectScrollbar]>
+      <div   *ngIf="DOC_DATA.length ==0">
+        {{'common.noRecords'| translate}}
+      </div>
+      <div   *ngIf="DOC_DATA.length >0">
+        <div *ngFor="let doc of DOC_DATA">
+          <label class="ot-form-value-label">{{doc}}</label>
+        </div>
+      </div>
+    </div>
+  </ot-accordion-panel>
+</div>
+<footer class="ot-page-footer-container footer">
+  <div class="ot-form-footer">
+    <button class="ot-secondary" type="button" [routerLink]="isGDFlag? ['/globalDirectory']:['/tpdir']" [queryParams]="{gd: 't'}" skipLocationChange>{{'common.Cancel'|
+      translate}}</button>
+  </div>
+</footer>

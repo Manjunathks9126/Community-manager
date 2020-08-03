@@ -1,0 +1,54 @@
+<div class="ot-tab-content-section">
+    <div class="ot-tab-faceted-content">
+        <div [ngClass]="'ot-datatable-container'">
+            <div class="ot-toolbar-container">
+                <span [ngClass]="'ot-toolbar-item'">
+                    <div class="ot-icon ot-icon-toolbar ot-icon-toolbar-filter" tooltip="{{'common.tooltip.filter'|translate}}"></div>
+                </span>
+                <span *ngIf="!customTask && addCustomTaskFlag " class="ot-toolbar-item" [routerLink]="['create']" [queryParams]="{ create: 'true'}" skipLocationChange>
+                    <div class="ot-icon ot-icon-toolbar ot-icon-toolbar-add" tooltip="{{'onboarding.task.add'|translate}}"></div>
+                </span>
+                <span *ngIf="selectedTask && selectedTask.length>0" class="ot-toolbar-item ot-panel-span" (click)="delete()" tooltip="{{'common.Delete'|translate}}">{{'common.Delete'|translate}}</span>
+            </div>
+            <div [style.height]="'calc(100% - 2.625em)'">
+                <ot-dataTable name="tasks-list-datable" [locale]="currentLanguage" #tl [(value)]="taskList" [rowsPerPageOptions]="[30,60,90]" [paginator]="true" scrollable="true"
+                    [(selection)]="selectedTask" [responsive]="false"  [rows]="30"
+                    [totalRecords]="taskList.length">
+                    <ot-column [style]="{'width':'3%','text-align':'center'}">
+                        <ng-template let-col let-taskRow="rowData" pTemplate="body">
+                            <ot-checkbox [disabled]="taskRow.task.taskType=='Standard'" [style]="{'display': 'table-cell', 'vertical-align': 'middle'}"
+                                name="task" [value]="taskRow" [(ngModel)]="selectedTask" label="">
+                            </ot-checkbox>
+                        </ng-template>
+                    </ot-column>
+                    <ot-column [style]="{'width':'16%'}" field="task.displayName" header="{{'onboarding.task.name'|translate}}">
+
+                        <ng-template let-col let-taskRow="rowData" pTemplate="body">
+                            <span *ngIf="taskRow.task.taskType!='Custom'">
+                                {{taskRow.task.displayName}}
+                            </span>
+                            <a class="ot-block-anchor" *ngIf="taskRow.task.taskType==='Custom'" (click)="navigateToOverview(taskRow.task.taskId)">
+                                {{taskRow.task.displayName}}
+                            </a>
+                        </ng-template>
+                    </ot-column>
+
+                    <ot-column [style]="{'width':'16%'}" field="task.taskType" header="{{'onboarding.task.type'|translate}}"></ot-column>
+                    <ot-column [style]="{'width':'16%'}" field="task.taskStage" header="{{'onboarding.task.stage'|translate}}"></ot-column>
+                    <ot-column [style]="{'width':'16%'}" field="task.createdTimestamp" header="{{'onboarding.task.createdDate'|translate}}">
+                        <ng-template let-col let-task="rowData" pTemplate="body">
+                            {{task.createdTimestamp | otDateTimePipe }}
+                        </ng-template>
+                    </ot-column>
+                </ot-dataTable>
+            </div>
+
+        </div>
+    </div>
+</div>
+<ot-dialoguebox iconClass="ot-warning-icon" header="{{'common.Delete' |translate}}" name="deleteCustomTask" acceptButton="{{'common.confirm' |translate}}"
+    rejectButton="{{'common.Cancel' |translate}}">
+    <div dialog-message>
+        {{'common.question.sure' |translate}}
+    </div>
+</ot-dialoguebox>

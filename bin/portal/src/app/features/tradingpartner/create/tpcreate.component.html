@@ -1,0 +1,197 @@
+<div class="cm-form-container-tpCreate" [perfectScrollbar]="scrollConfig">
+  <form #buForm="ngForm">
+    <div class="cm-tpcreate-facetHeight">
+
+      <div class="ot-row ot-row-custom">
+        <div class="ot-col-sm-12 ">
+          <h4>{{'tpdir.create.form.formTitle'|translate}}</h4>
+        </div>
+      </div>
+      <div class="ot-row ot-row-custom">
+        <div class="ot-col-sm-5" [ngClass]="{readOnly : isReadonly}">
+          <label class="ot-form-control-label ot-required">{{'tpdir.create.form.companyName'|translate}}</label>
+          <input type="text" [ngClass]="cname.errors &&cname.invalid &&(cname.dirty || cname.touched) ? 'ot-error':'ot-text'"
+            name="cname" [(ngModel)]="workflow.provisioningRequestData.registrationData.businessUnit.companyName"
+            #cname="ngModel" [readonly]="isReadonly" maxlength="100" trim="blur" required>
+          <div *ngIf="cname.errors &&cname.invalid &&(cname.dirty || cname.touched)">
+            <div class="ot-error">{{'tpdir.create.validationMessages.cnamerequired'|translate}}</div>
+          </div>
+        </div>
+        <div class="ot-col-sm-3  ot-col-sm-offset-1">
+          <label class="ot-form-control-label">{{'tpdir.create.form.addressLine1'|translate}}</label>
+          <input type="text" [ngClass]="addr1.errors &&addr1.invalid &&(addr1.dirty || addr1.touched) ? 'ot-error':'ot-text'"
+            name="addr1" [(ngModel)]="workflow.provisioningRequestData.registrationData.businessUnit.companyAddress.addressLine1"
+            #addr1="ngModel" maxlength="75" trim="blur">
+        </div>
+        <div class="ot-col-sm-3">
+          <label class="ot-form-control-label">{{'tpdir.create.form.addressLine2'|translate}}</label>
+          <input type="text" [ngClass]="addr2.errors &&addr2.invalid &&(addr2.dirty || addr2.touched) ? 'ot-error':'ot-text'"
+            name="addr2" [(ngModel)]="workflow.provisioningRequestData.registrationData.businessUnit.companyAddress.addressLine2"
+            #addr2="ngModel" maxlength="75" trim="blur">
+        </div>
+      </div>
+      <div class="ot-row ot-row-custom">
+
+        <div class="ot-col-sm-5">
+          <label class="ot-form-control-label">
+            {{'tpdir.create.form.displayName'|translate}}</label>
+          <input type="text" [ngClass]="displayName.errors &&displayName.invalid &&(displayName.dirty || displayName.touched) ? 'ot-error':'ot-text'"
+            name="displayName" [(ngModel)]="workflow.provisioningRequestData.registrationData.businessUnit.displayName"
+            #displayName="ngModel" maxlength="120" trim="blur">
+          <div *ngIf="displayName.errors &&displayName.invalid &&(displayName.dirty || displayName.touched)">
+            <div class="ot-error">{{'tpdir.create.validationMessages.dnamerequired'|translate}}</div>
+          </div>
+        </div>
+        <div class="ot-col-sm-3  ot-col-sm-offset-1" [ngClass]="{readOnly : isReadonly}">
+          <label class="ot-form-control-label">{{'tpdir.create.form.city'|translate}}</label>
+          <input type="text" [ngClass]="city.errors &&city.invalid &&(city.dirty || city.touched) ? 'ot-error':'ot-text'"
+            name="city" [(ngModel)]="workflow.provisioningRequestData.registrationData.businessUnit.companyAddress.city"
+            #city="ngModel" [readonly]="isReadonly" maxlength="50" trim="blur">
+          <div *ngIf="city.errors &&city.invalid &&(city.dirty || city.touched)">
+            <div class="ot-error">{{'tpdir.create.validationMessages.cityrequired'|translate}}</div>
+          </div>
+        </div>
+        <div class="ot-col-sm-3">
+          <label class="ot-form-control-label">{{'tpdir.create.form.state'|translate}}</label>
+          <input type="text" [ngClass]="state.errors  ? 'ot-error':'ot-text'" name="state" [(ngModel)]="workflow.provisioningRequestData.registrationData.businessUnit.companyAddress.state"
+            #state="ngModel" maxlength="50" trim="blur">
+          <div *ngIf="state.errors">
+            <div class="ot-error" [hidden]="!state.errors.exists">{{'tpdir.create.validationMessages.staterequired'|translate}}</div>
+          </div>
+        </div>
+      </div>
+      <div class="ot-row ot-row-custom modified">
+        <!-- <div class="ot-col-sm-5">
+          <label class="ot-form-control-label">{{'tpdir.create.form.tradingPartnerType'|translate}}</label>
+          <textarea class="ot-form-control ot-stnd-textarea" resizable="false" rows="5" id="d" name="note" disabled="true" trim="blur"></textarea>
+        </div> -->
+        <div class="ot-row ot-row-custom">
+          <div class="ot-col-sm-2 ">
+            <label class="ot-form-control-label">{{'tpdir.create.form.postalCode'|translate}}</label>
+            <input type="text" name="postalcode" [ngClass]="postalcode.errors  ? 'ot-error':'ot-text'" [(ngModel)]="workflow.provisioningRequestData.registrationData.businessUnit.companyAddress.postalCode"
+              #postalcode="ngModel" maxlength="25" trim="blur">
+            <div *ngIf="postalcode.errors">
+              <div class="ot-error" [hidden]="!postalcode.errors.exists">{{'tpdir.create.validationMessages.postrequired'|translate}}</div>
+            </div>
+          </div>
+          <div class="ot-col-sm-3">
+            <label class="ot-form-control-label">{{'tpdir.create.form.country'|translate}}</label>
+            <ot-select-dropdown name="country" [options]="countries" dataKey="countryCode" [returnKeyOnly]="true"
+               optionLabel="countryDescription" placeholder="{{'common.default.select.txt'| translate}}" styleClass="cm-p-dropdown"
+              [(ngModel)]="workflow.provisioningRequestData.registrationData.businessUnit.companyAddress.countryCode"
+              #country="ngModel" [disabled]="isReadonly" [editable]="!isReadonly"></ot-select-dropdown>
+            <div *ngIf="country.errors && country.invalid &&(country.dirty || country.touched)">
+              <div class="ot-error">{{'tpdir.create.validationMessages.countryrequired'|translate}}</div>
+            </div>
+          </div>
+          <div class="ot-col-sm-3  ot-col-sm-offset-1">
+            <label class="ot-form-control-label">{{'tpdir.create.form.phone'|translate}}</label>
+            <input type="text" name="phone" [(ngModel)]="workflow.provisioningRequestData.registrationData.businessPointOfContact.contactInformation.telephone"
+              #phone="ngModel" maxlength="25" trim="blur" />
+          </div>
+          <!-- <div class="ot-col-sm-3">
+            <label class="ot-form-control-label">{{'tpdir.create.form.email'|translate}}</label>
+            <input type="text" name="email" [(ngModel)]="workflow.provisioningRequestData.registrationData.businessPointOfContact.contactInformation.email"
+              #email="ngModel" maxlength="50" trim="blur" />
+          </div> -->
+          <div class="ot-col-sm-3 ">
+            <label class="ot-form-control-label">{{'tpdir.create.form.email'|translate}}</label>
+            <input type="text" [ngClass]="email.errors &&email.invalid &&(email.dirty || email.touched) ? 'ot-error':'ot-text'"
+              name="email" [(ngModel)]="workflow.provisioningRequestData.registrationData.businessPointOfContact.contactInformation.email"
+              #email="ngModel" pattern="{{emailregex}}" trim="blur" >
+            <div *ngIf="email.errors && email.invalid &&(email.dirty || email.touched)">
+              <div class="ot-error" [hidden]="!email.errors.required">{{'tpdir.create.validationMessages.emailrequired'|translate}}</div>
+              <div class="ot-error" [hidden]="!email.errors.pattern">{{'tpdir.create.validationMessages.emailinvalid'|translate}}</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <div class="ot-row ot-row-custom">
+
+        <div class="ot-col-sm-2 ">
+          <label class="ot-form-control-label ot-required">{{'tpdir.create.form.companyId'|translate}}</label>
+          <input type="text" [ngClass]="companyId.errors &&companyId.invalid &&(companyId.dirty || companyId.touched) ? 'ot-error':'ot-text'"
+            name="companyId" (change)="validateEdi(companyId)" [pattern]="companyIdRegx" [(ngModel)]="workflow.provisioningRequestData.registrationData.tradingAddress.prodtp.address"
+            #companyId="ngModel" maxlength="20" trim="blur" required />
+          <div *ngIf="companyId.errors &&companyId.invalid &&(companyId.dirty || companyId.touched)">
+            <div class="ot-error" [hidden]="!companyId.errors.required">{{'tpdir.create.validationMessages.cIdequired'|translate}}</div>
+            <div class="ot-error" [hidden]="!companyId.errors.exists">{{'tpdir.create.validationMessages.ediexist'|translate}}</div>
+            <div class="ot-error" [hidden]="!companyId.errors.pattern">{{'tpdir.create.validationMessages.cIdInvalid'|translate}}</div>
+          </div>
+        </div>
+
+        <div class="ot-col-sm-2">
+          <label class="ot-form-control-label">{{'tpdir.create.form.website'|translate}}</label>
+          <input type="text" name="wburl" [(ngModel)]="workflow.provisioningRequestData.registrationData.businessUnit.companyAddress.website"
+            #wburl="ngModel" maxlength="75" trim="blur" />
+        </div>
+
+
+      </div>
+
+      <hr>
+
+      <div class="ot-row ot-row-custom">
+        <div class="ot-col-sm-12 ">
+          <h4>Contact Information</h4>
+          <!-- <h2>{{'tpdir.create.form.formTitle'|translate}}</h2> -->
+        </div>
+      </div>
+
+      <div class="ot-row ot-row-custom">
+        <div class="ot-col-sm-3">
+          <label class="ot-form-control-label ot-required">{{'tpdir.create.form.cfirstName'|translate}}</label>
+          <input type="text" [ngClass]="cfname.errors &&cfname.invalid &&(cfname.dirty || cfname.touched) ? 'ot-error':'ot-text'"
+            name="cfname" [(ngModel)]="workflow.provisioningRequestData.registrationData.technicalPointOfContact.firstName"
+            #cfname="ngModel" maxlength="49" trim="blur" required>
+          <div *ngIf="cfname.errors &&cfname.invalid &&(cfname.dirty || cfname.touched)">
+            <div class="ot-error">{{'tpdir.create.validationMessages.fnamerequired'|translate}}</div>
+          </div>
+        </div>
+        <div class="ot-col-sm-3">
+          <label class="ot-form-control-label ot-required">{{'tpdir.create.form.clastName'|translate}}</label>
+          <input type="text" [ngClass]="clname.errors &&clname.invalid &&(clname.dirty || clname.touched) ? 'ot-error':'ot-text'"
+            name="clname" [(ngModel)]="workflow.provisioningRequestData.registrationData.technicalPointOfContact.lastName"
+            #clname="ngModel" maxlength="49" trim="blur" required>
+          <div *ngIf="clname.errors &&clname.invalid &&(clname.dirty || clname.touched)">
+            <div class="ot-error">{{'tpdir.create.validationMessages.lnamerequired'|translate}}</div>
+          </div>
+        </div>
+        <div class="ot-col-sm-3 ">
+          <label class="ot-form-control-label ot-required">{{'tpdir.create.form.cemail'|translate}}</label>
+          <input type="text" [ngClass]="cemail.errors &&cemail.invalid &&(cemail.dirty || cemail.touched) ? 'ot-error':'ot-text'"
+            name="cemail" [(ngModel)]="workflow.provisioningRequestData.registrationData.technicalPointOfContact.contactInformation.email"
+            #cemail="ngModel" pattern="{{emailregex}}" trim="blur" required>
+          <div *ngIf="cemail.errors && cemail.invalid &&(cemail.dirty || cemail.touched)">
+            <div class="ot-error" [hidden]="!cemail.errors.required">{{'tpdir.create.validationMessages.emailrequired'|translate}}</div>
+            <div class="ot-error" [hidden]="!cemail.errors.pattern">{{'tpdir.create.validationMessages.emailinvalid'|translate}}</div>
+          </div>
+        </div>
+        <div class="ot-col-sm-3 ">
+          <label class="ot-form-control-label ot-required">{{'tpdir.create.form.userPhone'|translate}}</label>
+          <input type="text" [ngClass]="cphone.errors &&cphone.invalid &&(cphone.dirty || cphone.touched) ? 'ot-error':'ot-text'"
+            name="cphone" [(ngModel)]="workflow.provisioningRequestData.registrationData.technicalPointOfContact.contactInformation.telephone"
+            #cphone="ngModel" trim="blur" required>
+          <div *ngIf="cphone.errors &&cphone.invalid &&(cphone.dirty || cphone.touched)">
+            <div class="ot-error">{{'tpdir.create.validationMessages.phonerequired'|translate}}</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </form>
+</div>
+<footer class="ot-page-footer-container footer">
+  <div class="ot-form-footer">
+    <button class="ot-primary" type="submit" [disabled]="isUnchanged" (click)="onSave()">{{'common.save'|translate}}</button>
+    <button class="ot-primary" type="submit" [disabled]="!buForm.form.valid" (click)="onSubmit()">{{'common.next'|translate}}</button>
+    <button class="ot-secondary" type="button" [routerLink]="['/tpdir']" (click)="onCancel()">{{'common.Cancel'|translate}}</button>
+  </div>
+</footer>
+<ot-dialoguebox iconClass="ot-warning-icon" header="{{'common.duplicate' |translate}}" name="exisitingTp" acceptButton="{{'common.confirm' |translate}}"
+  rejectButton="{{'common.Cancel' |translate}}">
+  <div dialog-message>
+    {{'common.question.duplicate.create' |translate}}
+  </div>
+</ot-dialoguebox>

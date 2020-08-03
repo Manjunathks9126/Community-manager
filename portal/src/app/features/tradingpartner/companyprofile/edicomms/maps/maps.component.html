@@ -1,0 +1,90 @@
+<div class="ot-tab-content-section">
+  <div class="ot-tab-faceted-content">
+    <div [ngClass]="'ot-tab-datatable-container'">
+      <!-- Search panel -->
+      <div class="ot-filter-container" *ngIf="isSearchClicked">
+        <div class="ot-toolbar-container">
+          <h2>{{'tpdir.search.title'| translate}}</h2>
+        </div>
+
+        <div class="ot-ui-g">
+          <div class="ot-ui-g-12">
+            <label>{{'tpdir.read.mapName'| translate}}</label>
+
+            <input type="text" (keyup.enter)="searchData()" placeholder="" [(ngModel)]="searchMap" />
+
+            <button class="ot-micro-primary" type="button" (click)="searchData()" [disabled]="!searchMap">{{'common.Apply'|translate}}
+            </button>
+            <button class="ot-micro-secondary" type="button" (click)="clearSearchCriteria()">{{'common.Cancel'|translate}}
+            </button>
+          </div>
+        </div>
+
+      </div>
+      <!-- Search panel ends -->
+
+      <!-- Filter panel starts -->
+      <div class="ot-filter-container" *ngIf="isFilterClicked">
+        <div class="ot-toolbar-container">
+          <h2>{{'common.filter.header'| translate}}</h2>
+        </div>
+
+      </div>
+      <!-- Filter panel ends -->
+
+      <div [ngClass]="(isFilterClicked||isSearchClicked)? 'ot-datatabale-container-shrinked' : 'ot-datatable-container'">
+
+        <div class="ot-chipset-header" [style.height.em]="isFilterApplied ? 3 : 0" [style.display]="isFilterApplied  ? 'block' : ''">
+          <div id="mapName" class="ot-chipset" *ngIf="(searchMap!=undefined)">
+            {{'tpdir.read.mapName'| translate}}: {{searchMap}}
+            <span class="ot-image-close-chipset" (click)='clearSearchCriteria()'></span>
+          </div>
+
+        </div>
+
+
+        <div class="ot-toolbar-container">
+          <span (click)="displaySearchPanel()" [ngClass]="isSearchClicked ? 'ot-toolbar-item-selected' : 'ot-toolbar-item'">
+            <div class="ot-icon ot-icon-toolbar ot-icon-toolbar-search" tooltip="{{'common.tooltip.search'|translate}}"></div>
+          </span>
+          <span (click)="displayFilterPanel()" [ngClass]="isFilterClicked ? 'ot-toolbar-item-selected' : 'ot-toolbar-item'">
+            <div class="ot-icon ot-icon-toolbar ot-icon-toolbar-filter" tooltip="{{'common.tooltip.filter'|translate}}"></div>
+          </span>
+        </div>
+
+        <div [style.height]="!(isFilterApplied) ?'calc( 100% - 2.625em)':'calc( 100% - 5.625em)'">
+          <ot-dataTable name="map-list-datatable"  [locale]="currentLanguage" [(value)]="mapList" [rows]="30"
+            [paginator]="true" scrollable="false" [lazy]="true" [responsive]="false" (onLazyLoad)="lazyLoadMapList($event)"
+            [totalRecords]="totalRecords" [rowsPerPageOptions]="[30,60,100]">
+            <ot-column [style]="{'width':'3%'}" selectionMode="multiple"></ot-column>
+            <ot-column [style]="{'width':'30%'}" field="mapName" header="{{'tpdir.read.mapName'| translate}}">
+              <ng-template let-col let-map="rowData" pTemplate="body">
+                {{map.mapName}}
+              </ng-template>
+            </ot-column>
+            <ot-column [style]="{'width':'30%'}" field="partnerCompanyDisplayName" header="{{'tpdir.read.docStandard'| translate}}">
+              <ng-template let-col let-map="rowData" pTemplate="body">
+                {{map.docStandard}}
+              </ng-template>
+            </ot-column>
+            <ot-column [style]="{'width':'12%'}" field="docType" header="{{'tpdir.read.docType'| translate}}">
+              <ng-template let-col let-map="rowData" pTemplate="body">
+                {{map.docType}}
+              </ng-template>
+            </ot-column>
+            <ot-column [style]="{'width':'12%'}" header="{{'tpdir.read.docVersion'| translate}}">
+              <ng-template let-col let-map="rowData" pTemplate="body">
+                {{map.version}}
+              </ng-template>
+            </ot-column>
+            <ot-column [style]="{'width':'12%'}" field="partnerShipActivationDate" header="{{'tpdir.read.direction'| translate}}">
+              <ng-template pTemplate="body" let-map="rowData">
+                {{map.direction}}
+              </ng-template>
+            </ot-column>
+          </ot-dataTable>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

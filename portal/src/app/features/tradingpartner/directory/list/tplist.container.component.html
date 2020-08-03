@@ -1,0 +1,18 @@
+<div class="ot-container-feature-content">
+    <div class="ot-ui-g ot-page-header-container">
+        <div class="ot-image-directory"></div>
+        <p class="ot-page-header-title">{{'tpdir.title'|translate}}</p>
+        <div class="cm-current-viewBy">
+            <span class="cm-view-by"> <label class="ot-form-control-label">{{'tpdir.Viewby'|translate}}</label></span>
+            <span>
+                <ot-select-dropdown *ngIf="inputTypes.length>0" [options]="inputTypes" [editable]="false"
+                    [(ngModel)]="currentView"></ot-select-dropdown>
+            </span>
+        </div>
+    </div>
+    <div class="ot-section-content-datatable">
+        <bpr-list *ngIf="currentView=='BPR'"></bpr-list>
+        <tpr-list *ngIf="currentView=='TPR'"></tpr-list>
+        <invited-list *ngIf="currentView=='INVTD'"></invited-list>
+    </div>
+</div>

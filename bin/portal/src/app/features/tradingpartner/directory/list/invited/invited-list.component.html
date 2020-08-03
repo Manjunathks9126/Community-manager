@@ -1,0 +1,42 @@
+<div style="height: calc(100% - 4em);">
+    <div class="ot-faceted-content">
+        <div [ngClass]="'ot-datatable-container'">
+            <div class="ot-toolbar-container">
+                <span class="ot-panel-span" *ngxPermissionsOnly="permissions.enablingOnboarding" >
+                <span *ngIf="selectedData?.length>0" class="ot-toolbar-item ot-panel-span" (click)="reinvite()">{{'invitedTps.reinvite'|translate}}</span></span>
+                <span *ngIf="selectedData?.length>0" class="ot-toolbar-item ot-panel-span" (click)="exportToCsv(tpdt)">{{'common.Export'|
+                    translate}}</span>
+            </div>
+            <div [style.height]="!(isFilterApplied) ?'calc( 100% - 2.625em)':'calc( 100% - 5.625em)'">
+                <ot-dataTable [locale]="currentLanguage" #dt [rowsPerPageOptions]="[30,60,100]" [paginator]="true" [(value)]="invitedList"
+                    scrollable="true" [responsive]="false" [rows]="30" [totalRecords]="totalInvitationRecords" [lazy]="true"
+                    (onLazyLoad)="lazyLoadInvitedPartnerList($event)" [(selection)]="selectedData">
+                    <ot-column [style]="{'width':'3%'}" selectionMode="multiple"></ot-column>
+                    <ot-column [style]="{'width':'15%'}" [sortable]="true" field="companyIdentifier" header="{{'invitedTps.companyName'|translate}}">
+                            <ng-template let-col let-invitation="rowData" pTemplate="body">
+                            <a  class="ot-block-anchor" (click)="redirectToProfile(invitation)">
+                                    {{invitation.companyIdentifier}}
+                            </a>
+                            
+                            </ng-template>
+                    </ot-column>
+                    <ot-column  [style]="{'width':'15%'}" field="recipientCompanyId" header="{{'invitedTps.companyId'|translate}}"></ot-column>
+                    <ot-column [style]="{'width':'9%'}" field="invitationStatus" header="{{'invitedTps.invitationStatus'|translate}}">
+                        <ng-template let-col let-invitation="rowData" pTemplate="body">
+                            {{invitation.invitationStatus=='ACTIVE'?'Invited':'Expired'}}
+                        </ng-template>
+                    </ot-column>
+                    <ot-column  [style]="{'width':'15%'}" field="displayName" header="{{'invitedTps.workflowName'|translate}}"></ot-column>
+                    <ot-column  [style]="{'width':'15%'}" field="invitationName" header="{{'invitedTps.invitationName'|translate}}"></ot-column>
+                    <ot-column  [style]="{'width':'20%'}" field="invitationCode" header="{{'invitedTps.invitationCode'|translate}}"></ot-column>
+                    <ot-column  [style]="{'width':'8%'}" field="invitedDate"  header="{{'invitedTps.invitedDate'|translate}}">
+                        <ng-template pTemplate="body" let-row="rowData">
+                            {{(row.invitedDate != null ? row.invitedDate:row.activeDate) | otDatePipe
+                            :'MM/dd/yyyy'}}
+                        </ng-template>
+                    </ot-column>
+                </ot-dataTable>
+            </div>
+        </div>
+    </div>
+</div>

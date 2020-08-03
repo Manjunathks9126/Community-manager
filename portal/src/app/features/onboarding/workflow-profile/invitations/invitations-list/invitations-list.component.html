@@ -1,0 +1,43 @@
+<div class="ot-tab-faceted-content">
+    <div [ngClass]="'ot-datatable-container'">
+        <div class="ot-toolbar-container">
+            <span [ngClass]="'ot-toolbar-item'">
+                <div class="ot-icon ot-icon-toolbar ot-icon-toolbar-filter"
+                    tooltip="{{'common.tooltip.filter'|translate}}"></div>
+            </span>
+            <span class="ot-toolbar-item" [routerLink]="['create']" [queryParams]="{ cancel: false}" skipLocationChange>
+                <div class="ot-icon ot-icon-toolbar ot-icon-toolbar-add"
+                    tooltip="{{'common.tooltip.addInvitation'|translate}}"></div>
+            </span>
+        </div>
+        <div [ngClass]="'cm-datatable'">
+            <ot-dataTable name="inivation-list-datable" [locale]="currentLanguage" #dt [(value)]="invitations"
+                [rowsPerPageOptions]="[30,60,100]" [paginator]="true" scrollable="true" [responsive]="false" [rows]="30"
+                [totalRecords]="invitations.length">
+                <ot-column [style]="{'width':'3%','text-align':'center'}" selectionMode="multiple"></ot-column>
+                <ot-column [style]="{'width':'16%'}" field="invitationName"
+                    header="{{'onboarding.invitationForm.invitationName'|translate}}">
+                    <ng-template let-col let-invitation="rowData" pTemplate="body">
+                        <a class="ot-block-anchor" (click)="navigateToOverview(invitation.invitationId)">
+                            {{invitation.invitationName}}
+                        </a>
+                    </ng-template>
+                </ot-column>
+                <ot-column [style]="{'width':'16%'}" field="invitationComments"
+                    header="{{'onboarding.invitationForm.description'|translate}}"></ot-column>
+                <ot-column [style]="{'width':'16%'}" field="creatorFirstName"
+                    header="{{'onboarding.invitationForm.createdBy'|translate}}">
+                    <ng-template let-invitation="rowData" pTemplate="body">
+                        {{invitation.creatorFirstName}} {{invitation.creatorLastName}}
+                    </ng-template>
+                </ot-column>
+                <ot-column [style]="{'width':'16%'}" field="createdTimestamp"
+                    header="{{'onboarding.invitationForm.createdDate'|translate}}">
+                    <ng-template let-col let-invitation="rowData" pTemplate="body">
+                        {{invitation.createdTimestamp | date }}
+                    </ng-template>
+                </ot-column>
+            </ot-dataTable>
+        </div>
+    </div>
+</div>

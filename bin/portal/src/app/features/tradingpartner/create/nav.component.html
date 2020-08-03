@@ -1,0 +1,19 @@
+    <div class="ot-ui-g ot-page-header-container">
+      <p class="ot-page-header-title">
+        {{'tpdir.create.title'|translate}}</p>
+    </div>
+    <div class="ot-ui-g ot-page-header-container cm-stepper-wizard">
+          <span routerLink="/tpdir/base/add"  routerLinkActive="cm-stepper-active-state" #step1="routerLinkActive"
+            [ngClass]="step1.isActive? 'cm-stepper-active-state' : 'cm-stepper-completed-state'"
+            [routerLinkActiveOptions]="{exact:true}">
+            <div class="cm-nav1-green" ></div>
+          </span>
+          <div class="step1"> Step 1 </div>
+          <span  >
+            <div id="cm-nav-bar" ></div>
+          </span>
+          <span routerLink="/tpdir/base/work" routerLinkActive="cm-stepper-active-state" #step2="routerLinkActive">
+            <div class="cm-nav-work-bar" ></div>
+          </span>
+          <div class="step2"> Step 2 </div>
+      </div>

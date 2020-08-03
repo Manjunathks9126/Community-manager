@@ -1,0 +1,171 @@
+<div class="ot-tab-content-section">
+  <div class="ot-tab-faceted-content">
+    <!-- Filter panel starts -->
+    <div class="ot-filter-container cm-filter-scroll" *ngIf="isFilterClicked">
+      <div class="ot-toolbar-container">
+        <h2>{{'common.filter.header'| translate}}</h2>
+      </div>
+      <ot-accordion [multiple]="false">
+        <ot-accordionTab header="{{'tpdir.company.contacts.title'| translate}}" [selected]="true">
+          &nbsp;&nbsp;&nbsp;{{'tpdir.read.status'| translate}}
+          <br>
+          <br>
+          <div class="ot-ui-g filterStatus">
+
+            <div class="ot-col-md-12" *ngFor="let status of statusOptions; let i =index">
+
+              <ot-checkbox name="status{{i}}" value="{{status}}" label="{{status}}" [(ngModel)]="searchObject.status"></ot-checkbox>
+
+            </div>
+          </div>
+          <br>
+          <br> &nbsp;&nbsp;&nbsp;{{'tpdir.company.contacts.lastAccessDate'| translate}}
+          <div class="ot-ui-g">
+            <label class="ot-form-control-label ot-required cm-filter-label" for="usr">{{'tpdir.company.contacts.from'| translate}}
+            </label>
+            <div class="ot-ui-g-12">
+              <!-- <input type="date" (keyup.enter)="filterData()" placeholder="{{'tpdir.company.contacts.dateFormatMMDDYYYY'| translate}}"
+                                    [(ngModel)]="searchObject.dateFrom" /> -->
+              <ot-calendar [locale]="currentLanguage" [maxDate]="dateTime" (input)="onDateSelect()" (onSelect)="onDateSelect()"   appendTo="body"  inputStyleClass="exp-cal"
+                 [monthNavigator]="true"  [yearNavigator]="true"  yearRange="1990:2050" name="dateFrom"  [(ngModel)]="searchObject.dateFrom"
+                 dateFormat="mm/dd/yy"  placeholder="{{'tpdir.company.contacts.dateFormatMMDDYYYY'| translate}}" showButtonBar="true"
+                [showIcon]="true"></ot-calendar>
+            </div>
+          </div>
+          <div class="ot-ui-g">
+            <label class="ot-form-control-label ot-required cm-filter-label" for="usr">{{'tpdir.company.contacts.to'| translate}}
+            </label>
+
+            <div class="ot-ui-g-12">
+              <!-- <input type="date" (keyup.enter)="filterData()" placeholder="{{'tpdir.company.contacts.dateFormatMMDDYYYY'| translate}}"
+                                    [(ngModel)]="searchObject.dateTo" /> -->
+              <ot-calendar [locale]="currentLanguage" [maxDate]="dateTime" (input)="onDateSelect()" (onSelect)="onDateSelect()"   appendTo="body" inputStyleClass="exp-cal"
+                 [monthNavigator]="true"  [yearNavigator]="true"  yearRange="1990:2050" name="dateTo"  [(ngModel)]="searchObject.dateTo"
+                 dateFormat="mm/dd/yy"  placeholder="{{'tpdir.company.contacts.dateFormatMMDDYYYY'| translate}}" showButtonBar="true"
+                [showIcon]="true"></ot-calendar>
+            </div>
+            <div *ngIf="!dateValid">
+              <div class="ot-error h2-required">{{'tpdir.company.contacts.dateFormatValidation'| translate}}</div>
+            </div>
+
+          </div>
+          <br>
+          <!--  <div class="ot-ui-g">
+                            <div class="ot-ui-g-12"> {{'common.status'| translate}} </div>
+                        </div>
+                        <div class="ot-ui-g filterStatus">
+
+                            <!--  <div class="ot-col-md-12" *ngFor="let status of filterOptions.companyStatus; let i =index">
+
+                                <ot-checkbox name="status{{i}}" value="{{status}}" label="{{status}}" [(ngModel)]="selectedstatus"></ot-checkbox>
+
+                            </div> -->
+          <!--  </div> -->
+          <button class="ot-micro-primary" type="button" (click)="filterData()" [disabled]="(!searchObject.dateFrom && !searchObject.dateTo) && !(searchObject.status.length>0) || !dateValid">{{'common.Apply'| translate}}
+          </button>
+          <button class="ot-micro-secondary" type="button" (click)="clearSearchCriteria('filter')">{{'common.Cancel'| translate}}
+          </button>
+        </ot-accordionTab>
+      </ot-accordion>
+    </div>
+    <!-- Filter panel ends -->
+    <!-- Search panel -->
+    <div class="ot-filter-container" *ngIf="isSearchClicked">
+      <div class="ot-toolbar-container">
+        <h2>{{'tpdir.search.title'| translate}}</h2>
+      </div>
+      <ot-accordion [multiple]="false">
+        <ot-accordionTab header="{{'tpdir.company.contacts.title'| translate}}" [selected]="true">
+          &nbsp;&nbsp;&nbsp;{{'tpdir.company.user.firstName'| translate}}
+          <div class="ot-ui-g">
+            <div class="ot-ui-g-12">
+              <input type="text" (keyup.enter)="searchData()" placeholder="{{'tpdir.company.user.firstName'| translate}}" [(ngModel)]="searchObject.firstName"
+              />
+            </div>
+          </div>
+
+          &nbsp;&nbsp;&nbsp;{{'tpdir.company.user.lastName'| translate}}
+          <div class="ot-ui-g">
+            <div class="ot-ui-g-12">
+              <input type="text" (keyup.enter)="searchData()" placeholder="{{'tpdir.company.user.lastName'| translate}}" [(ngModel)]="searchObject.lastName"
+              />
+            </div>
+          </div>
+
+          &nbsp;&nbsp;&nbsp;{{'tpdir.company.user.email'| translate}}
+          <div class="ot-ui-g">
+            <div class="ot-ui-g-12">
+              <input type="text" (keyup.enter)="searchData()" placeholder="{{'tpdir.company.user.email'| translate}}" [(ngModel)]="searchObject.email"
+              />
+            </div>
+          </div>
+          <button class="ot-micro-primary" type="button" (click)="searchData()" [disabled]="!searchObject.firstName && !searchObject.lastName && !searchObject.email ">{{'common.Apply'| translate}}
+          </button>
+          <button class="ot-micro-secondary" type="button" (click)="clearSearchCriteria('search')">{{'common.Cancel'| translate}}
+          </button>
+        </ot-accordionTab>
+      </ot-accordion>
+    </div>
+    <!-- Search panel ends -->
+    <div [ngClass]="(isFilterClicked||isSearchClicked)? 'ot-datatabale-container-shrinked' : 'ot-datatable-container'">
+      <div class="ot-chipset-header" [style.height.em]="(isFilterApplied||isSearchClicked) ? 3 : 0" [style.display]="(isFilterApplied||isSearchClicked)&&(selectedFilters.firstName||selectedFilters.lastName||selectedFilters.email||selectedFilters.dateFrom||selectedFilters.dateTo||(selectedFilters.status.length>0))  ? 'block' : 'none'">
+        <div id="firstName" class="ot-chipset" *ngIf="selectedFilters.firstName">
+          {{'tpdir.company.user.firstName'| translate}}: {{selectedFilters.firstName}}
+          <span class="ot-image-close-chipset" (click)='clearChispsetElement("firstName")'></span>
+        </div>
+        <div id="lastName" class="ot-chipset" *ngIf="(selectedFilters.lastName)">
+          {{'tpdir.company.user.lastName'| translate}}: {{selectedFilters.lastName}}
+          <span class="ot-image-close-chipset" (click)='clearChispsetElement("lastName")'></span>
+        </div>
+
+        <div id="email" class="ot-chipset" *ngIf="(selectedFilters.email)">
+          {{'tpdir.company.user.email'| translate}}: {{selectedFilters.email}}
+          <span class="ot-image-close-chipset" (click)='clearChispsetElement("email")'></span>
+        </div>
+        <div id="dateRange" class="ot-chipset" *ngIf="(selectedFilters.dateFrom)">
+          {{'tpdir.company.contacts.dateRange'| translate }}: {{selectedFilters.dateFrom}} {{'tpdir.company.contacts.to'| translate}}
+          {{selectedFilters.dateTo}}
+          <span class="ot-image-close-chipset" (click)='clearChispsetElement("dateRange")'></span>
+        </div>
+
+        <div class="ot-chipset" *ngIf="(selectedFilters.status!=undefined)&&(selectedFilters.status.length>0)">
+          {{'tpdir.read.status'| translate}}:
+          <span *ngFor="let status of selectedFilters.status" class="cm-chipset-status">{{status}}</span>
+          <span class="ot-image-close-chipset" (click)='clearChispsetElement("status")'></span>
+        </div>
+
+        <div *ngIf="numberOfFiltersApplied>1" class="ot-clear-all-chipset" (click)="clearFilterCriteria()">
+          <span class="ot-image-close-chipset"></span> {{'common.clear.filter'|translate}}
+        </div>
+      </div>
+
+      <div class="ot-toolbar-container">
+        <span (click)="displaySearchPanel()" [ngClass]="'ot-toolbar-item'">
+          <div class=" ot-icon ot-icon-toolbar ot-icon-toolbar-search" tooltip="{{'common.tooltip.search'|translate}}"></div>
+        </span>
+        <span [ngClass]="'ot-toolbar-item'">
+          <div class="ot-icon ot-icon-toolbar ot-icon-toolbar-filter" (click)="displayFilterPanel()" tooltip="{{'common.tooltip.filter'|translate}}"></div>
+        </span>
+        <!-- <span class="ot-toolbar-item"><div class="ot-icon ot-icon-toolbar ot-icon-toolbar-add" tooltip="{{'common.tooltip.addcontact'|translate}}"></div></span>-->
+        <span class="ot-vertical-line"></span>
+      </div>
+
+      <div [style.height]="!(isFilterApplied) ?'calc( 100% - 2.625em)':'calc( 100% - 5.625em)'">
+        <ot-dataTable name="company-contacts-list-datatable" [locale]="currentLanguage" [rowsPerPageOptions]="[30,60,100]" [(value)]="userList" [paginator]="true"
+          scrollable="false" [lazy]="true" [responsive]="false" [rows]="limit" (onLazyLoad)="lazyLoadUserList($event)" [totalRecords]="totalRecords"
+          [scrollHeight]="isFilterApplied">
+          <ot-column [style]="{'width':'3%'}" selectionMode="multiple"></ot-column>
+          <ot-column [style]="{'width':'30%'}" header="{{'tpdir.company.contacts.name'|translate}}">
+            <ng-template let-row="rowData" pTemplate type="body">
+              <a [routerLink]="['./user',row.userId]" style="text-decoration: none;" skipLocationChange>{{row.firstName}} {{row.lastName}}
+              </a>
+            </ng-template>
+          </ot-column>
+          <ot-column [style]="{'width':'30%'}" field="contactInformation.email" header="{{'tpdir.company.contacts.email'|translate}}"></ot-column>
+          <ot-column [style]="{'width':'10%'}" field="status" header="{{'tpdir.company.contacts.status'|translate}}"></ot-column>
+          <ot-column [style]="{'width':'17%'}" field="lastLoginDate" header="{{'tpdir.company.contacts.lastAccessed'|translate}}"></ot-column>
+        </ot-dataTable>
+      </div>
+
+  </div>
+</div>

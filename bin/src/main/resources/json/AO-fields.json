@@ -1,0 +1,133 @@
+{
+	"fields": [
+		{
+			"label": "Company Name",
+			"key" : "companyInfo.companyName",
+			"required": true,
+			"validationRules": {
+				"MAXLENGTH" : 100,
+				"FORBIDDEN_PATTERN": "[|*\\:?/<>]"
+			}
+		},
+		{
+			"label": "Company ID",
+			"key" : "companyInfo.companyId",
+			"validationRules": {
+				"MAXLENGTH" : 25,
+				"PATTERN": "[A-Za-z0-9\\s]+"
+			}
+		},
+		{
+			"label": "Company Address1",
+			"key" : "companyInfo.addrLine1",
+			"validationRules": {
+				"MAXLENGTH" : 75,
+				"FORBIDDEN_PATTERN": "[$<>]"
+			}
+		},
+		{
+			"label": "Company Address2",
+			"key" : "companyInfo.addrLine2",
+			"validationRules": {
+				"MAXLENGTH" : 75,
+				"FORBIDDEN_PATTERN": "[$<>]"
+			}
+		},
+		{
+			"label": "City",
+			"key" : "companyInfo.city",
+			"validationRules": {
+				"MAXLENGTH" : 50,
+				"FORBIDDEN_PATTERN": "[<>//s]"
+			}
+		},
+		{
+			"label": "State",
+			"key" : "companyInfo.state",
+			"validationRules": {
+				"MAXLENGTH" : 50,
+				"FORBIDDEN_PATTERN": "[.<>]"
+			}
+		},
+		{
+			"label": "Postal Code",
+			"key" : "companyInfo.postalCode",
+			"validationRules": {
+				"MAXLENGTH" : 25,
+				"FORBIDDEN_PATTERN": "[.,<>]"
+			}
+		},
+		{
+			"label": "Country",
+			"key" : "companyInfo.country",
+			"required": true,
+			"validationRules": {
+				"COUNTRY_CODE": ""
+			}
+		},
+		{
+			"label": "Company Phone",
+			"key" : "companyInfo.companyPhone",
+			"validationRules": {
+				"MAXLENGTH" : 25,
+				"PATTERN": "[A-Za-z0-9\\s]+"
+			}
+		},
+		{
+			"label": "Company Email",
+			"key" : "companyInfo.companyEmail",
+			"validationRules": {
+				"MAXLENGTH" : 80,
+				"EMAIL": ""
+			}
+		},		
+		{
+			"label": "Website",
+			"key" : "companyInfo.website",
+			"validationRules": {
+				"MAXLENGTH" : 75,
+				"FORBIDDEN_PATTERN": "[<>]"
+			}
+		},
+		{
+			"label": "Contact First Name",
+			"key" : "contactInfo.firstName",
+			"required": true,
+			"validationRules": {
+				"MAXLENGTH" : 50,
+				"FORBIDDEN_PATTERN": "[*<>\\s]"
+			}
+		},
+		{
+			"label": "Contact Last Name",
+			"key" : "contactInfo.lastName",
+			"required": true,
+			"validationRules": {
+				"MAXLENGTH" : 50,
+				"FORBIDDEN_PATTERN": "[*<>\\s]"
+			}
+		},
+		{
+			"label": "Contact Email",
+			"key" : "contactInfo.email",
+			"required": true,
+			"validationRules": {
+				"MAXLENGTH" : 80,
+				"EMAIL": ""
+			}
+		},
+		{
+			"label": "Contact Phone",
+			"key" : "contactInfo.phone",
+			"validationRules": {
+				"MAXLENGTH" : 25,
+				"PATTERN": "[A-Za-z0-9\\s]+"
+			}
+		}
+	],
+	"identifiers": [
+		"companyInfo.companyName",
+		"companyInfo.city",
+		"companyInfo.country"
+	]
+}

@@ -1,0 +1,20 @@
+<div class="ot-form-container">  <!--*ngIf=""-->
+    <div class="ot-form-header-container">
+        <div class="ot-form-header">
+            <span>
+                <h4>{{invitedTPInfo.companyIdentifier}}</h4>
+            </span>
+            <span></span>
+        </div>
+    </div>
+    <div class="ot-tab">
+        <ul>
+            <li>
+                <a [routerLink]="['overview']" routerLinkActive="ot-active" skipLocationChange>{{'invitedTps.overview'|translate}}</a>
+            </li>
+        </ul>
+    </div>
+    <div class="ot-tab-content-container">
+        <router-outlet></router-outlet>
+    </div>
+</div>

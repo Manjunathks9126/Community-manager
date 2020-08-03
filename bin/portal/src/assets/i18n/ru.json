@@ -1,0 +1,915 @@
+{
+  "otherInfo": {
+    "title": "Прочая информация",
+    "licenseStatus": "Статус лицензии",
+    "certificationStatus": "Статус сертификата",
+    "certifyingAgency": "Центр сертификации",
+    "licenseDocument": "Лицензионный документ",
+    "certificate": "Сертификат",
+    "productsCertified": "Сертифицированные продукты",
+    "certificationLevel": "Уровень сертификации",
+    "certificationRating": "Рейтинг сертификации",
+    "certificationExpiration": "Дата окончания действия сертификата"
+  },
+  "ediAndDocs": {
+    "title": "EDI и документы"
+  },
+  "graph": {
+    "title": "График TP"
+  },
+  "status": {
+    "bpr": {
+      "Approved": "Утверждено",
+      "Testing": "Испытания",
+      "Error": "Ошибка",
+      "Requested": "Запрошено",
+      "Rejected": "Отклонено"
+    },
+    "company": {
+      "active": "Активно",
+      "inactive": "Неактивно",
+      "Error": "Ошибка",
+      "Draft": "Черновик",
+      "Testing": "Испытания",
+      "In Progress": "Выполняется",
+      "marked_for_deletion": "Помечено для удаления"
+    }
+  },
+  "common": {
+    "cancelSetupHeader": "Настройка",
+    "cancelSetupText": "Действительно отменить новую настройку?",
+    "endOfResult": "Достигнут конец результатов",
+    "attachFile": "Прикрепить файл",
+    "confirm": "ОК",
+    "clear": "Очистить",
+    "success": "Успешно",
+    "company": "Компания",
+    "breadCrumb.home": "Дом",
+    "filter.header": "Уточнить по",
+    "project.title": "Community Manager",
+    "submit.title": "Отправить",
+    "Apply": "Применить",
+    "Cancel": "Отмена",
+    "reset": "Сброс",
+    "clear.filter": "Очистить все",
+    "create": "Создать",
+    "invite": "Пригласить",
+    "next": "Далее",
+    "previous": "Назад",
+    "save": "Сохранить",
+    "continue": "Продолжить",
+    "edit": "Редактировать",
+    "connect": "Подключиться",
+    "errorMessage": "Не удалось обработать запрос. Обратитесь в службу поддержки OpenText.",
+    "TotalCount": "Всего записей:",
+    "Export": "Экспорт",
+    "exportTooltip": "Экспортировать выбранные строки",
+    "exportAll": "Экспортировать все",
+    "exportAllTooltip": "Экспортировать все строки",
+    "exportSubmitted": "Запрос на экспорт отправлен. Вы получите уведомление по электронной почте, как только данные будут доступны.",
+    "Delete": "Удалить",
+    "New": "Новый",
+    "yes": "Да",
+    "no": "Нет",
+    "sure": "Конечно",
+    "status": "Статус",
+    "companyStatus": "Статус компании",
+    "bprStatus": "Статус BPR",
+    "pageNotFound": "Страница не найдена. Обратитесь в службу поддержки OpenText.",
+    "default.select.txt": "Выбрать",
+    "default.select.invitation.txt": "Выбрать приглашение",
+    "duplicate": "Существуют дубликаты",
+    "dialogmsg": "Прервать регистрацию",
+    "cancelmsg": "Процесс регистрации будет прерван, и ваши данные не будут сохранены.",
+    "close": "Закрыть",
+    "genericErrorMsg": "Сервер не может обработать запрос",
+    "tooltip": {
+      "search": "Поиск",
+      "tpgraph": "График TP",
+      "filter": "Фильтр",
+      "addTP": "Добавить новых партнеров в сообщество",
+      "addInvitation": "Создать приглашение",
+      "addcontact": "Создать контакт",
+      "refresh": "Обновить",
+      "close": "Закрыть",
+      "addField": "Добавить настраиваемое поле",
+      "addFieldGroup": "Добавить группу полей",
+      "addChoice": "Добавить вариант",
+      "delete": "Удалить",
+      "download": "Загрузить"
+    },
+    "question": {
+      "sure": "Вы уверены?",
+      "duplicate.create": "Эта компания уже существует. Действительно продолжить?"
+    },
+    "noRecords": "Нет записей",
+    "noDataFound": "Данные не найдены",
+    "errorDetails": "Сведения об ошибке",
+    "endOfRecords": "Достигнут конец записей",
+    "workflowSuccess": "Поток операций успешно запущен",
+    "workflowId": "ID потока операций: {0}",
+    "notFound": "Подходящая форма не найдена. Обратитесь в службу поддержки OPENTEXT.",
+    "workflowNotfound": "Поток операций не найден",
+    "unsuccessful": "не удалось выполнить"
+  },
+  "globalDirectory": {
+    "title": "Глобальный каталог партнеров",
+    "ediId": "Идентификатор EDI",
+    "location": "Местоположение",
+    "documents": "Документы",
+    "direction": "Направление",
+    "version": "Версия",
+    "docType": "Тип документа",
+    "NoWrkFlow": "Нет потока операций",
+    "tpName": "Имя торгового партнера",
+    "notificationSuccessMsg": "Уведомление успешно отправлено",
+    "message": "Сообщение",
+    "messageHeader": "Отправить уведомление",
+    "showLess": "Показать меньше",
+    "showMore": "Показать больше",
+    "messageBody": "Dear user,<BR><BR>Your company profile information is incomplete. Please access the company profile by navigating to Account manager-> My Company and Services, and complete the missing information.Should you have any questions about the profile update, please contact your local Business Network Support team. The following link provides information for all support regions and services:<BR><a href='http://www.opentext.com/support'>http://www.opentext.com/support</a> <BR><BR>Regards,<BR>Grid Administrator"
+  },
+  "tpdir": {
+    "title": "Мое торговое сообщество",
+    "breadCrumb.home": "Дом",
+    "Viewby": "Просмотреть по",
+    "options": {
+      "bpr": "Деловые отношения",
+      "tpr": "Торговые отношения",
+      "itp": "Приглашенные партнеры"
+    },
+    "tprView": {
+      "companyName": "Название компании",
+      "displayName": "Отображаемое имя",
+      "partnerEDIAddress": "EDI-адрес партнера",
+      "partnerVAN": "VAN/поставщик служб партнера",
+      "yourEDIAddress": "Ваш EDI-адрес",
+      "yourRole": "Ваша роль",
+      "tprType": "Тип TPR",
+      "status": "Статус"
+    },
+    "read": {
+      "status": "Статус",
+      "companyName": "Название компании",
+      "companyID": "ID компании",
+      "displayName": "Отображаемое имя",
+      "ediAddress": "Идентификаторы EDI",
+      "ediAddresses": "EDI-адрес",
+      "ediCount": "Связанные идентификаторы",
+      "ActiveContacts": "Активные контакты",
+      "ActiveDate": "Дата активности",
+      "TPRActiveDate": "Дата создания",
+      "Active": "Активно",
+      "Onboarding": "Адаптация",
+      "tprcount": "Торговые отношения",
+      "country": "Страна",
+      "viewEDI": "Просмотреть идентификаторы",
+      "viewDOC": "Просмотреть документы",
+      "ediMsg": "Связанные идентификаторы EDI",
+      "mapName": "Название карты",
+      "docStandard": "Стандарт документа",
+      "docType": "Тип документа",
+      "docVersion": "Версия документа",
+      "direction": "Направление",
+      "usedBy": "Кем используется",
+      "tableEntries": "Записи таблицы",
+      "buId": "ID компании",
+      "dateFormatMMDDYYYY": "мм/дд/гггг",
+      "from": "От",
+      "to": "До",
+      "dateValidation": "Необходимо указать начальную и конечную даты",
+      "badRequest": "Недопустимый запрос",
+      "preXrefLookup": "PreXrefLookup",
+      "applicationCrossReference": "Перекрестная ссылка приложения",
+      "EDI_DC40_TEST": "EDI_DC40_TEST",
+      "EDI_DC40_PROD": "EDI_DC40_PROD",
+      "displayDefault": "Для отображаемого имени задано значение по умолчанию"
+    },
+    "create": {
+      "title": "Новый торговый партнер",
+      "addtp": "Добавить нового партнера",
+      "bulktp": "Пригласить несколько партнеров",
+      "model": {
+        "title": "Выберите поток операций, который будет использоваться для адаптации партнера",
+        "addtp": "Что вы хотите сделать сейчас?",
+        "continue": "Продолжить"
+      },
+      "bulk": {
+        "title": "Массовая загрузка партнеров",
+        "instruction": "Передайте список партнеров, которых необходимо пригласить. Каждый партнер получит приглашение для регистрации в выбранной службе.",
+        "selectfile": "Выбрать файл",
+        "supported": "Поддерживаемые файлы",
+        "templateDown": "Загрузить файл шаблона",
+        "selected": "Выбранный файл",
+        "totalrecord": "Всего записей",
+        "wrongfile": "Выберите другой файл",
+        "limit": "Ограничение: 1000 партнеров на файл",
+        "note": "Примечание",
+        "notemsg": "Примечание. После того как переданный файл будет обработан, вы получите электронное письмо с результатами."
+      },
+      "notificationMsgs": {
+        "bulk.success": "Файл приглашения успешно отправлен. В случае ошибок вы получите уведомление по электронной почте.",
+        "unique": "Укажите уникальное название компании, чтобы его можно было легко отличить от названий других компаний"
+      },
+      "validationMessages": {
+        "cnamerequired": "Необходимо указать название компании",
+        "addr1required": "Необходимо указать строку адреса 1",
+        "dnamerequired": "Необходимо указать отображаемое имя",
+        "tableEntries": "Необходимо указать EDI_DC40_TEST, EDI_DC40_PROD и перекрестную ссылку приложения",
+        "countryrequired": "Необходимо указать страну",
+        "cityrequired": "Необходимо указать город",
+        "cIdequired": "Необходимо указать ID компании",
+        "cIdInvalid": "Недопустимый ID компании",
+        "fnamerequired": "Необходимо указать имя",
+        "lnamerequired": "Необходимо указать фамилию",
+        "emailrequired": "Необходимо указать адрес электронной почты",
+        "phonerequired": "Необходимо указать телефон",
+        "staterequired": "Необходимо указать штат",
+        "postrequired": "Необходимо указать почтовый индекс",
+        "ediexist": "EDI-адрес уже существует",
+        "maxEDIlength": "EDI-адрес может содержать не больше 34 символов",
+        "emailinvalid": "Недопустимый адрес электронной почты",
+        "companyEmailInvalid": " Недопустимый адрес электронной почты компании",
+        "prodGsIDReq": "Необходимо указать производственный ID GS",
+        "tpProdGsIDReq": "Необходимо указать производственный ID GS партнера",
+        "testGsIdReq": "Необходимо указать тестовый ID GS",
+        "tpTestGsIDReq": "Необходимо указать тестовый ID GS партнера",
+        "companyIdValidation": "Недопустимый ID компании",
+        "tptestAddressReq": "Необходимо указать тестовый ID ISA партнера",
+        "partnerId": "Необходимо указать ID партнера"
+      },
+      "form": {
+        "keyTitle": "Карты",
+        "selectMap": "Выбрать карту",
+        "cfirstName": "Имя",
+        "clastName": "Фамилия",
+        "cemail": "Адрес электронной почты",
+        "cphone": "Телефон компании",
+        "userPhone": "Телефон",
+        "formTitle": "Информация о компании",
+        "displayName": "Отображаемое имя",
+        "companyName": "Название компании",
+        "tradingPartnerType": "Тип торгового партнера",
+        "companyId": "ID компании",
+        "website": "Веб-сайт",
+        "additionalInformation": "Дополнительная информация",
+        "dunsNumber": "Номер DUNS",
+        "globalLocationNumber": "Глобальный идентификационный номер (GLN)",
+        "vatId": "Коды НДС",
+        "federalTaxId": "Код федерального налога/EIN",
+        "naics": "NAICS",
+        "sic": "Standard Industrial Classification (SIC)",
+        "addressLine1": "Строка адреса 1",
+        "addressLine2": "Строка адреса 2",
+        "city": "Город",
+        "state": "Штат/провинция/регион",
+        "postalCode": "Почтовый индекс",
+        "country": "Страна",
+        "phone": "Телефон компании",
+        "email": "Адрес эл. почты компании"
+      }
+    },
+    "createTpMsg": {
+      "ediInfo": "Информация о EDI",
+      "qualifier": "Квалификатор",
+      "isaId": "ID ISA",
+      "gsId": "ID GS",
+      "vanProvider": "VAN/поставщик служб",
+      "mailbox": "Почтовый ящик",
+      "verify": "Проверить",
+      "ediTesting": "Будет использоваться для тестирования?",
+      "tpApprove": "Проверьте следующую информацию. Выберите «Утвердить», чтобы создать производственную конфигурацию.",
+      "approveBtn": "Утвердить",
+      "approveLabel": "Подтверждаю торговлю с этим партнером.",
+      "title": "Утвердить производственную конфигурацию"
+    },
+    "company": {
+      "info": "Информация о компании",
+      "created": "Создано",
+      "updated": "Последнее обновление",
+      "status": "Статус",
+      "registration": "Регистрация",
+      "overview": "Обзор",
+      "divisions": "Подразделения",
+      "edicommns": "EDI и методы связи",
+      "customdata": "Пользовательские данные",
+      "files": "Файлы",
+      "activities": "Действия",
+      "auditLog": "Журнал аудита",
+      "auditLog.title": "Журнал аудита",
+      "onboarding.title": "История адаптации",
+      "notes": "Примечания",
+      "errorStatus": "При адаптации этого торгового партнера произошла ошибка.",
+      "errorLink": "Щелкните, чтобы просмотреть",
+      "moreDetails": " больше сведений.",
+      "profile": {
+        "display.name": "Отображаемое имя",
+        "addline1": "Строка адреса 1",
+        "addline2": "Строка адреса 2",
+        "companyName": "Название компании",
+        "city": "Город",
+        "state": "Штат/провинция/регион",
+        "company.id": "ID компании",
+        "postal.code": "Почтовый индекс",
+        "country": "Страна",
+        "website": "Веб-сайт",
+        "phone": " Телефон компании",
+        "email": "Адрес эл. почты компании",
+        "additional.info": "Дополнительная информация",
+        "social.media": "Социальные сети",
+        "duns.no": "Номер DUNS",
+        "global.location.number": "Глобальный идентификационный номер (GLN)",
+        "vat.id": "ID НДС",
+        "federal.tax": "Код федерального налога/EIN",
+        "naics": "NAICS",
+        "sic": "SIC",
+        "homeZone": "Домашний часовой пояс",
+        "addressInformation": "Информация об адресе",
+        "noEDI": "Нет EDI для подключения.",
+        "updateSuccess": "Успешно обновлено",
+        "fieldsSet": "Для полей задано значение по умолчанию."
+      },
+      "contacts": {
+        "title": "Контакты",
+        "name": "Имя контактного лица",
+        "email": "Адрес электронной почты",
+        "business.function": "Бизнес-функция",
+        "status": "Статус",
+        "last.updated": "Последнее обновление",
+        "lastAccessDate": "Дата последнего доступа",
+        "from": "От",
+        "to": "До",
+        "dateFormatMMDDYYYY": "мм/дд/гггг",
+        "dateFormatValidation": "Дата «До» не может быть раньше даты «От»",
+        "lastAccessed": "Последний доступ",
+        "dateRange": "Диапазон дат",
+        "statusOptions": [
+          "Активно",
+          "Неактивно",
+          "Заблокировано"
+        ]
+      },
+      "user": {
+        "title": "Пользователь",
+        "userTitle": "Заголовок",
+        "firstName": "Имя",
+        "lastName": "Фамилия",
+        "email": "Адрес электронной почты",
+        "phone": "Телефон",
+        "mobile": "Мобильный телефон",
+        "fax": "Факс",
+        "addressLine1": "Строка адреса 1",
+        "addressLine2": "Строка адреса 2",
+        "city": "Город",
+        "state": "Штат/провинция/регион",
+        "postalCode": "Почтовый индекс",
+        "country": "Страна",
+        "selectUserID": "Выберите ID пользователя"
+      },
+      "history": {
+        "title": "История",
+        "auditlog": {
+          "title": "Журнал аудита",
+          "date": "Дата",
+          "userName": "Имя пользователя",
+          "log": "Журнал аудита",
+          "viewDetails": "Просмотреть сведения",
+          "attributes": "Атрибуты аудита"
+        },
+        "onboarding": {
+          "link.label": "История адаптации",
+          "title": "История адаптации для",
+          "tpsetup": "Сведения о настройке",
+          "compInfo": {
+            "title": "Информация о компании",
+            "name": "Название компании",
+            "code": "Код компании",
+            "id": "BUID",
+            "service": "Информация о службе",
+            "companyId": "ID компании"
+          },
+          "provInfo": {
+            "title": "Сведения о подготовке",
+            "workflow": "Название потока операций",
+            "invCode": "Код приглашения",
+            "reqId": "ID запроса",
+            "requestor": "Запросчик",
+            "submitted": "Дата отправки",
+            "approved": "Дата утверждения",
+            "status": "Статус",
+            "trackingdetails": "ID отслеживания",
+            "workflowId": "ID потока операций",
+            "userId": "ID пользователя"
+          },
+          "prodInfo": {
+            "title": "Сведения о производстве"
+          },
+          "testInfo": {
+            "title": "Сведения о тесте"
+          },
+          "serviceInfo": {
+            "title": "Сведения о службе"
+          },
+          "senderRecieverInformation": {
+            "title": "Информация об отправителе/получателе",
+            "vanName": "Имя VAN/поставщика служб",
+            "selectedMaps": "Выбранные карты",
+            "prodAddress": "Ваш производственный адрес",
+            "prodGsId": "Ваш производственный GS ID",
+            "tpProdAddress": "Производственный адрес TP",
+            "tpProdGsId": "Производственный GS ID TP",
+            "tpAddreess": "Тестовый квалификатор ISA TP: тестовый ISA ID TP",
+            "tpISAIndicator": "TP использует тестовый индикатор ISA"
+          }
+        }
+      },
+      "taskregistration": {
+        "title": "Спасибо!",
+        "details": "По окончании обработки регистрации вы получите электронное письмо.",
+        "failed": "Ошибка регистрации"
+      }
+    },
+    "search": {
+      "title": "Поиск",
+      "companyName": "Название компании/отображаемое имя",
+      "ediAddress": "EDI-адрес",
+      "qualifier": "Квалификатор",
+      "mapName": "Название карты"
+    }
+  },
+  "servicecontacts": {
+    "title": "Служебные контакты",
+    "header": "Служебные уведомления",
+    "breadCrumb.home": "Дом",
+    "read": {
+      "notification": "Уведомление",
+      "desc": "Описание",
+      "service": "Служба",
+      "recipient": "Получатель"
+    }
+  },
+  "edicomms": {
+    "title": "EDI и методы связи",
+    "addrs": {
+      "title": "EDI-адреса",
+      "partnerEDIAddressQual": "EDI-адрес партнера (квалификатор:ID)",
+      "yourEDIAddressQual": "Ваш EDI-адрес (квалификатор:ID)",
+      "gsId": "ID GS",
+      "connectivity": "Подключение",
+      "direction": "Направление",
+      "billing": "Выставление счетов",
+      "billinglink": "Просмотреть счета",
+      "comms": "Подключение",
+      "commslink": "Просмотреть методы связи",
+      "transactionCharges": "Операционные сборы",
+      "receivermailboxstorage": "Хранилище почтового ящика получателя",
+      "sendPayeeLabel": "Отправку оплачивает",
+      "receivePayeeLabel": "Получение оплачивает",
+      "storagePayeeLabel": "Оплачивает",
+      "createdDate": "Дата создания",
+      "billingSplitLabel": "Выставление счетов",
+      "sender": "ОТПРАВИТЕЛЬ",
+      "receiver": "ПОЛУЧАТЕЛЬ"
+    },
+    "map": {
+      "title": "Карта"
+    },
+    "search": {
+      "title": "Поиск",
+      "from": "От",
+      "to": "До",
+      "dateFormatMMDDYYYY": "мм/дд/гггг",
+      "dateRange": "Диапазон дат"
+    },
+    "connectivity": {
+      "title": "Подключение"
+    },
+    "transactions": {
+      "title": "Транзакции"
+    },
+    "maps": {
+      "title": "Карты"
+    },
+    "wrk": {
+      "title": "Рабочие запросы"
+    }
+  },
+  "tpmsg": {
+    "fields": {
+      "ediStnd": "Стандарт EDI",
+      "connectivityType": "Тип подключения",
+      "vanName": "Имя VAN/поставщика служб",
+      "yourProdAdd": "Ваш производственный ID",
+      "yourProdGSID": "Ваш производственный ID GS",
+      "tpProdAdd": "Адрес производственного партнера",
+      "tpProdGSID": "Производственный ID GS партнера",
+      "sameAsProd": "Такой же, как и производственный",
+      "yourTestAdd": "Ваш тестовый адрес",
+      "yourTpGSID": "Ваш тестовый ID GS",
+      "tpTestAdd": "Тестовый квалификатор ISA : тестовый ID ISA партнера",
+      "tpTestGSID": "Тестовый ID GS партнера",
+      "youUseISA": "Использовать тестовый ID ISA",
+      "tpUsesISA": "Партнер использует тестовый ID ISA",
+      "reqFunctionAck": "Требовать функциональное подтверждение",
+      "segTerminator": "Разделитель сегментов",
+      "elemSeprator": "Разделитель элементов",
+      "sublemTerminator": "Разделитель подэлементов",
+      "ediAddress": "Квалификатор : ID партнера",
+      "companyPhone": "Телефон компании",
+      "selectAtLeastOneMap": "(Выберите по крайней мере одну карту)",
+      "selectVAN": "Выбрать VAN/сеть",
+      "selectYourAddresses": "Выберите EDI-адреса",
+      "splitCharges": "Разделить расходы",
+      "splitChargeMSG": "Как будут оплачиваться операционные сборы?",
+      "sendingpaidBy": "Отправку будет оплачивать",
+      "receingpaidBy": "Получение будет оплачивать",
+      "sender": "Отправитель",
+      "receiver": "Хранилище почтового ящика получателя",
+      "receiverMailboxStorageMSG": "Кто оплачивает хранилище почтового ящика получателя?",
+      "allChargesPaidBy": "Все расходы будет оплачивать",
+      "separatorValidationMSG": "Значения разделителя должны быть уникальными"
+    },
+    "tprValidation": {
+      "details": "Сведения:",
+      "ediAddress": "EDI-адрес:",
+      "companyName": "Название компании:",
+      "tprExistMsg": "Торговый партнер уже существует",
+      "multipleTprExistMsg": "Торговые отношения уже существуют.",
+      "singleHubEdiMsg": "У вас уже есть торговые отношения с этим ID.",
+      "multipleHubEdiMsg": " Торговые отношения между этим партнером и одним или несколькими выбранными ID уже существуют.",
+      "tpEdis": "EDI-адрес TP:",
+      "yourEdis": "Ваш EDI-адрес:"
+    },
+    "legends": {
+      "contactInfo": "Контактная информация",
+      "setupDetails": "Выберите вариант конфигурации",
+      "companyInfo": "Сведения о компании",
+      "msgDetails": "Сведения о сообщении",
+      "summary": "Сводка",
+      "testDetails": "Сведения о тесте",
+      "prodDetails": "Сведения о производстве",
+      "billingOptions": "Параметры выставления счета",
+      "billingInfo": "Информация о выставлении счетов",
+      "sendReceiverDetails": "Информация об отправителе/получателе",
+      "serchEDIonNetwork": "Введите EDI-адрес, чтобы проверить, существует ли партнер в нашей сети",
+      "ediSameCompany": "EDI-адрес принадлежит этой же компании.",
+      "ediNotExists": "EDI-адрес не существует. Предоставьте необходимую информацию.",
+      "ediVan": "EDI принадлежит поставщику сети с дополнительными услугами (VAN) {0}. Создайте нового торгового партнера.",
+      "ediSP": "EDI принадлежит поставщику услуг {0}. Создайте нового торгового партнера.",
+      "bprExists": "BPR уже существует для {0}",
+      "mapsError": "Ошибка при получении карт подготовки.",
+      "sendingPaidBy": "Отправку будет оплачивать {0}",
+      "receivingPaidBy": "Получение будет оплачивать {0}",
+      "mailboxPaidBy": "Хранилище почтового ящика получателя оплачивает {0}",
+      "allCharges": "Все расходы оплачивает {0}"
+    },
+    "setupdetails": {
+      "testFirst": "Сначала я хочу выполнить тест. Задайте только предпроизводственную конфигурацию для немедленной отправки и получения тестовых данных. Затем вернитесь и настройте производственную конфигурацию после завершения тестирования.",
+      "setupNow": "Настроить все сейчас. Задайте производственную и предпроизводственную (тестовую) конфигурацию, чтобы немедленно начать отправлять и получать тестовые и/или производственные данные."
+    },
+    "messages": {
+      "success": "Партнер успешно утвержден",
+      "validationError": "Ошибка проверки",
+      "tprExists": "TPR уже существует"
+    }
+  },
+  "onboarding": {
+    "title": "Адаптация и приглашения",
+    "invitationTab": "Приглашения",
+    "tasksTab": "Задачи",
+    "overview": "Обзор",
+    "noWorkflows": "Нет потоков операций",
+    "noBulkWorkflows": "В данный момент невозможно добавить несколько торговых партнеров (TP).",
+    "invitationForm": {
+      "title": "Приглашения",
+      "invitationName": "Название приглашения",
+      "description": "Описание",
+      "createdBy": "Кто создал",
+      "createdDate": "Дата",
+      "invitationType": {
+        "title": "Какой это будет тип приглашения?",
+        "unique": "Уникальное",
+        "generic": "Общее"
+      },
+      "approvalType": {
+        "title": "Какой тип утверждения необходим для этого потока операций?",
+        "automatic": "Автоматически",
+        "manual": "Вручную"
+      },
+      "ediOptions": {
+        "SYSTEM_GENERATES": "Автоматически создается Trading Grid",
+        "MANUAL_ENTER": "Торговые партнеры сами вводят свой",
+        "MANUAL_ENTER_FROM_PRELOAD": "Указывается вручную при добавлении торгового партнера (TP)",
+        "SYSTEM_GENERATES_FROM_PRELOAD": "Назначается из предварительно загруженного списка адресов",
+        "DURING_REG": "Вводится получателем при регистрации"
+      },
+      "scrollEvent": "Достигнут конец записей",
+      "invitationSaveSuccess": "Приглашение успешно создано.",
+      "invitationSaveFailure": "Не удалось создать приглашение",
+      "invitationUpdateFailure": "Не удалось обновить приглашение",
+      "invitationUpdateSuccess": "Приглашение успешно обновлено.",
+      "inviteExpire": "Действие приглашения заканчивается",
+      "invitedtpvalue": "Торговые партнеры будут приглашены",
+      "validationMsgs": {
+        "invitationName": "Необходимо указать название приглашения",
+        "invalidInvitationName": "Недопустимое название приглашения",
+        "invitationSubject": "Необходимо указать тему",
+        "senderEmailAddr": "Необходимо указать адрес электронной почты отправителя",
+        "invalidEmail": "Недопустимый адрес электронной почты",
+        "maxAllowedEmail": "Можно добавить до 10 адресов электронной почты.",
+        "emailMaxLength": "Не более 50 символов",
+        "dateValidation": "Дата окончания действия должна быть не раньше текущей даты",
+        "corruptImage": "Передайте допустимый файл изображения"
+      },
+      "notification": {
+        "title": "Уведомления",
+        "notificationRecipientsLabel": "Кого следует оповещать о настройке каждого нового торгового партнера?",
+        "confirmationEmailLabel": "Отправить письмо с подтверждением торговому партнеру после его настройки?",
+        "notificationRecipientsHelpTxt": "Добавьте несколько получателей, разделяя их запятой",
+        "recipientListMsg": "Получатели получат уведомление",
+        "add": "Добавить"
+      },
+      "trOptions": {
+        "title": "Параметры торговых партнерств",
+        "trSetupLabel": "Не настраивать торговое партнерство",
+        "inviteeEdiAddress": "EDI-адрес co (Hub) приглашенного (макс. 20)",
+        "ediOptions": "Как будет указан EDI-адрес партнера?"
+      },
+      "emailConfiguration": {
+        "title": "Настроить письмо с приглашением",
+        "senderEmailAddr": "Адрес эл. почты отправителя",
+        "invitationMsg": "Сообщение приглашения",
+        "invitationSubject": "Тема приглашения",
+        "addCCRecipients": "Добавить получателей в скрытой копии",
+        "language": "Выбрать язык ",
+        "selectfile": "Выбрать файл",
+        "defaultlng": "Английский",
+        "imageheader": "Изображение для отправки с приглашением"
+      },
+      "tooltip": {
+        "removeImage": "Удалить изображение"
+      }
+    },
+    "workflowForm": {
+      "title": "Поток операций",
+      "workflowName": "Название потока операций",
+      "description": "Описание",
+      "status": "Статус",
+      "service": "Служба",
+      "createdDate": "Дата создания",
+      "createdBy": "Кто создал",
+      "report": "Отчет",
+      "workflowUpdateSuccessMSg": "Поток операций успешно обновлен",
+      "validationMsgs": {
+        "workflowName": "Необходимо указать название потока операций",
+        "description": "Необходимо указать описание потока операций"
+      }
+    },
+    "download": {
+      "title": "Загрузить отчет",
+      "downloadMSg": "Запрос на экспорт отправлен. Вы получите уведомление по электронной почте, как только данные будут доступны.",
+      "downloadError": "Записи не найдены!"
+    },
+    "task": {
+      "name": "Название задачи",
+      "type": "Тип",
+      "stage": "Стадия",
+      "createdBy": "Кто создал",
+      "createdDate": "Дата создания",
+      "fgTitle": "Настраиваемые группы полей",
+      "fgLabel": "Выберите, какие группы полей входят в эту задачу",
+      "info": "Выбрать можно только родительские группы. Дочерние группы полей будут выбраны автоматически.",
+      "add": "Добавить настраиваемую задачу",
+      "taskNameValidation": "Необходимо указать название задачи",
+      "customTaskUpdateSuccess": "Настраиваемая задача обновлена.",
+      "customTaskCreateSuccess": "Настраиваемая задача создана.",
+      "CustomTaskCreateFailure": "Не удалось создать задачу",
+      "deleteTaskSuccess": "Выбранные задачи успешно удалены.",
+      "deleteTaskFailure": "Не удалось удалить задачи."
+    }
+  },
+  "customField": {
+    "title": "Управление настраиваемыми полями",
+    "fieldGroups": {
+      "title": "Группы полей",
+      "add": "Добавить группу полей",
+      "edit": "Изменить группу полей",
+      "name": "Название группы",
+      "description": "Описание",
+      "descValidation": "Описание не может быть более 4000 символов",
+      "makeDependentOn": "Сделать зависимым от настраиваемого поля",
+      "selectQuestion": "Выбрать настраиваемое поле",
+      "answer": "Ответ",
+      "and": "И",
+      "or": "Или",
+      "roles.title": "Назначение ролей",
+      "roles": "Доступные роли",
+      "permissions": "Просмотр разрешений",
+      "users": "Просмотреть пользователей"
+    },
+    "field": {
+      "name": "Название поля",
+      "id": "Идентификатор поля",
+      "type": "Тип поля",
+      "add": "Добавить настраиваемое поле",
+      "edit": "Изменить поле",
+      "default": "Стандартное значение",
+      "instructions": "Инструкции:",
+      "maxFields": "Максимальное количество настраиваемых полей: <b>{{maxFields}}</b>.",
+      "sortAlphabatic": "Сортировать по алфавиту",
+      "firstDefault": "Использовать первое значение как ответ по умолчанию",
+      "makeDependentOn": "Сделать зависимым от другого настраиваемого поля",
+      "dependentFieldname": "Название поля",
+      "answer": "Ответ",
+      "and": "И",
+      "or": "Или",
+      "type.label": {
+        "Text": "Текст",
+        "Text Area": "Зона текста",
+        "Number": "Число",
+        "Multiple Choice": "Множественный выбор",
+        "Radio Button": "Переключатель",
+        "Drop-down": "Раскрывающееся меню",
+        "Date": "Дата",
+        "File Upload": "Передача файла",
+        "File Download": "Загрузка файла"
+      }
+    },
+    "addFiled": {
+      "text": "Текстовое поле/Текстовая область",
+      "number": "Число",
+      "multiChoice": "Множественный выбор",
+      "radioButton": "Список переключателей",
+      "dropdown": "Раскрывающееся меню",
+      "date": "Дата",
+      "file_upload": "Передача файла",
+      "file_download": "Загрузка файла",
+      "download.instruction": "Прикрепите файл, который пользователь сможет загрузить"
+    },
+    "label": "Метка",
+    "mandatory": "Обязательное",
+    "dependency": "Зависимость",
+    "dependent": "Зависит от",
+    "validation": {
+      "fieldName": "Необходимо указать название поля",
+      "fieldId": "Поле ID обязательно",
+      "fieldIdInvalid": "Идентификатор поля недействителен",
+      "fieldGroupName": "Необходимо указать название группы",
+      "defaultValue": "Введите допустимое значение по умолчанию"
+    },
+    "validationMsgs": {
+      "emptyFiles": "Empty files cannot be uploaded",
+      "maxFiles": "Maximum of 5 files can be uploaded",
+      "fileType": "Executable files are not allowed",
+      "fileSize": "Files bigger than 25MB are not allowed",
+      "fileName": "File name cannot be more than 120 characters"
+    },
+    "messages": {
+      "success": {
+        "addField": "Новое настраиваемое поле успешно добавлено",
+        "addFieldGroup": ""
+      },
+      "failure": {
+        "addField": "",
+        "addFieldGroup": "",
+        "fieldMaxLimit": "Your company subscription only allows you to have {0} custom fields. Please contact your administrator or account manager in case you need to add more.",
+        "maxLimit": "Подписка вашей компании допускает не более {0} настраиваемых групп полей. Обратитесь к администратору или менеджеру по работе с клиентами, если вам требуется увеличить их количество.",
+        "roleFailure": {
+          "limit": "Можно выбрать не больше 30 ролей",
+          "edit": "Требуется по крайней мере одна роль с разрешением на изменение",
+          "noUsers": ["Нет записей"]
+        }
+      },
+      "warning": {
+        "choice": "Необходимо указать по крайней мере один (1) вариант",
+        "deleteChoice": "Удаление этого варианта приведет к его удалению для всех профилей партнеров. Действительно продолжить?",
+        "radioButtonChoice": "Добавить варианты для поля переключателя",
+        "dropdownChoice": "Необходимо указать по крайней мере один (1) вариант"
+      },
+      "notificationTitle": {
+        "createGroupFail": "Не удалось добавить новую группу",
+        "updateGroupFail": "Не удалось обновить группу",
+        "createFieldFail": "Failed to add new Field",
+        "deleteFail": "Не удалось удалить",
+        "noField": "Нет полей"
+      }
+    }
+  },
+  "customdata": {
+    "title": "Пользовательские данные",
+    "requiremsg": " Требуется допустимое значение",
+    "multiSelectedMsg": "Всего выбрано вариантов: {0}"
+  },
+  "createInvitation": {
+    "email": "Адрес электронной почты",
+    "invited": "Торговый партнер успешно приглашен"
+  },
+  "communitypage": {
+    "title": "Community Manager"
+  },
+  "globalSearch": {
+    "title": "Глобальный каталог партнеров",
+    "ediIds": "Идентификаторы EDI",
+    "searchBy": "Искать по",
+    "filterBy": "Уточнить по"
+  },
+  "invitedTps": {
+    "companyName": "Название компании",
+    "companyId": "ID компании",
+    "email": "Адрес электронной почты",
+    "type": "Тип",
+    "workflowName": "Поток операций",
+    "invitationName": "Название приглашения",
+    "invitationCode": "Код приглашения",
+    "invitationStatus": "Статус",
+    "invitedDate": "Дата приглашения",
+    "daysOpen": "Кол-во дней открытия",
+    "overview": "Обзор",
+    "reinvite": "Пригласить повторно",
+    "deleteInvite": "Удалить приглашение",
+    "messages": {
+      "success": {
+        "reinviteMsg": "Приглашение успешно отправлено повторно.",
+        "deleteInvitationMsg": "Приглашение успешно удалено."
+      },
+      "error": {
+        "reinviteMsg": "Не удалось повторно отправить приглашение.",
+        "deleteInvitationMsg": "Ошибка при удалении приглашения."
+      },
+      "alert": {
+        "deleteInvitationMsg": "Действительно удалить это приглашение?",
+        "reinviteMsg": "Вы собираетесь повторно отправить приглашение для {0}. Приглашение будет отправлено для {1}.",
+        "reinvite.confirm": " Действительно продолжить?"
+      },
+      "alertHeader": {
+        "reinvite": "Повторно отправить приглашение торговому партнеру"
+      }
+    }
+  },
+  "preview": {
+    "text":"<p><b>{{companyName}}</b> хочет установить партнерские отношения с вашей компанией для торговли на платформе OpenText Trading Grid через <b>{{service}}</b>.</p><p>{{invitationcontent}}</p><p>Для использования этой службы с {{companyName}} необходимо, чтобы ваша компания зарегистрировалась в Grid и предоставила сведения о себе, а также приняла условия использования онлайн. Первый человек, который сделает это для вашей компании, станет администратором компании и сможет добавлять других пользователей в учетную запись компании. Если у вас есть соответствующие полномочия, зарегистрируйтесь по следующей ссылке:</p><span class='text-primary'><a>{{completeRegistrationUrl}}/[InvitationCode]</a></span><p>IЕсли ссылка выше не работает, вы можете попасть в Grid напрямую по адресу <span class='text-primary'><a>{{registrationUrl}}</a></span> и использовать следующий код приглашения: [InvitationCode]</p><p>Если вы уже являетесь пользователем, войдите в Grid, чтобы открыть это приглашение из центра сообщений, и вы можете пропустить часть процедуры регистрации.</p><p>После отправки регистрационных данных вы получите электронное письмо с подтверждением активации в Grid. Если у вас возникнут вопросы о процессе регистрации или использовании Grid, свяжитесь с местной службой поддержки Business Network. По следующей ссылке приведены сведения о регионах и службах поддержки:</p><span class='text-primary'><a>http://www.opentext.com/support</a></span><br><p>С уважением,</p><p>администратор OpenText Trading Grid</p><p><b>Примечание:</b> Это сообщение было создано автоматически. Ответы на него не обрабатываются.</p><br><div class='invitation-preview-copyright'>© OpenText,{{currentYear}}г. Все права защищены.<br>Товарные знаки принадлежат Open Text.</div>",
+    "title": "Предпросмотр"
+   },
+  "tradingpartnerreltationship": {
+    "actions.tooltip": "Выберите до 10 строк",
+    "confirmation.message": "Действительно продолжить?",
+    "approve": {
+      "title": "Утвердить",
+      "dialogue.title": "Вы собираетесь утвердить выбранные торговые партнерства.",
+      "success": "Торговые партнерства успешно утверждены."
+    },
+    "terminate": {
+      "title": "Прервать",
+      "dialogue.title": "Вы собираетесь прервать выбранные торговые партнерства.",
+      "success": "Торговые партнерства успешно прерваны."
+    },
+    "reject": {
+      "title": "Отклонить",
+      "dialogue.title": "Вы собираетесь отклонить выбранные торговые партнерства.",
+      "message": "Введите причину отклонения:",
+      "success": "Торговые партнерства успешно отклонены."
+    },
+    "messages": {
+      "reject": "Причина отклонения должна содержать не больше 256 символов.",
+      "enterReason": "Введите причину отклонения.",
+      "success.terminate": "Торговые партнерства успешно прерваны.",
+      "success.reject": "Торговые партнерства успешно отклонены",
+      "success.approve": "Торговые партнерства успешно утверждены.",
+      "failed": "Не все торговые партнерства были успешно отклонены, утверждены или прерваны."
+    },
+    "title": "Информация о партнерстве",
+    "status": "Статус партнерства",
+    "type": "Тип партнерства",
+    "partneraddress": "Торговый партнер",
+    "partnervan": "VAN/поставщик служб партнера",
+    "partneredi": "EDI-адрес партнера",
+    "partneralias": "Псевдоним партнера",
+    "youredi": "Ваш EDI-адрес",
+    "yourrole": "Ваша роль",
+    "youralias": "Ваш псевдоним",
+    "billingheader": "Информация о выставлении счетов",
+    "splitcharges": "Разделить расходы",
+    "transcharges": "Операционные сборы",
+    "sendingby": "Отправку оплачивает",
+    "receivingby": "Получение оплачивает",
+    "storageby": "Хранилище почтового ящика получателя оплачивает",
+    "allcharges": "Все расходы оплачивает"
+  },
+  "datatable": {
+    "about": "Сведения",
+    "NoRecord": "Записи не найдены"
+  },
+  "header": {
+    "userProfile": {
+      "title": "Мой профиль",
+      "downloads": "Мои загрузки",
+      "signout": "Выход"
+    },
+    "signOut": {
+      "confirmation": {
+        "title": "Выход",
+        "message": "Выйти из TGO?"
+      }
+    }
+  }
+}

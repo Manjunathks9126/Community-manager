@@ -1,0 +1,14 @@
+<div tabindex="0" (click)="clickAccordion()" class="cm-tile-content-item">
+    <div class="cm-tile-content-label">
+        <span>{{displayText}}</span>
+    </div>
+    <i style="margin-right:1em;" [ngClass]="{'':!isOpen,'carrot-up-icon':isOpen}" class="ot-icon-md "></i>
+</div>
+<ng-container *ngIf="isOpen" [@enterAnimation]>
+<div *ngFor="let element of children" (click)="clickUrl(element.src)" tabindex="0" class="cm-tile-content-item">
+    <!--<div class="ot-icon-lg"></div>-->
+    <div class="cm-tile-content-label tile-accordion-content-label">
+        <a><span>{{element.displayText}}</span></a>
+    </div>
+</div>
+</ng-container>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="ERROR" name="app-log" packages="">
+	<Properties>
+		<Property name="spring.log.level">ERROR</Property>
+		<Property name="app.log.level">INFO</Property>
+		<Property name="default.log.level">ERROR</Property>
+		<Property name="log_path">/logs/neo</Property>
+		<Property name="file.message.pattern">%d{yyy-MM-dd HH:mm:ss,SSS zzz} [%t] %X{TGOCP-REQUEST-ID} %-5level %logger - %msg%n</Property>
+		<Property name="log.max.size">10 MB</Property>
+	</Properties>
+	<Appenders>
+		<RollingFile name="file" fileName="${sys:log_path}/TGOCP-CM.log"
+			filePattern="${sys:log_path}/$${date:yyyy-MM}/TGOCP-CM-%d{MM-dd-yyyy}-%i.log.gz">
+			<PatternLayout>
+				<Pattern>${sys:file.message.pattern}</Pattern>
+			</PatternLayout>
+			<Policies>				
+				<!--<TimeBasedTriggeringPolicy interval="1" modulate="true"/>-->
+				<SizeBasedTriggeringPolicy size="${sys:log.max.size}" />
+			</Policies>
+		</RollingFile>
+		<!-- Enable console logs during development time
+		<Console name="Console" target="SYSTEM_OUT">
+			<PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"  />
+			<PatternLayout pattern="%-5p %d{HH:mm:ss.SSS} [%t] - %m%n" />
+		</Console> -->
+	</Appenders>
+	<Loggers>
+		<Logger name="org.springframework" level="${sys:spring.log.level}"
+			additivity="false">
+			<AppenderRef ref="file" />
+			<!-- <AppenderRef ref="Console" /> -->
+		</Logger>
+		<Logger name="com.ot" level="${sys:app.log.level}" additivity="false">
+			<AppenderRef ref="file" />
+			<!-- <AppenderRef ref="Console" /> -->
+		</Logger>
+		<Root level="${sys:default.log.level}">
+			<AppenderRef ref="file" />
+			<!-- <AppenderRef ref="Console" /> -->
+		</Root>
+	</Loggers>
+</Configuration>

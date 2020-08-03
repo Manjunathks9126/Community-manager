@@ -1,0 +1,10 @@
+<div class="cm-container-height-2em">
+    <ot-workspace  [appName]="title" [tabNameList]="tabsList">
+        <ot-chart type="pie" [data]="graphData" [options]="chartOptions"></ot-chart>
+    </ot-workspace>
+    <div id="cm-custom-tile">
+        <div class="cm-tile-content-container">
+            <ot-tile-container [tiles]="tiles"> </ot-tile-container>
+        </div>
+    </div>
+</div>

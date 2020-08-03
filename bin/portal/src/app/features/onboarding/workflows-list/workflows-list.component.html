@@ -1,0 +1,39 @@
+<div style="height: calc(100% - 2em);">
+    <div class="ot-ui-g ot-page-header-container">
+        <div class="ot-image-directory"></div>
+        <p class="ot-page-header-title">{{'onboarding.title'|translate}}</p>
+    </div>
+    <div style="height: calc(100% - 4em)">
+        <div class="ot-faceted-content">
+            <div [ngClass]="'ot-datatable-container'">
+                <div class="ot-toolbar-container">
+                    <span [ngClass]="'ot-toolbar-item'">
+                        <div class="ot-icon ot-icon-toolbar ot-icon-toolbar-filter" tooltip="{{'common.tooltip.filter'|translate}}"></div>
+                    </span>
+                </div>
+                <div [style.height]="!(isFilterApplied) ?'calc( 100% - 2.625em)':'calc( 100% - 5.625em)'">
+                    <ot-dataTable name="workflow-list-datatable" [locale]="currentLanguage" #dt [(value)]="workflows" [rowsPerPageOptions]="[30,60,100]"
+                        [paginator]="true" scrollable="true" [responsive]="false" [rows]="30" [totalRecords]="workflows?.length">
+                        <ot-column [style]="{'width':'3%','text-align':'center'}" selectionMode="multiple"></ot-column>
+                        <ot-column [style]="{'width':'26%'}" field="displayName" header="{{'onboarding.workflowForm.workflowName'|translate}}">
+                            <ng-template let-col let-workflow="rowData" pTemplate="body">
+                                <a class="ot-block-anchor" (click)="navigateToOverview(workflow.workflowId)">
+                                    {{workflow.displayName}}
+                                </a>
+                            </ng-template>
+                        </ot-column>
+                        <ot-column [style]="{'width':'26%'}" field="serviceName" header="{{'onboarding.workflowForm.service'|translate}}"></ot-column>
+                        <ot-column [style]="{'width':'26%'}" field="description" header="{{'onboarding.workflowForm.description'|translate}}"></ot-column>
+                        <ot-column [style]="{'width':'9%'}" field="status" header="{{'onboarding.workflowForm.status'|translate}}"></ot-column>
+                        <ot-column [style]="{'width':'10%'}" header="{{'onboarding.workflowForm.report'|translate}}">
+                            <ng-template let-col let-workflow="rowData" pTemplate="body">
+                                <a *ngIf="workflow.type!='non_neo_skynet' && workflow.type!='non_neo_teambook'"class="ot-block-anchor" (click)="downloadReport(workflow.workflowId)">
+                                    {{'onboarding.download.title'|translate}}</a>
+                            </ng-template>
+                        </ot-column>
+                    </ot-dataTable>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

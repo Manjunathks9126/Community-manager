@@ -1,0 +1,58 @@
+<ot-homepage-header>
+  <ng-container customContent>
+    <ot-hamburger [menuStyle]="{'height': 'calc(100vh - 4.75em)','margin-top': '-0.6em'}" [menuData]="menuData">
+    </ot-hamburger>
+  </ng-container>
+
+  <ng-container appSwitcher>
+    <ot-app-switcher [appLauncherList]="appList"></ot-app-switcher>
+  </ng-container>
+
+  <ng-container profileLinks>
+    <li>
+      <a tabindex="-1" queryParamsHandling="merge" (click)="showProfileModal=true;">
+        {{'header.userProfile.title'| translate}}</a>
+    </li>
+    <li class="ot-divider"></li>
+    <li>
+      <a tabindex="-1" queryParamsHandling="merge" (click)="showDownloadModal=true">
+        {{'header.userProfile.downloads'| translate}}</a>
+    </li>
+    <li class="ot-divider"></li>
+    <li>
+      <a tabindex="-1" (click)="signout()">{{'header.userProfile.signout'| translate}}</a>
+    </li>
+  </ng-container>
+</ot-homepage-header>
+
+<ot-dialoguebox header="{{'header.signOut.confirmation.title'| translate}}" iconClass="ot-warning-icon" name="signout"
+  [style]="{}" acceptButton="{{'header.signOut.confirmation.title'| translate}}"
+  rejectButton="{{'common.Cancel' | translate}}">
+  <div dialog-message>
+    {{'header.signOut.confirmation.message'| translate}}
+  </div>
+</ot-dialoguebox>
+
+<div>
+
+  <ot-modal [visible]="showProfileModal" size="lg">
+    <div class="ot-height-100">
+      <div class="ot-modal-header">
+        <div class="header-text">{{'header.userProfile.title'| translate}}</div>
+        <div (click)="showProfileModal=false" class="ot-modal-close-icon ot-ui-pull-right"
+          tooltip="{{'common.close'| translate}}"></div>
+      </div>
+      <iframe class="ot-non-portal-profile" src="/neocp/#/profile/userprofile"></iframe>
+    </div>
+  </ot-modal>
+</div>
+
+
+<!-- My downloads -->
+<div>
+  <ot-modal [visible]="showDownloadModal" size="lg">
+    <div class="ot-height-100">
+      <iframe src="/neocp/#/downloads"></iframe>
+    </div>
+  </ot-modal>
+</div>

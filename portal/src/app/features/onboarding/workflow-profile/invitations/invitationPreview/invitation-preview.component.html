@@ -1,0 +1,27 @@
+<div class="cm-onboarding-container-custom" [perfectScrollbar]="scrollConfig">
+    <form #invitationPrewviewForm="ngForm">
+        <div *ngIf="!invitation.imageContent" class="ot-row cm-row-onboarding ">
+            <div>
+                <img class="ot-pull-left" *ngIf="invitation.url" [src]="invitation.url" height="100" width="200">
+            </div>
+            <div *ngIf="!invitation.url">
+                <div class="ot-icon-tradinggrid-notification"> </div>
+            </div>
+        </div>
+        <div *ngIf="invitation.imageContent" class="ot-row cm-row-onboarding ">
+            <div *ngIf="invitation.imageContent">
+                <img [src]="'data:image/'+invitation.imageType+';base64,'+invitation.imageContent" height="200" width="400" />
+            </div>
+        </div>
+        <div class="ot-row cm-row-onboarding ">
+            <div [innerHTML]="'preview.text' | translate:invitationTextParameters">
+            </div>
+        </div>
+
+    </form>
+</div>
+<footer class="ot-page-footer-container footer">
+    <div class="ot-form-footer">
+        <button class="ot-secondary" type="button" (click)="cancel()">{{'common.Cancel'|translate}}</button>
+    </div>
+</footer>

@@ -1,0 +1,27 @@
+<div class="ot-ui-g ot-page-header-container">
+  <p class="ot-page-header-title">
+    {{'tpdir.create.title'|translate}}</p>
+</div>
+<div class="ot-ui-g ot-page-header-container cm-stepper-wizard cm-stepper">
+  <!-- <div clas=""> -->
+  <span (click)="nextStep('add')" routerLinkActive="cm-stepper-active-state" #step1="routerLinkActive" [ngClass]="COMP_STATUS[comp_step_counter]"
+    [routerLinkActiveOptions]="{exact:true}">
+    <div class="cm-nav1-green"></div>
+  </span>
+  <div class="cm-stepper-label"> {{'tpmsg.legends.companyInfo'|translate}} </div>
+  <span>
+    <div class="cm-stepper-separator"></div>
+  </span>
+  <span (click)="nextStep('msgDetails')" routerLinkActive="cm-stepper-active-state" #step2="routerLinkActive" [ngClass]="MSG_STATUS[msg_step_counter]">
+    <div class="cm-stepper-disabled"></div>
+  </span>
+  <div class="cm-stepper-label" [ngStyle]="{'left':'15em'}"> {{'tpmsg.legends.msgDetails'|translate}} </div>
+  <span>
+    <div class="cm-stepper-separator"></div>
+  </span>
+  <span (click)="nextStep('summary')" routerLinkActive="cm-stepper-active-state" #step3="routerLinkActive" [ngClass]="SUMM_STATUS[sum_step_counter]">
+    <div class="cm-stepper-disabled"></div>
+  </span>
+  <div class="cm-stepper-label" [ngStyle]="{'left':'30em'}"> {{'tpmsg.legends.summary'|translate}} </div>
+  <!-- </div> -->
+</div>

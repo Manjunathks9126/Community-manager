@@ -1,0 +1,6 @@
+<div class="ot-form-container">
+    <span *ngIf="pageNotFound; else elseBlock">{{'common.pageNotFound'| translate}}</span>
+    <ng-template #elseBlock>
+    <span>{{'common.errorMessage'| translate}}</span>
+    </ng-template>
+</div>

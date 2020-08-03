@@ -1,0 +1,104 @@
+<div class="cm-onboarding-container-custom " [perfectScrollbar]="scrollConfig">
+  <form #workflowDataForm="ngForm">
+    <ng-container *ngIf="!editMode; else editWorkflowDetails">
+
+      <div class="ot-faceted-content">
+        <div class="ot-row cm-row-onboarding ">
+          <div class="ot-col-sm-4">
+            <label class="ot-form-control-label ot-required">{{'onboarding.workflowForm.workflowName'|translate}}</label>
+            <label class="ot-form-value-label">{{workflowData.displayName}}</label>
+          </div>
+          <div *ngIf="workflowData.serviceName" class="ot-col-sm-2  ot-col-sm-offset-1  ">
+            <label class="ot-form-control-label">{{'onboarding.workflowForm.service'|translate}}</label>
+            <label class="ot-form-value-label">{{workflowData.serviceName}}</label>
+          </div>
+          <div class="ot-col-sm-2  ot-col-sm-offset-1  ">
+            <label class="ot-form-control-label">{{'onboarding.workflowForm.createdDate'|translate}}</label>
+            <label class="ot-form-value-label">{{workflowData.createdTimestamp|otDateTimePipe}}</label>
+          </div>
+        </div>
+        <div class="ot-row cm-row-onboarding ">
+          <div class="ot-col-sm-4">
+            <label class="ot-form-control-label">{{'onboarding.workflowForm.description'|translate}}</label>
+
+            <label class="ot-form-value-label">{{workflowData.description}}</label>
+          </div>
+          <div *ngIf="showDownloadReport" class="ot-col-sm-2  ot-col-sm-offset-1  ">
+            <span class="cm-workflow-download">
+              <a (click)="downloadReport()">
+                {{'onboarding.download.title'|translate}}</a>
+            </span>
+          </div>
+        </div>
+        <div class="ot-row cm-row-onboarding ">
+          <div class="ot-col-sm-5">
+            <label class="ot-form-control-label">{{'onboarding.workflowForm.status'|translate}}</label>
+
+
+            <label class="ot-form-value-label">{{workflowData.status}}</label>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+    <ng-template #editWorkflowDetails>
+      <div class="ot-faceted-content">
+        <div class="ot-row cm-row-onboarding ">
+          <div class="ot-col-sm-4">
+            <label class="ot-form-control-label ot-required">{{'onboarding.workflowForm.workflowName'|translate}}</label>
+            <input type="text" trim [ngClass]="workflowName.errors &&workflowName.invalid &&(workflowName.dirty || workflowName.touched) ? 'ot-error':'ot-text'"
+              name="workflowName" [(ngModel)]="workflowData.displayName" #workflowName="ngModel" maxlength="100"
+              required>
+            <div *ngIf="workflowName.errors &&workflowName.invalid &&(workflowName.dirty || workflowName.touched)">
+              <div class="ot-error">{{'onboarding.workflowForm.validationMsgs.workflowName'|translate}}</div>
+            </div>
+          </div>
+          <div *ngIf="workflowData.serviceName" class="ot-col-sm-2  ot-col-sm-offset-1  ">
+            <label class="ot-form-control-label">{{'onboarding.workflowForm.service'|translate}}</label>
+            <label class="ot-form-value-label">{{workflowData.serviceName}}</label>
+          </div>
+          <div class="ot-col-sm-2  ot-col-sm-offset-1  ">
+            <label class="ot-form-control-label">{{'onboarding.workflowForm.createdDate'|translate}}</label>
+            <label class="ot-form-value-label">{{workflowData.createdTimestamp|otDateTimePipe}}</label>
+          </div>
+        </div>
+        <div class="ot-row cm-row-onboarding ">
+          <div class="ot-col-sm-4">
+            <label class="ot-form-control-label">{{'onboarding.workflowForm.description'|translate}}</label>
+            <textarea class="ot-form-control ot-stnd-textarea" maxlength="1000" [(ngModel)]="workflowData.description"
+              resizable="false" rows="5" name="description"  #description="ngModel"></textarea>
+            <div *ngIf="description.errors &&description.invalid &&(description.dirty || description.touched)">
+              <div class="ot-error">{{'onboarding.workflowForm.validationMsgs.description'|translate}}</div>
+            </div>
+          </div>
+
+          <div   *ngIf="showDownloadReport" class="ot-col-sm-2  ot-col-sm-offset-1  ">
+            <span class="cm-workflow-download">
+              <a (click)="downloadReport()">
+                {{'onboarding.download.title'|translate}}</a>
+            </span>
+          </div>
+        </div>
+        <div class="ot-row cm-row-onboarding ">
+          <div class="ot-col-sm-5">
+            <label class="ot-form-control-label">{{'onboarding.workflowForm.status'|translate}}</label>
+            <label class="ot-form-value-label">{{workflowData.status}}</label>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+  </form>
+</div>
+<footer class="ot-page-footer-container footer">
+  <div class="ot-form-footer">
+    <ng-container *ngIf="editMode; else footer">
+      <button class="ot-primary" type="button" [disabled]="!workflowDataForm.form.valid || !workflowDataForm.form.dirty"
+        (click)="saveWorkflow()">{{'common.save'|translate}}</button>
+      <button class="ot-secondary" type="button" [routerLink]="['../../../../']" skipLocationChange>{{'common.Cancel'|translate}}</button>
+    </ng-container>
+    <ng-template #footer>
+      <button *ngIf="!isStandardWorkflow" type="button" class="ot-primary" (click)="editWorkflow(workflowData.workflowId)">{{'common.edit'|translate}}</button>
+      <button type="button" id="cancel" class="ot-secondary" [routerLink]="['../../../']" skipLocationChange>{{'common.Cancel'|translate}}</button>
+
+    </ng-template>
+  </div>
+</footer>

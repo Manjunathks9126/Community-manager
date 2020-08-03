@@ -1,0 +1,317 @@
+<div class="cm-container-height-2em">
+    <div class="ot-ui-g ot-page-header-container">
+        <div class="ot-image-directory"></div>
+        <p class="ot-page-header-title">{{'customField.title'|translate}}</p>
+    </div>
+    <div style="height: calc(100% - 4em)">
+        <div class="cm-split-cfm cm-left-cfm">
+            <div class="cm-subHeaderDiv-cfm">
+                <span class="cm-title">{{'customField.fieldGroups.title' |translate}}</span>
+                <span class="cm-icon">
+                    <div class="ot-icon ot-icon-toolbar ot-icon-toolbar-add" (click)="addGroup();fieldGroupModal=true"
+                        tooltip="{{'common.tooltip.addFieldGroup'|translate}}"></div>
+                </span>
+            </div>
+            <div class="cm-acordian-content" [perfectScrollbar]="scrollConfig">
+                <ul class="cm-customfield-groups-list">
+                    <li *ngFor="let data of FieldGroups; let i = index" [ngClass]="{'ot-ui-state-active': i==selectTab}"
+                        (click)="i==selectTab? '' : selectGroup(data,i)">
+                        <div class="cm-custom-template-datatable">
+                            <div class="cm-customfield-group-name">{{data.name}}</div>
+                            <div class="ot-hover-widgets ot-absolute">
+                                <span class="ot-icon ot-icon-action-edit"
+                                    (click)="editGroup(data,i);$event.preventDefault();$event.stopPropagation()"></span>
+                                <span class="ot-icon ot-icon-action-delete"
+                                    (click)="deleteFieldGroup(data.uniqueId);$event.preventDefault();$event.stopPropagation();"></span>
+                                <span class="ot-icon ot-icon-more" (click)="more($event)"></span>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+
+            </div>
+
+        </div>
+        <div class="cm-split-cfm cm-right-cfm">
+            <ng-container *ngIf="FieldGroups?.length>0">
+                <div class="cm-subHeaderDiv-cfm">
+                    <span class="cm-title">{{selectedFieldGroup.name}}</span>
+                </div>
+                <div class="ot-toolbar-container ot-tab">
+
+                    <span class="ot-toolbar-item" (click)="op.toggle($event)">
+
+                        <div class="ot-icon ot-icon-toolbar ot-icon-multi-add"
+                            tooltip="{{'common.tooltip.addField'|translate}}"></div>
+                    </span>
+
+                    <!--(click)="fieldModal=true" -->
+
+                    <ot-menu-overlayPanel #op>
+                        <ul class="ot-submenu">
+                            <li (click)="op.hide();fieldType='Text'">
+                                <span class="ot-icon ot-icon-text"></span>
+                                <span>{{'customField.addFiled.text'|translate}}</span>
+                            </li>
+                            <li (click)="op.hide();fieldType='Number'">
+                                <span class="ot-icon ot-icon-number"></span>
+                                <span>{{'customField.addFiled.number'|translate}}</span>
+                            </li>
+                            <li (click)="op.hide();fieldType='Multiple Choice'">
+                                <span class="ot-icon ot-icon-multichoice"></span>
+                                <span>{{'customField.addFiled.multiChoice'|translate}}</span>
+                            </li>
+                            <li (click)="op.hide();fieldType='Radio Button'">
+                                <span class="ot-icon ot-icon-radiobutton"></span>
+                                <span>{{'customField.addFiled.radioButton'|translate}}</span>
+                            </li>
+                            <li (click)="op.hide();fieldType='Drop-down'">
+                                <span class="ot-icon ot-icon-dropdown"></span>
+                                <span>{{'customField.addFiled.dropdown'|translate}}</span>
+                            </li>
+                            <li (click)="op.hide();fieldType='Date'">
+                                <span class="ot-icon ot-icon-date"></span>
+                                <span>{{'customField.addFiled.date'|translate}}</span>
+                            </li>
+                            <li (click)="op.hide();fieldType='File Upload'">
+                                <span class="ot-icon ot-icon-file-upload"></span>
+                                <span>{{'customField.addFiled.file_upload'|translate}}</span>
+                            </li>
+                            <li (click)="op.hide();fieldType='File Download'">
+                                <span class="ot-icon ot-icon-file-download"></span>
+                                <span>{{'customField.addFiled.file_download'|translate}}</span>
+                            </li>
+                        </ul>
+                    </ot-menu-overlayPanel>
+                    <span class="ot-vertical-line"></span>
+                    <span *ngIf="selectedData?.length>0" class="ot-toolbar-item ot-panel-span"
+                        (click)="deleteField()">{{'common.Delete'| translate}}
+                    </span>
+                </div>
+                <div [style.height]="'calc( 100% - 8em)'">
+                    <ot-dataTable name="custom-fields-datatable" [locale]="currentLanguage" #fldDt [(value)]="fieldList"
+                        [(selection)]="selectedData" [headerCheckboxToggleAllPages]="false" scrollable="false"
+                        [responsive]="false">
+                        <ot-column [style]="{'width':'3%'}" selectionMode="multiple"></ot-column>
+                        <ot-column [style]="{'width':'2%'}" field="mandatory">
+                            <ng-template let-data="rowData" pTemplate="body">
+                                <label [ngClass]="{'ot-required' : data.mandatory}"></label>
+                            </ng-template>
+                        </ot-column>
+                        <ot-column [style]="{'width':'25%'}" field="question"
+                            header="{{'customField.field.name'| translate}}">
+                            <ng-template let-data="rowData" pTemplate="body">
+                                <div class="cm-custom-template-datatable">
+                                    <span class="link-style" (click)="edit(data)">{{data.question}}</span>
+                                </div>
+                            </ng-template>
+                        </ot-column>
+                        <ot-column [style]="{'width':'20%'}" field="customFieldType"
+                            header="{{'customField.field.id'| translate}}">
+                            <ng-template let-data="rowData" pTemplate="body">
+                                {{data.customFieldId}}
+                            </ng-template>
+                        </ot-column>
+                        <ot-column [style]="{'width':'15%'}" field="customFieldId"
+                            header="{{'customField.field.type'| translate}}">
+                            <ng-template let-data="rowData" pTemplate="body">
+                                {{('customField.field.type.label.'+data.customFieldType) | translate}}
+                            </ng-template>
+                        </ot-column>
+                        <ot-column [style]="{'width':'10%'}" field="dependentCustomfieldId"
+                            header="{{'customField.dependency'| translate}}">
+                            <ng-template let-data="rowData" pTemplate="body">
+                                {{( isDependent(data) ? 'common.yes' : 'common.no') | translate}}
+                            </ng-template>
+                        </ot-column>
+                        <ot-column [style]="{'width':'20%'}" field="dependentCustomfieldId"
+                            header="{{'customField.dependent'| translate}}">
+                            <ng-template let-data="rowData" pTemplate="body">
+                                {{ getDependentName(data)}}
+                            </ng-template>
+                        </ot-column>
+                    </ot-dataTable>
+                </div>
+            </ng-container>
+        </div>
+    </div>
+    <!-- Add Field start -->
+
+    <custom-field class="ot-overlay" *ngIf="fieldType" [fieldType]="fieldType" [newField]="newField"
+        [selectedFieldGroupId]="selectedFieldGroup.uniqueId" (closeModal)="addOrEditCustomField($event)"></custom-field>
+
+    <!-- Add Field ends -->
+
+    <!-- Add Group -->
+    <ot-modal size="lg" [visible]="fieldGroupModal">
+
+        <div class="ot-modal-header">
+            {{(newFieldGroup.uniqueId? 'customField.fieldGroups.edit' : 'customField.fieldGroups.add') | translate}}
+            <div (click)="closeFieldGroupModal()" class="ot-modal-close-icon ot-ui-pull-right"
+                tooltip="{{'common.tooltip.close'|translate}}">
+            </div>
+        </div>
+        <div class="ot-modal-content adjustScroller" [perfectScrollbar]="scrollConfig">
+            <form #groupForm="ngForm">
+                <div class="ot-col-md-6">
+                    <div class="ot-row">
+                        <div class="ot-col-md-10">
+                            <label class="ot-form-control-label ot-required">
+                                {{'customField.fieldGroups.name' |translate}}</label>
+                            <input class="ot-form-control" type="text" maxlength="100" #groupName="ngModel"
+                                name="groupName" [(ngModel)]="newFieldGroup.name" required trim="blur">
+                            <ng-container *ngIf="groupName.errors && groupName.touched">
+                                <div class="ot-error" [hidden]="!groupName.errors.required ">
+                                    {{'customField.validation.fieldGroupName'|translate}}
+                                </div>
+                            </ng-container>
+                        </div>
+                    </div>
+                    <div class="ot-row">
+                        <div class="ot-col-md-10">
+                            <div class="text-editor-label">
+                                <label class="ot-form-control-label">
+                                    {{'customField.fieldGroups.description' |translate}}</label>
+                            </div>
+                            <div>
+                                <ot-text-editor name="groupDesc" (onTextChange)="textChange($event)"
+                                    [(ngModel)]="newFieldGroup.description"></ot-text-editor>
+                                <div *ngIf="!validDescriptionLength" class="ot-error">
+                                    {{'customField.fieldGroups.descValidation' |translate}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ot-col-md-6">
+                    <div class="ot-row">
+                        <div class="ot-col-md-10">
+                            <label class="ot-form-control-label">&nbsp;</label>
+                            <div class="cm-checkboxRow-cfm">
+                                <ot-checkbox name="fieldDependent" binary=true [(ngModel)]="makeDependentChkBox"
+                                    label="{{'customField.fieldGroups.makeDependentOn' |translate}}"
+                                    (onChange)="getQuestionsForgroup()"></ot-checkbox>&nbsp;
+                            </div>
+                        </div>
+                    </div>
+                    <div clas="ot-row" [hidden]="!(makeDependentChkBox && optionDependent.length>0)">
+                        <div class="ot-col-md-10 cm-custom-field-dependency-box">
+                            <div class="ot-row ot-col-md-12">
+                                <label
+                                    class="ot-form-control-label ot-required">{{'customField.fieldGroups.selectQuestion' |translate}}:
+                                </label>
+                                <ot-select-dropdown name="dependentField"
+                                    placeholder="{{'common.default.select.txt'| translate}}"
+                                    (onChange)="onDependentFieldSelection(dependentQuestionId,'change')"
+                                    [options]="optionDependent" [(ngModel)]="dependentQuestionId" [editable]="false"
+                                    [required]="makeDependentChkBox==true"></ot-select-dropdown>
+                            </div>
+
+                            <div class="ot-row ot-col-md-12">
+                                <label
+                                    class="ot-form-control-label">{{'customField.fieldGroups.answer' |translate}}:</label>
+                                <ot-multi-select name="ansDependent" [options]="answerDependent" optionLabel="value"
+                                    dataKey="id" [returnKeyOnly]="true"
+                                    [defaultLabel]="'common.default.select.txt'| translate" styleClass="cm-p-dropdown"
+                                    [(ngModel)]="newFieldGroup.dependentChoiceIds"
+                                    [required]="makeDependentChkBox==true"></ot-multi-select>
+                            </div>
+
+                            <div class="ot-row ot-col-md-12">
+                                <ot-radioButton name="answerGroup" value="AND"
+                                    label="{{'customField.fieldGroups.and' |translate}}" [disabled]="isConjDisabled"
+                                    [(ngModel)]="newFieldGroup.dependencyConjunction"></ot-radioButton>
+                                <ot-radioButton name="answerGroup" value="OR"
+                                    label="{{'customField.fieldGroups.or' |translate}}" [disabled]="isConjDisabled"
+                                    [(ngModel)]="newFieldGroup.dependencyConjunction"></ot-radioButton>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <div class="ot-row" [hidden]="makeDependentChkBox || !fetchCustomRoles">
+                <div class="ot-col-md-12">
+                    <div class="ot-row">
+                        <hr>
+                    </div>
+                    <ot-accordion-panel headerTitle="{{'customField.fieldGroups.roles.title' |translate}}"
+                        headerClass="cm-left-padding-accordian">
+                        <div class="roles-acc-1" [perfectScrollbar]>
+                            <h3>{{'customField.fieldGroups.roles' |translate}}</h3>
+                            <table style="width:auto;" class="customFieldRoles">
+                                <tbody>
+                                    <tr *ngFor="let role of userRoles">
+                                        <td>
+                                            <ot-checkbox name="neoRoles{{role.roleName}}" [value]="role"
+                                                label="{{role.roleDisplayName}}" (onChange)="checkedValue($event,role)"
+                                                [(ngModel)]="role.oldValue" inputId="{{i}}" binary="true"></ot-checkbox>
+                                        </td>
+                                        <td class="link-style user-link">
+                                            <ot-bubbletip position="bottom">
+                                                <span class="displayBubble" bubbleLink
+                                                    (click)="getPermissions(role.roleQualifier, $event)">{{'customField.fieldGroups.permissions' |translate}}
+                                                    <span style="color:black;padding-left: 1rem;"> | </span>
+                                                </span>
+                                                <div bubbleContent>
+                                                    <div class="customUsersTip">
+                                                        <div class="usersListTip" *ngFor="let permission of perm">
+                                                            {{permission}}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </ot-bubbletip>
+                                        </td>
+                                        <td class="link-style user-link">
+                                            <ot-bubbletip position="bottom">
+                                                <span class="displayBubble" bubbleLink
+                                                    (click)="getUsers(role.uniqueId, $event)">{{'customField.fieldGroups.users' |translate}}
+                                                </span>
+                                                <div bubbleContent>
+                                                    <div class="customUsersTip">
+                                                        <div class="usersListTip" *ngFor="let users of usersAvailable">
+                                                            {{users}}</div>
+                                                    </div>
+                                                </div>
+                                            </ot-bubbletip>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </ot-accordion-panel>
+                </div>
+            </div>
+        </div>
+        <div class="ot-modal-footer">
+            <!-- [disabled]="addFieldForm.invalid" -->
+            <div class="ot-form-footer">
+                <button type="submit" class="ot-primary"
+                    [disabled]="((groupForm.invalid || !(groupForm.dirty || rolesModified))||!validDescriptionLength)"
+                    (click)="saveFieldGroup();">{{'common.save'|translate}}</button>
+                <button type="button" class="ot-secondary"
+                    (click)="closeFieldGroupModal()">{{'common.Cancel'|translate}}</button>
+            </div>
+        </div>
+    </ot-modal>
+</div>
+
+<ot-dialoguebox iconClass="ot-warning-icon" header="{{'common.Delete' |translate}}" name="deleteField"
+    acceptButton="{{'common.confirm' |translate}}" rejectButton="{{'common.Cancel' |translate}}">
+    <div dialog-message>
+        {{'common.question.sure' |translate}}
+    </div>
+</ot-dialoguebox>
+
+<ot-dialoguebox iconClass="ot-warning-icon" header="{{'common.Delete' |translate}}" name="deleteFieldGroup"
+    acceptButton="{{'common.confirm' |translate}}" rejectButton="{{'common.Cancel' |translate}}">
+    <div dialog-message>
+        {{'common.question.sure' |translate}}
+    </div>
+</ot-dialoguebox>
+
+<ot-dialoguebox iconClass="ot-warning-icon" header="{{'common.Delete' |translate}}" name="deleteChoice"
+    acceptButton="{{'common.sure' |translate}}" rejectButton="{{'common.Cancel' |translate}}">
+    <div dialog-message>
+        {{'customField.messages.warning.deleteChoice' |translate}}
+    </div>
+</ot-dialoguebox>

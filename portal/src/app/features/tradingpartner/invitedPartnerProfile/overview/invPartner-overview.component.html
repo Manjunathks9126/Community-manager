@@ -1,0 +1,25 @@
+<div class="ot-tab-content-form-section ot-padding-0" [perfectScrollbar]="scrollConfig">
+    <json-schema-form *ngIf="requesterTaskSchema != undefined" [schemaJson]="requesterTaskSchema" [inputData]="schemaData"
+        (singleFormOutput)="sendInvitation($event)" (formValidation)="formValidation($event)"></json-schema-form>
+</div>
+
+<footer class="ot-page-footer-container footer">
+    <button   *ngxPermissionsOnly="permissions.enablingOnboarding" style="margin-top: 1em" class="ot-secondary" type="button" (click)="deleteInvite()">{{'invitedTps.deleteInvite'|translate}}</button>
+    <div class="ot-form-footer">
+        <button  *ngxPermissionsOnly="permissions.enablingOnboarding" class="ot-primary" type="button" [disabled]="!isFormValid" (click)="initiateReInvitation()">{{'invitedTps.reinvite'|translate}}</button>
+        <button class="ot-secondary" type="button" [routerLink]="['/tpdir']" [queryParams]="{listView: 'INVTD'}" skipLocationChange>{{'common.Cancel'|translate}}</button>
+    </div>
+</footer>
+
+<ot-dialoguebox iconClass="ot-warning-icon" header="{{'common.Delete' |translate}}" name="deleteInvite" acceptButton="{{'common.confirm' |translate}}"
+    rejectButton="{{'common.Cancel' |translate}}">
+    <div dialog-message>{{'invitedTps.messages.alert.deleteInvitationMsg'|translate}}</div>
+</ot-dialoguebox>
+
+<div class="reinvite-dialog">
+    <ot-dialoguebox iconClass="ot-warning-icon" header="{{'invitedTps.messages.alertHeader.reinvite' |translate}}" name="reInviteAlert"
+        acceptButton="{{'common.confirm' |translate}}" rejectButton="{{'common.Cancel' |translate}}">
+        <div dialog-message>{{reinviteAlertMsg}}<br><br>{{'invitedTps.messages.alert.reinvite.confirm'|translate}}</div>
+    </ot-dialoguebox>
+</div>
+<!---->

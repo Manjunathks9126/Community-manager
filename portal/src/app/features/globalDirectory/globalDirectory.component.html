@@ -1,0 +1,283 @@
+<div class="ot-container-feature-content" [style.cursor]="cursor">
+  <div class="ot-ui-g ot-page-header-container">
+    <div class="ot-image-directory"></div>
+    <span class="cm-gpd-page-header">
+      {{'globalDirectory.title'|translate}}</span>
+  </div>
+  <!-- (mouseup)="dropSidePanel($event)" -->
+  <div class="ot-faceted-content" id="gpdContainer" style="height:calc(100% - 4em)" (mouseup)="stopDrag()">
+    <!-- Search panel -->
+    <div class="ot-filter-container noGrey" [style.width]="panelWidth" *ngIf="isSearchClicked">
+      <div class="ot-toolbar-container" style="background: #f5f5f5;">
+        <h2>{{'globalSearch.searchBy'| translate}}</h2>
+      </div>
+
+      <!-- <ot-accordion [multiple]="false">
+                <ot-accordionTab header="{{'common.company'| translate}}" [selected]="true"> -->
+      <div class="custom-search-tab">
+        <ot-radioButton name="nameGroup" value="companyNameRadio" label="{{'tpdir.read.companyName'| translate}}"
+          (onClick)="clearFields()" [(ngModel)]="searchAttribute"></ot-radioButton>
+        <div class="ot-ui-g clear-bottom">
+          <div class="ot-ui-g-12">
+            <ot-autoComplete (keydown)="pressEnterKey($event)" (onScrollEnd)="onCompanyScrollEnd()"
+              [(ngModel)]="filterCompany" [suggestions]="filteredCompanies" (onClear)="clearFilters()"
+              (onSelect)="onCompanySelect($event)" (completeMethod)="filterCompanybyBUName($event)" field="BU_NAME"
+              [disabled]="searchAttribute!='companyNameRadio' && searchAttribute!='displayName'" [size]="70"
+              placeholder="{{'tpdir.read.companyName'| translate}}" [minLength]="1">
+            </ot-autoComplete>
+          </div>
+        </div>
+
+        <ot-radioButton name="nameGroup" value="ediRadio" label="{{'globalDirectory.ediId'| translate}}"
+          (onClick)="clearFields()" [(ngModel)]="searchAttribute"></ot-radioButton>
+        <div class="ot-ui-g">
+          <div class="ot-ui-g-12">
+            <ot-autoComplete (keydown)="pressEnterKey($event)" (onScrollEnd)="onEDIscrollEnd()" [(ngModel)]="edi"
+              [suggestions]="filteredEDIs" field="term" (onClear)="clearFilters()" (completeMethod)="filterEDIs($event)"
+              [disabled]="searchAttribute!='ediRadio'" (onSelect)="onEDIselect($event)" [size]="70"
+              placeholder="{{'globalDirectory.ediId'| translate}}" [minLength]="1">
+            </ot-autoComplete>
+          </div>
+        </div>
+        <!-- // [disabled]="!isTermValid()" -->
+
+      </div>
+      <!-- </ot-accordionTab>
+
+            </ot-accordion> -->
+      <div class="ot-page-footer-container footer gpd-footer-wrapper">
+        <diV class="gpd-footer">
+          <div class="gpd-foter-button">
+            <button class="ot-primary cm-btn_space" style="margin-right: 1em;" type="button" (click)="searchBU()"
+              [disabled]="!isTermValid()">{{'common.Apply'| translate}}</button>
+            <button class="ot-secondary cm-btn_space" style="margin-bottom: 1em;" type="button"
+              (click)="clearSearchCriteria()">{{'common.clear'|translate}}</button>
+          </div>
+
+        </diV>
+      </div>
+    </div>
+    <!-- Search panel ends -->
+    <div class="drag" *ngIf="dragVisible" [style.left]="leftDrag" (mousedown)="dragSidePanel($event)"
+      (document:mousemove)="dropSidePanel($event)"></div>
+    <!-- Filter panel starts -->
+    <div class="ot-filter-container noGrey" [style.width]="panelWidth" *ngIf="isFilterClicked">
+      <div class="ot-toolbar-container" style="background:#f7f7f7;">
+        <h2>{{'globalSearch.filterBy'| translate}}</h2>
+      </div>
+      <div style="height: calc(100vh - 12.6em);background: #fff;" #filterScroll
+        [perfectScrollbar]="{suppressScrollX: true, minScrollbarLength:16}">
+
+        <div *ngFor="let filterLabel of refineOptions; let i =index">
+          <div
+            [ngClass]="isExpandedFilterCategory(filterLabel.label) ? 'sidebar-filter-header open':'sidebar-filter-header'"
+            (click)="selectFilterCategory(filterLabel.label)">
+            <span class="sidebar-filter-label">{{filterLabel.label}}</span>
+            <span [ngClass]="isExpandedFilterCategory(filterLabel.label) ? 'ot-icon-up-caret':'ot-icon-down-caret'"
+              style="float:right" (click)="showme()"></span>
+          </div>
+          <div *ngIf="isExpandedFilterCategory(filterLabel.label)">
+            <div [ngClass]="isShowMoreExpanded(i) ? 'sidebar-filter-body-expanded':'sidebar-filter-body'">
+              <!-- (onNodeSelect)="onRefineOptionSelect($event)" (onNodeUnselect)="onRefineOptionUnSelect($event)" -->
+              <ot-tree [value]="refineOptionsObject[filterLabel.label]" selectionMode="checkbox"
+                (onNodeSelect)="onRefineOptionSelect($event)" (onNodeUnselect)="onRefineOptionUnSelect($event)"
+                [(selection)]="selectedRefineOptions"></ot-tree>
+              <div class="no-filters-available" *ngIf="refineOptionsObject[filterLabel.label]?.length == 0">
+                <div *ngIf="refineOptionsObject[filterLabel.label]?.length == 0" class="ot-filter-content-empty"></div>
+                <span class="no-filters">No filters available</span>
+              </div>
+            </div>
+            <div class="show-more" *ngIf="hasExceededLimit(filterLabel.label) && !isShowMoreExpanded(i)"
+              (click)="showMore(i)"><span>{{'globalDirectory.showMore'| translate}}</span><span
+                class="ot-icon-down-caret"></span></div>
+            <div class="show-more" *ngIf="isShowMoreExpanded(i)" (click)="showMore(i)">
+              <span>{{'globalDirectory.showLess'| translate}}</span><span class="ot-icon-up-caret"></span></div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+    <!-- Filter panel ends -->
+    <div class="drag" *ngIf="dragVisible" [style.left]="leftDrag" (mousedown)="dragSidePanel($event)"
+      (document:mousemove)="dropSidePanel($event)"></div>
+
+    <div id="gds" [style.width]="tableWidth"
+      style="position:relative;transition: transform .6s ease-in-out,-webkit-transform .6s ease-in-out!important;"
+      [ngClass]="(isFilterClicked||isSearchClicked)? 'ot-datatabale-container-shrinked d2-table-width' : 'ot-datatable-container'">
+      <div *ngIf="expandChiclet" class="expandChicletPanel"
+        [perfectScrollbar]="{suppressScrollX: true, minScrollbarLength:16}">
+        <ng-container *ngTemplateOutlet="chicletItem"></ng-container>
+      </div>
+      <div class="ot-chipset-header" style="width: calc(100%);overflow: hidden;height: 2.65em;"
+        [style.display]="isFilterApplied  ? 'block' : 'none'">
+        <div class="chiclet-sticky-bar" #chicletContainer>
+          <ng-container *ngTemplateOutlet="chicletItem"></ng-container>
+
+        </div>
+        <div class="collapse-chiclet" (click)="expandChicletBar()"
+          [style.visibility]="displayScrollBtn  ? 'visible' : 'hidden'">
+          <div class="ot-icon-down-caret" style=" margin-left: 0em;float: left;"></div>
+        </div>
+        <span class="ot-vertical-line" style="float: left;margin-top: 5px;"></span>
+
+        <div class="clearAllFilter">
+          <span id="clear-all-text" (click)="clearAllChiclet()">
+            {{'common.clear.filter'|translate}}
+          </span>
+        </div>
+
+
+      </div>
+      <!-- <div -->
+      <!-- [ngClass]="(isFilterClicked||isSearchClicked)? 'ot-datatabale-container-shrinked' : 'ot-datatable-container'"> -->
+      <div class="ot-toolbar-container ot-tab" [style.margin-top.em]="isFilterApplied ? 0 : 0"
+        style="border-top: 1px solid #d6d6d6;">
+        <span (click)="displaySearchPanel()"
+          [ngClass]="isSearchClicked ? 'ot-toolbar-item-selected gpdstyle' : 'ot-toolbar-item gpdstyle'">
+          <div class="ot-icon ot-icon-toolbar ot-icon-toolbar-search gdp-toolbar-item"
+            tooltip="{{'common.tooltip.search'|translate}}">
+          </div>
+        </span>
+        <!-- <span class="ot-vertical-line" style="width: .04em;"></span> -->
+        <span (click)="displayFilterPanel()"
+          [ngClass]="isFilterClicked ? 'ot-toolbar-item-selected gpdstyle' : 'ot-toolbar-item gpdstyle'">
+          <div class="ot-icon ot-icon-toolbar ot-icon-toolbar-filter gdp-toolbar-item"
+            tooltip="{{'common.tooltip.filter'|translate}}">
+          </div>
+        </span>
+        <span class="ot-toolbar-item" (click)="gdp.toggle($event)">
+          <div class="ot-icon ot-icon-toolbar ot-icon-multi-add" tooltip="{{'common.tooltip.addTP'|translate}}"></div>
+      </span>
+      <ot-menu-overlayPanel #gdp styleClass="cm-overlayPanel">
+        <ul class="ot-submenu">
+            <li (click)="gdp.hide();addTPModel('SINGLE_TP')">
+                <span>{{'tpdir.create.addtp'| translate}}</span>
+            </li>
+            <li (click)="gdp.hide();addTPModel('BULK_TP')">
+                <span>{{'tpdir.create.bulktp'| translate}}</span>
+            </li>
+        </ul>
+    </ot-menu-overlayPanel>
+        <span class="ot-vertical-line"></span>
+        <span *ngxPermissionsOnly="permissions.enableInternalAdminTools">
+        <span (click)="onMessageItemClick()" *ngIf="isRowSelected && isInternalUser"
+          [ngClass]="isMessageClicked ? 'ot-toolbar-item-selected gpdstyle' : 'ot-toolbar-item'">
+          <div class="gdp-toolbar-item" tooltip="{{'globalDirectory.message'|translate}}">
+            {{'globalDirectory.message' |translate}}
+          </div>
+        </span>
+      </span>
+        <span class="ot-vertical-line"></span>
+        <!-- <span (click)="refresh()" class="ot-icon-refresh ot-ui-pull-right" tooltip="{{'common.tooltip.refresh'| translate}}">
+                </span> -->
+
+      </div>
+      <div [style.height]="!(isFilterApplied) ?'calc(100% - 2.625em)':'calc(100% - 5.36em)'">
+        <ot-dataTable name="global-search" [locale]="currentLanguage" #gs [(value)]="companyList"
+          [headerCheckboxToggleAllPages]="false" [rows]="displayRecordNum" scrollable="false" [paginator]="true"
+          (onLazyLoad)="paginationEvent($event)" [lazy]="true" [rowsPerPageOptions]="[30,60,100]" [responsive]="false"
+          [totalRecords]="numFound" [scrollHeight]="isFilterApplied" [(selection)]="selectedCompany"
+          (onRowSelect)="onTableRowSelect()" (onRowUnselect)="onTableRowSelect()"
+          (onHeaderCheckboxToggle)="onTableRowSelect()" [norecordGpd]="data" (WorkflowFlag)="addTp($event)">
+          <!-- <ot-column [sortable]="true" sortField="BU_NAME" [style]="{'width':'3%'}" selectionMode="multiple"></ot-column> -->
+          <ot-column [style]="{'width':'3%'}" selectionMode="multiple" *ngxPermissionsOnly="permissions.enableInternalAdminTools"></ot-column>
+          <ot-column [style]="{'width':'5%'}">
+            <ng-template let-col let-company="rowData" pTemplate="body">
+              <span *ngIf="company.bpr" class="ot-connected-icon" title="You’re connected to this company"> </span>
+              <span *ngIf="!company.bpr && company?.BU_STATUS?.toUpperCase() !='ACTIVE'"
+                title="{{'common.companyStatus' | translate}} : {{company.BU_STATUS}}" class="ot-in-progress-icon"> </span>
+            </ng-template>
+          </ot-column>
+          <ot-column [style]="{'width':'30%'}" [sortable]="true" sortField="BU_NAME" sortByDefault="true" order="asc"
+            header="{{'tpdir.read.companyName'| translate}}">
+            <ng-template let-col let-company="rowData" pTemplate="body">
+              <a class="ot-block-anchor" style="white-space: pre-wrap;overflow: hidden;"
+                *ngIf="company.BU_STATUS?.toUpperCase() =='ACTIVE'" (click)="redirectToCompany(company)">
+                {{company.BU_NAME}}
+              </a>
+              <div class="ot-block-anchor" style="white-space: pre-wrap;overflow: hidden;"
+                *ngIf="company.BU_STATUS?.toUpperCase() !='ACTIVE'">
+                {{company.BU_NAME}}
+              </div>
+            </ng-template>
+          </ot-column>
+          <ot-column [style]="{'width':'30%'}" [sortable]="true" sortField="COUNTRY" field="partnerCompanyDisplayName"
+            header="{{'globalDirectory.location'| translate}}">
+            <!-- <span style="flex-grow:1">{{company.BU_POSTAL_COUNTRY}}</span> -->
+            <ng-template let-col let-company="rowData" pTemplate="body">
+              {{company.COUNTRY}}
+            </ng-template>
+          </ot-column>
+
+          <ot-column [style]="{'width':'30%'}" header="{{'globalSearch.ediIds'| translate}}">
+            <ng-template let-col let-company="rowData" pTemplate="body">
+              <a class="ot-block-anchor" (click)="showEdi(company,'edi')">
+                {{'tpdir.read.viewEDI'| translate}}</a>
+            </ng-template>
+          </ot-column>
+          <ot-column [style]="{'width':'30%'}" header="{{'globalDirectory.documents'| translate}}">
+            <ng-template let-col let-company="rowData" pTemplate="body">
+              <a class="ot-block-anchor" (click)="showEdi(company,'doc')">
+                {{'tpdir.read.viewDOC'| translate}}</a>
+            </ng-template>
+          </ot-column>
+          <ot-column [style]="{'width':'5%','padding-left':'0%'}">
+            <ng-template let-col let-company="rowData" pTemplate="body">
+              <span *ngIf="!company.bpr && company?.BU_STATUS?.toUpperCase()=='ACTIVE'" title="Connect"
+                (click)="connect(company)" class="ot-connect-icon"> </span>
+            </ng-template>
+          </ot-column>
+        </ot-dataTable>
+      </div>
+      <!-- </div> -->
+    </div>
+  </div>
+</div>
+
+<div class="cm-addTpModel">
+  <ot-modal *ngIf="display" [visible]="true">
+    <div class="ot-form-container ">
+      <div class="ot-modal-header">
+        <!-- {{'tpdir.read.ediCount'| translate}} -->
+        <diV class="workflow-popup">
+          {{ediCompanyName}}</diV>
+        <div (click)="display=false" class="ot-modal-close-icon ot-ui-pull-right"
+          tooltip="{{'common.tooltip.close'|translate}}">
+        </div>
+      </div>
+      <div class="cm-modal-content-footerless ">
+        <!-- <span class="cm-model-header-edi-label">{{'tpdir.read.ediMsg'| translate}} {{ediCompanyName}} </span> -->
+        <ot-dataList [value]="edis" [locale]="currentLanguage" [rowsPerPageOptions]="[20,50,100]" [paginator]="true" [rows]=20
+          [totalRecords]="totalEdiRecords">
+          <!-- [lazy]="true" (onLazyLoad)="lazyLoadEdiData($event)" -->
+          <ng-template let-edi pTemplate="item">
+            {{edi}}
+          </ng-template>
+        </ot-dataList>
+      </div>
+    </div>
+  </ot-modal>
+</div>
+
+<workflow-selection [(workflowList)]="workflowList" [(showModal)]="showWorkflowModal" (searchedTp)="filterCompany"></workflow-selection>
+<ot-dialoguebox iconClass="ot-warning-icon" header="{{'globalDirectory.messageHeader' |translate}}"
+  name="incompleteSurvey" acceptButton="{{'common.continue' |translate}}" rejectButton="{{'common.Cancel' |translate}}">
+  <div dialog-message>
+    <div [innerHTML]="'globalDirectory.messageBody' |translate"></div>
+  </div>
+</ot-dialoguebox>
+
+<ng-template #chicletItem>
+  <div *ngFor="let selectedFiltersChipset of filtersArray;let i = index">
+    <div class="ot-chipset-UX2-1"
+      *ngIf="selectedFiltersChipset.value!=undefined && selectedFiltersChipset.value.length>0">
+      <div class="chipset-content-label">{{selectedFiltersChipset.name}}:</div>&nbsp;
+      <div *ngFor="let chicletItem of selectedFiltersChipset.value;let i = index" class="chipset-content-value" [style.margin-left]="i==0 ? '0px':'15px'">
+         {{chicletItem}} 
+         <span class="ot-image-close-chipset" (click)='clearChiclet(selectedFiltersChipset.field,chicletItem)'></span>
+      </div>
+    </div>
+  </div>
+</ng-template>

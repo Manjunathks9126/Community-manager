@@ -1,0 +1,929 @@
+{
+  "otherInfo": {
+    "title": "Altre informazioni",
+    "licenseStatus": "Stato della licenza",
+    "certificationStatus": "Stato della certificazione",
+    "certifyingAgency": "Agenzia di certificazione",
+    "licenseDocument": "Documento di licenza",
+    "certificate": "Certificato",
+    "productsCertified": "Prodotti certificati",
+    "certificationLevel": "Livello di certificazione",
+    "certificationRating": "Valutazione della certificazione",
+    "certificationExpiration": "Data di scadenza della certificazione"
+  },
+  "ediAndDocs": {
+    "title": "EDI e documenti"
+  },
+  "graph": {
+    "title": "Grafico TP"
+  },
+  "status": {
+    "bpr": {
+      "Approved": "Approvato",
+      "Testing": "Verifica",
+      "Error": "Errore",
+      "Requested": "Richiesto",
+      "Rejected": "Rifiutato"
+    },
+    "company": {
+      "active": "Attivo",
+      "inactive": "Inattivo",
+      "Error": "Errore",
+      "Draft": "Bozza",
+      "Testing": "Verifica",
+      "In Progress": "In corso",
+      "marked_for_deletion": "Contrassegnato per l'eliminazione"
+    }
+  },
+  "common": {
+    "cancelSetupHeader": "Impostazione",
+    "cancelSetupText": "Annullare la nuova configurazione?",
+    "endOfResult": "Raggiunta la fine dei risultati",
+    "attachFile": "Allega file",
+    "confirm": "OK",
+    "clear": "Cancella",
+    "success": "Operazione riuscita",
+    "company": "Azienda",
+    "breadCrumb.home": "Home",
+    "filter.header": "Ottimizza per",
+    "project.title": "Community Manager",
+    "submit.title": "Invia",
+    "Apply": "Applica",
+    "Cancel": "Annulla",
+    "reset": "Reimposta",
+    "clear.filter": "Cancella tutto",
+    "create": "Crea",
+    "invite": "Invita",
+    "next": "Avanti",
+    "previous": "Indietro",
+    "save": "Salva",
+    "continue": "Continua",
+    "edit": "Modifica",
+    "connect": "Connetti",
+    "errorMessage": "Impossibile elaborare la richiesta. Contattare l'assistenza GXS.",
+    "TotalCount": "Record totali:",
+    "Export": "Esporta",
+    "exportTooltip": "Esporta righe selezionate",
+    "exportAll": "Esporta tutto",
+    "exportAllTooltip": "Esporta tutte le righe",
+    "exportSubmitted": "Richiesta di esportazione inviata. Verrà inviata una notifica tramite posta elettronica quando i dati saranno disponibili.",
+    "Delete": "Elimina",
+    "New": "Nuovo",
+    "yes": "Sì",
+    "no": "No",
+    "sure": "Certo",
+    "status": "Stato",
+    "companyStatus": "Stato azienda",
+    "bprStatus": "Stato BPR",
+    "pageNotFound": "Pagina non trovata. Contattare l'assistenza OpenText.",
+    "default.select.txt": "Selezionare",
+    "default.select.invitation.txt": "Seleziona invito",
+    "duplicate": "Esistono duplicati",
+    "dialogmsg": "Termina registrazione",
+    "cancelmsg": "Il processo di registrazione non continuerà e i dati non verranno salvati.",
+    "close": "Chiudi",
+    "genericErrorMsg":"Il server non è in grado di elaborare la richiesta",
+    "tooltip": {
+      "search": "Cerca",
+      "tpgraph": "Grafico TP",
+      "filter": "Filtro",
+      "addTP": "Aggiungi nuovi partner alla tua community",
+      "addInvitation": "Crea nuovo invito",
+      "addcontact": "Crea nuovo contatto",
+      "refresh": "Aggiorna",
+      "close": "Chiudi",
+      "addField": "Aggiungi campo personalizzato",
+      "addFieldGroup": "Aggiungi gruppo di campi",
+      "addChoice": "Aggiungi un'opzione",
+      "delete": "Elimina",
+      "download": "Download",
+      "importfields": "Import custom data across TPs"
+    },
+    "question": {
+      "sure": "Procedere?",
+      "duplicate.create": "L'azienda esiste già. Procedere?"
+    },
+    "noRecords": "Nessun record disponibile",
+    "noDataFound": "Nessun dato rilevato",
+    "errorDetails": "Dettagli errore",
+    "endOfRecords": "È stata raggiunta la fine dei record",
+    "workflowSuccess": "Flusso di lavoro avviato correttamente",
+    "workflowId": "ID flusso di lavoro: {0}",
+    "notFound": "Nessun modulo adatto trovato. Contattare l'assistenza OPENTEXT.",
+    "workflowNotfound": "Flusso di lavoro non trovato",
+    "unsuccessful": "non è andato a buon fine"
+  },
+  "globalDirectory": {
+    "title": "Elenco partner globali",
+    "ediId": "ID EDI",
+    "location": "Posizione",
+    "documents": "Documenti",
+    "direction": "Direzione",
+    "version": "Versione",
+    "docType": "Tipo di documento",
+    "NoWrkFlow": "Nessun flusso di lavoro disponibile",
+    "tpName": "Nome partner commerciale",
+    "notificationSuccessMsg": "Notifica inviata correttamente",
+    "message": "Messaggio",
+    "messageHeader": "Invia notifica",
+    "showMore": "Mostra di più",
+    "showLess": "Mostra meno",
+    "messageBody": "Dear user,<BR><BR>Your company profile information is incomplete. Please access the company profile by navigating to Account manager-> My Company and Services, and complete the missing information.Should you have any questions about the profile update, please contact your local Business Network Support team. The following link provides information for all support regions and services:<BR><a href='http://www.opentext.com/support'>http://www.opentext.com/support</a> <BR><BR>Regards,<BR>Grid Administrator"
+  },
+  "tpdir": {
+    "title": "La mia community commerciale",
+    "breadCrumb.home": "Home",
+    "Viewby": "Visualizzato da",
+    "options": {
+      "bpr": "Relazione d'affari",
+      "tpr": "Relazione commerciale",
+      "itp": "Partner invitati"
+    },
+    "tprView": {
+      "companyName": "Nome azienda",
+      "displayName": "Nome visualizzato",
+      "partnerEDIAddress": "Indirizzo EDI partner",
+      "partnerVAN": "Partner VAN/fornitore di servizi",
+      "yourEDIAddress": "Il tuo indirizzo EDI",
+      "yourRole": "Il tuo ruolo",
+      "tprType": "Tipo TPR",
+      "status": "Stato"
+    },
+    "read": {
+      "status": "Stato",
+      "companyName": "Nome azienda",
+      "companyID": "ID azienda",
+      "displayName": "Nome visualizzato",
+      "ediAddress": "ID EDI",
+      "ediAddresses": "Indirizzo EDI",
+      "ediCount": "ID associati",
+      "ActiveContacts": "Contatti attivi",
+      "ActiveDate": "Data attiva",
+      "TPRActiveDate": "Data creazione",
+      "Active": "Attivo",
+      "Onboarding": "Onboarding",
+      "tprcount": "Relazioni commerciali",
+      "country": "Paese",
+      "viewEDI": "Visualizza ID",
+      "viewDOC": "Visualizza documenti",
+      "ediMsg": "ID EDI associati",
+      "mapName": "Nome mappa",
+      "docStandard": "Standard documento",
+      "docType": "Tipo di documento",
+      "docVersion": "Versione documento",
+      "direction": "Direzione",
+      "usedBy": "Usato da",
+      "tableEntries": "Voci tabella",
+      "buId": "ID azienda",
+      "dateFormatMMDDYYYY": "gg/mm/aaaa",
+      "from": "Da",
+      "to": "Per",
+      "dateValidation": "La data del campo Da e la data del campo A sono obbligatorie",
+      "badRequest": "Richiesta errata",
+      "preXrefLookup": "PreXrefLookup",
+      "applicationCrossReference": "Riferimento incrociato applicazione",
+      "EDI_DC40_TEST": "EDI_DC40_TEST",
+      "EDI_DC40_PROD": "EDI_DC40_PROD",
+      "displayDefault": "Nome visualizzato impostato sul valore predefinito"
+    },
+    "create": {
+      "title": "Nuovo partner commerciale",
+      "addtp": "Aggiungere un nuovo partner",
+      "bulktp": "Invita più partner",
+      "model": {
+        "title": "Selezionare un flusso di lavoro che verrà utilizzato per integrare il partner",
+        "addtp": "Come procedere?",
+        "continue": "Continua"
+      },
+      "bulk": {
+        "title": "Carica partner in blocco",
+        "instruction": "Caricare l'elenco dei partner da invitare. Ciascun partner riceverà un invito alla registrazione per il servizio selezionato.",
+        "selectfile": "Seleziona file",
+        "supported": "File supportati",
+        "templateDown": "Scarica file modello",
+        "selected": "File selezionato",
+        "totalrecord": "Record totali",
+        "wrongfile": "Selezionare un altro file",
+        "limit": "Limite di 1000 partner per file",
+        "note": "Nota",
+        "notemsg": "Nota: una volta elaborato il caricamento del file, si riceverà un'email con i risultati."
+      },"bulkimport": {
+        "title": "Import custom fields",
+        "instruction": "Please upload a file to add or change custom field values, including Company Display Name, for your trading partners.",
+        "selectfile": "Seleziona file",
+        "supported": "File supportati",
+        "templateDown": "Scarica file modello",
+        "selected": "File selezionato",
+        "totalrecord": "Record totali",
+        "wrongfile": "Selezionare un altro file",
+        "limit": "Limite di 1000 partner per file",
+        "note": "Nota",
+        "notemsg": "Nota: una volta elaborato il caricamento del file, si riceverà un'email con i risultati."
+      },
+      "notificationMsgs": {
+      	"bulkimport.success": "Import file submitted successfully.",
+        "bulk.success": "File dell'invito inviato correttamente. In caso di errori si riceverà una notifica tramite email.",
+        "unique": "Immettere un nome azienda univoco per distinguere l'azienda dalle altre dotate con lo stesso nome"
+      },
+      "validationMessages": {
+        "cnamerequired": "Il nome dell'azienda è obbligatorio",
+        "addr1required": "La riga indirizzo 1 è obbligatoria",
+        "dnamerequired": "Il nome visualizzato è obbligatorio",
+        "tableEntries": "Sono richiesti EDI_DC40_TEST, EDI_DC40_PROD e il riferimento incrociato dell'applicazione",
+        "countryrequired": "Il paese è obbligatorio",
+        "cityrequired": "La città è obbligatoria",
+        "cIdequired": "L'ID aziendale è obbligatorio",
+        "cIdInvalid": "L'ID azienda non è valido",
+        "fnamerequired": "Il nome è obbligatorio",
+        "lnamerequired": "Il cognome è obbligatorio",
+        "emailrequired": "L'indirizzo di posta elettronica è obbligatorio",
+        "phonerequired": "Il telefono è obbligatorio",
+        "staterequired": "Lo stato è obbligatorio",
+        "postrequired": "Il codice postale è obbligatorio",
+        "ediexist": "L'indirizzo EDI esiste già",
+        "maxEDIlength": "La lunghezza dell'indirizzo EDI non può essere maggiore di 34 caratteri",
+        "emailinvalid": "Indirizzo di posta elettronica non valido",
+        "companyEmailInvalid": " L'indirizzo di posta elettronica aziendale non è valido",
+        "prodGsIDReq": "L'ID GS di produzione è obbligatorio",
+        "tpProdGsIDReq": "L'ID GS di produzione del partner è obbligatorio",
+        "testGsIdReq": "L'ID GS del test è obbligatorio",
+        "tpTestGsIDReq": "L'ID GS del test del partner è obbligatorio",
+        "companyIdValidation": "ID azienda non valido",
+        "tptestAddressReq": "L'ID ISA del test del partner è obbligatorio",
+        "partnerId": "L'ID del partner è obbligatorio"
+      },
+      "form": {
+        "keyTitle": "Mappe",
+        "selectMap": "Seleziona mappa",
+        "cfirstName": "Nome",
+        "clastName": "Cognome",
+        "cemail": "Indirizzo di posta elettronica",
+        "cphone": "Telefono azienda",
+        "userPhone": "Telefono",
+        "formTitle": "Informazioni sull'azienda",
+        "displayName": "Nome visualizzato",
+        "companyName": "Nome azienda",
+        "tradingPartnerType": "Tipo partner commerciale",
+        "companyId": "ID azienda",
+        "website": "Sito Web",
+        "additionalInformation": "Ulteriori informazioni",
+        "dunsNumber": "Numero DUNS",
+        "globalLocationNumber": "Numero posizione globale (GLN)",
+        "vatId": "Partita IVA",
+        "federalTaxId": "Codice fiscale federale/EIN",
+        "naics": "NAICS",
+        "sic": "Standard Industrial Classification (SIC)",
+        "addressLine1": "Riga indirizzo 1",
+        "addressLine2": "Riga indirizzo 2",
+        "city": "Città/Paese",
+        "state": "Stato/Provincia/Regione",
+        "postalCode": "Codice postale",
+        "country": "Paese",
+        "phone": "Telefono azienda",
+        "email": "Indirizzo di posta elettronica aziendale"
+      }
+    },
+    "createTpMsg": {
+      "ediInfo": "Informazioni EDI",
+      "qualifier": "Qualificatore",
+      "isaId": "ID ISA",
+      "gsId": "ID GS",
+      "vanProvider": "VAN/Fornitore di servizi",
+      "mailbox": "Cassetta postale",
+      "verify": "Verifica",
+      "ediTesting": "Verrà utilizzato anche per i test?",
+      "tpApprove": "Rivedere le seguenti informazioni. Selezionare Approva per creare l'impostazione di produzione.",
+      "approveBtn": "Approva",
+      "approveLabel": "Approvo le attività commerciali di produzione con questo partner.",
+      "title": "Approva configurazione di produzione"
+    },
+    "company": {
+      "info": "Informazioni sull'azienda",
+      "created": "Data creazione",
+      "updated": "Data ultima modifica",
+      "status": "Stato",
+      "registration": "Registrazione",
+      "overview": "Introduzione",
+      "divisions": "Divisioni",
+      "edicommns": "EDI e comunicazioni",
+      "customdata": "Dati personalizzati",
+      "files": "File",
+      "activities": "Attività",
+      "auditLog": "Audit log",
+      "auditLog.title": "Audit log",
+      "onboarding.title": "Cronologia dell'onboarding",
+      "notes": "Note",
+      "errorStatus": "Si è verificato un errore durante l'onboarding di questo partner commerciale.",
+      "errorLink": "Fare clic per visualizzare",
+      "moreDetails": " maggiori dettagli.",
+      "profile": {
+        "display.name": "Nome visualizzato",
+        "addline1": "Riga indirizzo 1",
+        "addline2": "Riga indirizzo 2",
+        "companyName": "Nome azienda",
+        "city": "Città/Paese",
+        "state": "Stato/Provincia/Regione",
+        "company.id": "ID azienda",
+        "postal.code": "Codice postale",
+        "country": "Paese",
+        "website": "Sito Web",
+        "phone": " Telefono azienda",
+        "email": "Indirizzo di posta elettronica aziendale",
+        "additional.info": "Ulteriori informazioni",
+        "social.media": "Social media",
+        "duns.no": "Numero DUNS",
+        "global.location.number": "Numero posizione globale (GLN)",
+        "vat.id": "N. PARTITA IVA",
+        "federal.tax": "Codice fiscale federale/EIN",
+        "naics": "NAICS",
+        "sic": "SIC",
+        "homeZone": "Zona di casa",
+        "addressInformation": "Informazioni indirizzo",
+        "noEDI": "Nessun EDI disponibile per la connessione.",
+        "updateSuccess": "Aggiornato correttamente",
+        "fieldsSet": "Campi impostati sul valore predefinito."
+      },
+      "contacts": {
+        "title": "Contatti",
+        "name": "Nome contatto",
+        "email": "Indirizzo di posta elettronica",
+        "business.function": "Funzione aziendale",
+        "status": "Stato",
+        "last.updated": "Data ultima modifica",
+        "lastAccessDate": "Data ultimo accesso",
+        "from": "Da",
+        "to": "Per",
+        "dateFormatMMDDYYYY": "gg/mm/aaaa",
+        "dateFormatValidation": "La data del campo A non può essere antecedente alla data del campo Da",
+        "lastAccessed": "Ultimo accesso",
+        "dateRange": "Intervallo di date",
+        "statusOptions": [
+          "Attivo",
+          "Inattivo",
+          "Con blocco software"
+        ]
+      },
+      "user": {
+        "title": "Utente",
+        "userTitle": "Titolo",
+        "firstName": "Nome",
+        "lastName": "Cognome",
+        "email": "Indirizzo di posta elettronica",
+        "phone": "Telefono",
+        "mobile": "Cellulare",
+        "fax": "Fax",
+        "addressLine1": "Riga indirizzo 1",
+        "addressLine2": "Riga indirizzo 2",
+        "city": "Città/Paese",
+        "state": "Stato/Provincia/Regione",
+        "postalCode": "Codice postale",
+        "country": "Paese",
+        "selectUserID": "Selezionare l'ID utente"
+      },
+      "history": {
+        "title": "Cronologia",
+        "auditlog": {
+          "title": "Audit log",
+          "date": "Data",
+          "userName": "Nome utente",
+          "log": "Audit log",
+          "viewDetails": "Visualizza dettagli",
+          "attributes": "Attributi verifica"
+        },
+        "onboarding": {
+          "link.label": "Cronologia dell'onboarding",
+          "title": "Cronologia dell'onboarding per",
+          "tpsetup": "Dettagli di configurazione",
+          "compInfo": {
+            "title": "Informazioni sull'azienda",
+            "name": "Nome azienda",
+            "code": "Codice azienda",
+            "id": "BUID",
+            "service": "Informazioni sul servizio",
+            "companyId": "ID azienda"
+          },
+          "provInfo": {
+            "title": "Dettagli del provisioning",
+            "workflow": "Nome flusso di lavoro",
+            "invCode": "Codice invito",
+            "reqId": "ID richiesta",
+            "requestor": "Richiedente",
+            "submitted": "Data invio",
+            "approved": "Data approvazione",
+            "status": "Stato",
+            "trackingdetails": "ID tracciamento",
+            "workflowId": "ID flusso di lavoro",
+            "userId": "ID utente"
+          },
+          "prodInfo": {
+            "title": "Dettagli di produzione"
+          },
+          "testInfo": {
+            "title": "Dettagli test"
+          },
+          "serviceInfo": {
+            "title": "Dettagli servizio"
+          },
+          "senderRecieverInformation": {
+            "title": "Informazioni mittente/destinatario",
+            "vanName": "Nome fornitore di servizi/VAN",
+            "selectedMaps": "Mappe selezionate",
+            "prodAddress": "Indirizzo Prod",
+            "prodGsId": "ID GS Prod",
+            "tpProdAddress": "Indirizzo Prod TP",
+            "tpProdGsId": "ID GS Prod TP",
+            "tpAddreess": "Qualificatore ISA test TP: ID ISA test TP",
+            "tpISAIndicator": "TP utilizza l'indicatore ISA del test"
+          }
+        }
+      },
+      "taskregistration": {
+        "title": "Grazie.",
+        "details": "Al termine dell'elaborazione della registrazione, l'utente sarà disconnesso.",
+        "failed": "Registrazione non riuscita"
+      }
+    },
+    "search": {
+      "title": "Cerca",
+      "companyName": "Azienda/Nome visualizzato",
+      "ediAddress": "Indirizzo EDI",
+      "qualifier": "Qualificatore",
+      "mapName": "Nome mappa"
+    }
+  },
+  "servicecontacts": {
+    "title": "Contatti di assistenza",
+    "header": "Notifiche di assistenza",
+    "breadCrumb.home": "Home",
+    "read": {
+      "notification": "Notifica",
+      "desc": "Descrizione",
+      "service": "Servizio",
+      "recipient": "Destinatario"
+    }
+  },
+  "edicomms": {
+    "title": "EDI e comunicazioni",
+    "addrs": {
+      "title": "Indirizzi EDI",
+      "partnerEDIAddressQual": "Indirizzo EDI partner (Qual:ID)",
+      "yourEDIAddressQual": "Il tuo indirizzo EDI (QualID)",
+      "gsId": "ID GS",
+      "connectivity": "Connettività",
+      "direction": "Direzione",
+      "billing": "Fatturazione",
+      "billinglink": "Visualizza fatturazione",
+      "comms": "Connettività",
+      "commslink": "Visualizza comunicazioni",
+      "transactionCharges": "Oneri di transazione",
+      "receivermailboxstorage": "Archivio casella di posta del destinatario",
+      "sendPayeeLabel": "Invio pagato da",
+      "receivePayeeLabel": "Ricezione pagata da",
+      "storagePayeeLabel": "Pagato da",
+      "createdDate": "Data creazione",
+      "billingSplitLabel": "Fatturazione",
+      "sender": "MITTENTE",
+      "receiver": "DESTINATARIO"
+    },
+    "map": {
+      "title": "Mappa"
+    },
+    "search": {
+      "title": "Cerca",
+      "from": "Da",
+      "to": "Per",
+      "dateFormatMMDDYYYY": "gg/mm/aaaa",
+      "dateRange": "Intervallo di date"
+    },
+    "connectivity": {
+      "title": "Connettività"
+    },
+    "transactions": {
+      "title": "Transazioni"
+    },
+    "maps": {
+      "title": "Mappe"
+    },
+    "wrk": {
+      "title": "Richieste di lavoro"
+    }
+  },
+  "tpmsg": {
+    "fields": {
+      "ediStnd": "Standard EDI",
+      "connectivityType": "Tipo di connettività",
+      "vanName": "Nome fornitore di servizi/VAN",
+      "yourProdAdd": "Il tuo ID di produzione",
+      "yourProdGSID": "Il tuo ID GS di produzione",
+      "tpProdAdd": "Indirizzo di produzione del partner",
+      "tpProdGSID": "ID GS produzione del partner",
+      "sameAsProd": "Uguale alla produzione",
+      "yourTestAdd": "Il tuo indirizzo del test",
+      "yourTpGSID": "Il tuo ID GS del test",
+      "tpTestAdd": "Qualificatore ISA test partner: ID ISA test",
+      "tpTestGSID": "ID GS test de partner",
+      "youUseISA": "Utilizzare l'indicatore ISA del test",
+      "tpUsesISA": "Il partner utilizza l'indicatore ISA del test",
+      "reqFunctionAck": "Richiede il riconoscimento funzionale",
+      "segTerminator": "Separatore segmenti",
+      "elemSeprator": "Separatore elementi",
+      "sublemTerminator": "Separatore elementi",
+      "ediAddress": "Qualificatore partner: ID",
+      "companyPhone": "Telefono azienda",
+      "selectAtLeastOneMap": "(Selezionare almeno una mappa)",
+      "selectVAN": "Seleziona VAN/rete",
+      "selectYourAddresses": "Selezionare gli tuoi indirizzi EDI",
+      "splitCharges": "Spese ripartite",
+      "splitChargeMSG": "Come verranno pagate le commissioni di transazione?",
+      "sendingpaidBy": "L'invio verrà pagato da",
+      "receingpaidBy": "La ricezione verrà pagata da",
+      "sender": "Mittente",
+      "receiver": "Archivio casella di posta del destinatario",
+      "receiverMailboxStorageMSG": "Chi pagherà l'archivio della casella di posta del destinatario?",
+      "allChargesPaidBy": "Tutti gli addebiti verranno pagati da",
+      "separatorValidationMSG": "I valori del separatore devono essere univoci"
+    },
+    "tprValidation": {
+      "details": "Dettagli:",
+      "ediAddress": "Indirizzo EDI:",
+      "companyName": "Nome azienda:",
+      "tprExistMsg": "Il partner commerciale esiste già",
+      "multipleTprExistMsg": "Esistono già relazioni commerciali.",
+      "singleHubEdiMsg": "Esiste già una relazione commerciale con questo ID.",
+      "multipleHubEdiMsg": " Esistono già relazioni commerciali tra questo partner e uno o più dei tuoi ID selezionati.",
+      "tpEdis": "Indirizzo TP EDI:",
+      "yourEdis": "Il tuo indirizzo EDI:"
+    },
+    "legends": {
+      "contactInfo": "Informazioni di contatto",
+      "setupDetails": "Selezionare un'opzione di configurazione",
+      "companyInfo": "Dettagli azienda",
+      "msgDetails": "Dettagli messaggio",
+      "summary": "Riepilogo",
+      "testDetails": "Dettagli test",
+      "prodDetails": "Dettagli di produzione",
+      "billingOptions": "Opzioni di fatturazione",
+      "billingInfo": "Informazioni di fatturazione",
+      "sendReceiverDetails": "Informazioni mittente/destinatario",
+      "serchEDIonNetwork": "Immettere un indirizzo EDI per verificare se il partner è già presente nella nostra rete",
+      "ediSameCompany": "L'indirizzo EDI appartiene alla stessa azienda.",
+      "ediNotExists": "L'indirizzo EDI non esiste. Fornire le informazioni richieste.",
+      "ediVan": "L'EDI appartiene a fornitore van {0}. Creare un nuovo partner commerciale.",
+      "ediSP": "L'EDI appartiene al fornitore di servizi {0}. Procedere alla creazione di un nuovo partner commerciale.",
+      "bprExists": "Il BPR esiste già con {0}",
+      "mapsError": "Errore durante il recupero delle mappe di provisioning.",
+      "sendingPaidBy": "L'invio verrà pagato da {0}",
+      "receivingPaidBy": "La ricezione verrà pagata da {0}",
+      "mailboxPaidBy": "Archivio casella postale del destinatario pagata da {0}",
+      "allCharges": "Tutti gli addebiti verranno pagati da {0}"
+    },
+    "setupdetails": {
+      "testFirst": "Desidero eseguire prima un test. Impostare solo la pre-produzione per inviare e ricevere immediatamente i dati del test. Successivamente, eseguire l'impostazione della produzione una volta completato il test.",
+      "setupNow": "Configurare tutto subito. Configurare sia la produzione sia la pre-produzione (test) in modo da inviare e ricevere immediatamente i dati di test e/o produzione."
+    },
+    "messages": {
+      "success": "Partner approvato correttamente",
+      "validationError": "Errore di convalida",
+      "tprExists": "Il TPF esiste già"
+    }
+  },
+  "onboarding": {
+    "title": "Onboarding e inviti",
+    "invitationTab": "Inviti",
+    "tasksTab": "Attività",
+    "overview": "Introduzione",
+    "noWorkflows": "Nessun flusso di lavoro disponibile",
+    "noBulkWorkflows": "L'aggiunta di più TP non è attualmente possibile.",
+    "invitationForm": {
+      "title": "Inviti",
+      "invitationName": "Nome invito",
+      "description": "Descrizione",
+      "createdBy": "Creato da",
+      "createdDate": "Data",
+      "invitationType": {
+        "title": "Che tipo di invito sarà?",
+        "unique": "Univoco",
+        "generic": "Generico"
+      },
+      "approvalType": {
+        "title": "Quale tipo di approvazione è richiesta per questo flusso di lavoro?",
+        "automatic": "Automatica",
+        "manual": "Manuale"
+      },
+      "ediOptions": {
+        "SYSTEM_GENERATES": "Generazione automatica da Trading Grid",
+        "MANUAL_ENTER": "Inserimento da parte dei partner commerciali",
+        "MANUAL_ENTER_FROM_PRELOAD": "Indicazione manuale all'aggiunta di TP",
+        "SYSTEM_GENERATES_FROM_PRELOAD": "Assegnazione da un elenco precaricato di indirizzi",
+        "DURING_REG": "Inserimento da parte del destinatario alla registrazione"
+      },
+      "scrollEvent": "È stata raggiunta la fine dei record",
+      "invitationSaveSuccess": "Invito creato correttamente.",
+      "invitationSaveFailure": "Creazione invito non riuscita",
+      "invitationUpdateFailure": "Aggiornamento dell'invito non riuscito",
+      "invitationUpdateSuccess": "Invito aggiornato correttamente.",
+      "inviteExpire": "Scadenza invito:",
+      "invitedtpvalue": "I partner commerciali verranno invitati",
+      "validationMsgs": {
+        "invitationName": "Il nome dell'invito è obbligatorio",
+        "invalidInvitationName": "Nome dell'invito non valido",
+        "invitationSubject": "L'oggetto è obbligatorio",
+        "senderEmailAddr": "L'indirizzo di posta elettronica del mittente è obbligatorio",
+        "invalidEmail": "Indirizzo di posta elettronica non valido",
+        "maxAllowedEmail": "È possibile aggiungere fino a 10 indirizzi di posta elettronica.",
+        "emailMaxLength": "Massimo 50 caratteri",
+        "dateValidation": "La data di scadenza deve corrispondere o essere successiva alla data attuale",
+        "corruptImage": "Caricare un file di immagine valido"
+      },
+      "notification": {
+        "title": "Notifiche",
+        "notificationRecipientsLabel": "Chi è necessario informare ogni volta che viene configurato un nuovo partner commerciale?",
+        "confirmationEmailLabel": "Inviare un'email di conferma al partner commerciale una volta configurato?",
+        "notificationRecipientsHelpTxt": "Aggiungere più destinatari utilizzando valori separati da virgola",
+        "recipientListMsg": "I destinatari riceveranno una notifica",
+        "add": "Aggiungi"
+      },
+      "trOptions": {
+        "title": "Opzioni relazione commerciale",
+        "trSetupLabel": "Non impostare una relazione commerciale",
+        "inviteeEdiAddress": "Indirizzo EDI (massimo 20) invito co (noto come Hub)",
+        "ediOptions": "Come verrà fornito l'indirizzo EDI del partner?"
+      },
+      "emailConfiguration": {
+        "title": "Configura email di invito",
+        "senderEmailAddr": "Indirizzo di posta elettronica mittente",
+        "invitationMsg": "Messaggio invito",
+        "invitationSubject": "Oggetto invito",
+        "addCCRecipients": "Aggiungi destinatari CC",
+        "language": "Selezionare la lingua ",
+        "selectfile": "Seleziona file",
+        "defaultlng": "English",
+        "imageheader": "Immagine da inserire nell'invito"
+      },
+      "tooltip": {
+        "removeImage": "Rimuovi immagine"
+      }
+    },
+    "workflowForm": {
+      "title": "Flusso di lavoro",
+      "workflowName": "Nome flusso di lavoro",
+      "description": "Descrizione",
+      "status": "Stato",
+      "service": "Servizio",
+      "createdDate": "Data creazione",
+      "createdBy": "Creato da",
+      "report": "Rapporto",
+      "workflowUpdateSuccessMSg": "Flusso di lavoro aggiornato correttamente",
+      "validationMsgs": {
+        "workflowName": "Il nome del flusso di lavoro è obbligatorio",
+        "description": "La descrizione del flusso di lavoro è obbligatoria"
+      }
+    },
+    "download": {
+      "title": "Scarica rapporto",
+      "downloadMSg": "Richiesta di esportazione inviata. Verrà inviata una notifica tramite posta elettronica quando i dati saranno disponibili.",
+      "downloadError": "Nessun record trovato."
+    },
+    "task": {
+      "name": "Nome attività",
+      "type": "Tipo",
+      "stage": "Fornisci",
+      "createdBy": "Creato da",
+      "createdDate": "Data creazione",
+      "fgTitle": "Gruppi di campi personalizzati",
+      "fgLabel": "Selezionare i gruppi di campi che fanno parte di questa attività",
+      "info": "È possibile selezionare solo i principali. I gruppi di campi secondari verranno selezionati automaticamente",
+      "add": "Aggiungi attività personalizzata",
+      "taskNameValidation": "Il nome dell'attività è obbligatorio",
+      "customTaskUpdateSuccess": "Attività personalizzata aggiornata.",
+      "customTaskCreateSuccess": "Attività personalizzata creata.",
+      "CustomTaskCreateFailure": "Creazione dell'attività non riuscita",
+      "deleteTaskSuccess": "Attività selezionate eliminate correttamente.",
+      "deleteTaskFailure": "Impossibile eliminare le attività."
+    }
+  },
+  "customField": {
+    "title": "Gestisci campi personalizzati",
+    "fieldGroups": {
+      "title": "Gruppi di campi",
+      "add": "Aggiungi gruppo di campi",
+      "edit": "Modifica gruppo di campi",
+      "name": "Nome gruppo",
+      "description": "Descrizione",
+      "descValidation": "La descrizione non può contenere più di 4000 caratteri",
+      "makeDependentOn": "Rendi dipendente da un campo personalizzato",
+      "selectQuestion": "Selezionare un campo personalizzato",
+      "answer": "Risposta",
+      "and": "And",
+      "or": "Or",
+      "roles.title": "Assegnazione dei ruoli",
+      "roles": "Ruoli disponibili",
+      "permissions": "Visualizza autorizzazioni",
+      "users": "Visualizza utenti"
+    },
+    "field": {
+      "name": "Nome campo",
+      "id": "ID campo",
+      "type": "Tipo campo",
+      "add": "Aggiungi campo personalizzato",
+      "edit": "Modifica campo",
+      "default": "Valore predefinito",
+      "instructions": "Istruzioni:",
+      "maxFields": "Il numero massimo di campi personalizzati è <b>{{maxFields}}</b>.",
+      "sortAlphabatic": "Ordine alfabetico",
+      "firstDefault": "Utilizzare il primo valore come risposta predefinita",
+      "makeDependentOn": "Rendi dipendente da un altro campo personalizzato",
+      "dependentFieldname": "Nome campo",
+      "answer": "Risposta",
+      "and": "And",
+      "or": "Or",
+      "type.label": {
+        "Text": "Testo",
+        "Text Area": "Areatesto",
+        "Number": "Numero",
+        "Multiple Choice": "Scelta multipla",
+        "Radio Button": "Pulsante di opzione",
+        "Drop-down": "Elenco a discesa",
+        "Date": "Data",
+        "File Upload": "Caricamento file",
+        "File Download": "Download file"
+      }
+    },
+    "addFiled": {
+      "text": "Campo di testo/area di testo",
+      "number": "Numero",
+      "multiChoice": "Scelta multipla",
+      "radioButton": "Elenco pulsanti di opzione",
+      "dropdown": "Elenco a discesa",
+      "date": "Data",
+      "file_upload": "Caricamento file",
+      "file_download": "Download file",
+      "download.instruction": "Allegare un file che potrà essere scaricato dall'utente"
+    },
+    "label": "Etichetta",
+    "mandatory": "Obbligatorio",
+    "dependency": "Dipendenza",
+    "dependent": "Dipendente da",
+    "validation": {
+      "fieldName": "Il nome del campo è obbligatorio",
+      "fieldId": "ID campo obbligatorio",
+      "fieldIdInvalid": "L'ID campo non è valido",
+      "fieldGroupName": "Il nome del gruppo è obbligatorio",
+      "defaultValue": "Immettere un valore predefinito valido"
+    },
+    "validationMsgs": {
+      "emptyFiles": "Empty files cannot be uploaded",
+      "maxFiles": "Maximum of 5 files can be uploaded",
+      "fileType": "Executable files are not allowed",
+      "fileSize": "Files bigger than 25MB are not allowed",
+      "fileName": "File name cannot be more than 120 characters"
+    },
+    "messages": {
+      "success": {
+        "addField": "Nuovo campo personalizzato aggiunto correttamente",
+        "addFieldGroup": ""
+      },
+      "failure": {
+        "addField": "",
+        "addFieldGroup": "",
+        "fieldMaxLimit": "Your company subscription only allows you to have {0} custom fields. Please contact your administrator or account manager in case you need to add more.",
+        "maxLimit": "La sottoscrizione aziendale ti consente di avere solo {0} gruppi di campi personalizzati. Contattare l'amministratore o il responsabile dell'account se occorre aggiungerne altri.",
+        "roleFailure": {
+          "limit": "È consentito selezionare massimo 30 ruoli",
+          "edit": "È richiesto almeno un ruolo con l'autorizzazione Modifica",
+          "noUsers": ["Nessun record"]
+        }
+      },
+      "warning": {
+        "choice": "È richiesta almeno una (1) opzione",
+        "deleteChoice": "Se si procede, l'opzione sarà eliminata da tutti i profili dei partner. Continuare?",
+        "radioButtonChoice": "Aggiungi opzioni per il campo Pulsante di opzione",
+        "dropdownChoice": "È richiesta almeno una (1) opzione"
+      },
+      "notificationTitle": {
+        "createGroupFail": "Impossibile aggiungere nuovo gruppo",
+        "updateGroupFail": "Impossibile aggiornare il gruppo",
+        "createFieldFail": "Failed to add new Field",
+        "deleteFail": "Eliminazione non riuscita",
+        "noField": "Nessun campo presente"
+      }
+    }
+  },
+  "customdata": {
+    "title": "Dati personalizzati",
+    "requiremsg": " Richiede un valore valido",
+    "multiSelectedMsg": "{0} opzioni totali selezionate"
+  },
+  "createInvitation": {
+    "email": "Indirizzo di posta elettronica",
+    "invited": "Partner commerciale invitato correttamente"
+  },
+  "communitypage": {
+    "title": "Community Manager"
+  },
+  "globalSearch": {
+    "title": "Elenco partner globali",
+    "ediIds": "ID EDI",
+    "searchBy": "Cerca per",
+    "filterBy": "Ottimizza per"
+  },
+  "invitedTps": {
+    "companyName": "Nome azienda",
+    "companyId": "ID azienda",
+    "email": "Indirizzo di posta elettronica",
+    "type": "Tipo",
+    "workflowName": "Flusso di lavoro",
+    "invitationName": "Nome invito",
+    "invitationCode": "Codice invito",
+    "invitationStatus": "Stato",
+    "invitedDate": "Data invito",
+    "daysOpen": "Giorni di apertura",
+    "overview": "Introduzione",
+    "reinvite": "Ripeti invito",
+    "deleteInvite": "Elimina invito",
+    "messages": {
+      "success": {
+        "reinviteMsg": "Ripetizione dell'invito completata correttamente.",
+        "deleteInvitationMsg": "Invito eliminato correttamente."
+      },
+      "error": {
+        "reinviteMsg": "Ripetizione dell'invito non riuscita.",
+        "deleteInvitationMsg": "Errore durante l'eliminazione dell'invito."
+      },
+      "alert": {
+        "deleteInvitationMsg": "Eliminare l'invito?",
+        "reinviteMsg": "Stai per inviare nuovamente l'invito a {0}. L'invito verrà inviato a {1}.",
+        "reinvite.confirm": " Continuare?"
+      },
+      "alertHeader": {
+        "reinvite": "Invia di nuovo l'invito al partner commerciale"
+      }
+    }
+  },
+  "preview": {
+    "text": "<p><b>{{companyName}}</b> ha richiesto una partnership con la tua azienda per eseguire operazioni commerciali su OpenText Trading Grid tramite <b>{{service}}</b>.</p><p>{{invitationcontent}}</p><p>Utilizzando questo servizio con {{companyName}} ha richiesto che la tua azienda si registri su Grid, fornisca informazioni specifiche sull'azienda e approvi i termini e le condizioni online. La prima persona che eseguirà queste operazioni per la tua azienda diventerà l'amministratore dell'azienda e potrà aggiungere altri utenti all'account aziendale. Se sei la persona preposta a questa attività, registrati utilizzando il seguente collegamento: </p><span class='ot-hyperlink-imitation'><a>{{completeRegistrationUrl}}/[InvitationCode]</a></span><p>Se il collegamento precedente non funziona, è possibile accedere direttamente al Grid all'indirizzo <span class='ot-hyperlink-imitation'><a>{{registrationUrl}}</a></span> e utilizzare il seguente codice di invito: [InvitationCode]</p><p>Se sei un utente esistente, accedi a Grid per accedere a questo invito dal Centro messaggi e potrai ignorare alcune procedure di registrazione.</p><p>Dopo aver inviato la registrazione, riceverai un'email che indica la tua attivazione su Grid. In caso di domande sul processo di registrazione o sull'uso di Grid, contatta il team di assistenza della rete commerciale locale. Il collegamento seguente fornisce informazioni per tutte le aree geografiche e i servizi di assistenza:</p><span class='ot-hyperlink-imitation'><a>http://www.opentext.com/support</a></span><br><p>Saluti,</p><p>L'Amministratore di OpenText Trading Grid</p><p><b>Nota:</b>questa email è stata generata automaticamente. Le risposte a questa email non saranno ricevute.</p><br><div class='cm-ts-invitation-preview-copyright'>Copyright © {{currentYear}}. OpenText. Tutti i diritti riservati.<br>Marchi commerciali di proprietà di Open Text.</div>",
+    "title": "Anteprima"
+  },
+  "tradingpartnerreltationship": {
+    "actions.tooltip": "Seleziona fino a 10 righe",
+    "confirmation.message": "Continuare?",
+    "approve": {
+      "title": "Approva",
+      "dialogue.title": "Le relazioni con i partner commerciali selezionati saranno approvate.",
+      "success": "Rapporti con i partner commerciali approvati correttamente."
+    },
+    "terminate": {
+      "title": "Elimina",
+      "dialogue.title": "Le relazioni con i partner commerciali selezionate saranno eliminate.",
+      "success": "Relazioni commerciali eliminate correttamente."
+    },
+    "reject": {
+      "title": "Rifiuta",
+      "dialogue.title": "Le relazioni con i partner commerciali selezionati saranno rifiutate.",
+      "message": "Immettere il motivo del rifiuto:",
+      "success": "Le relazioni con i partner commerciali sono state respinte correttamente."
+    },
+    "messages": {
+      "reject": "Il motivo del rifiuto non deve superare i 256 caratteri.",
+      "enterReason": "Immettere il motivo del rifiuto.",
+      "success.terminate": "Partner commerciali eliminati correttamente.",
+      "success.reject": "Partner commerciali rifiutati correttamente",
+      "success.approve": "Partner commerciali approvati correttamente.",
+      "failed": "Non tutti i partner commerciali sono stati rifiutati/approvati/eliminati correttamente."
+    },
+    "title": "Informazioni sulla partnership",
+    "status": "Stato della partnership",
+    "type": "Tipo di partnership",
+    "partneraddress": "Partner commerciale",
+    "partnervan": "Partner VAN/fornitore di servizi",
+    "partneredi": "Indirizzo EDI partner",
+    "partneralias": "Alias partner",
+    "youredi": "Il tuo indirizzo EDI",
+    "yourrole": "Il tuo ruolo",
+    "youralias": "Il tuo alias",
+    "billingheader": "Informazioni di fatturazione",
+    "splitcharges": "Spese ripartite",
+    "transcharges": "Oneri di transazione",
+    "sendingby": "Invio pagato da",
+    "receivingby": "Ricezione pagata da",
+    "storageby": "Archivio della casella di posta del destinatario pagato da",
+    "allcharges": "Tutti gli addebiti verranno pagati da"
+  },
+  "datatable": {
+    "about": "Informazioni su",
+    "NoRecord": "No Records Found"
+  },
+  "header": {
+    "userProfile": {
+      "title": "Profilo personale",
+      "downloads": "I miei download",
+      "signout": "Esci"
+    },
+    "signOut": {
+      "confirmation": {
+        "title": "Esci",
+        "message": "Uscire da TGO?"
+      }
+    }
+  }
+}

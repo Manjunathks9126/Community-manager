@@ -1,0 +1,38 @@
+{
+	"fields": [
+		{
+			"label": "BUID",
+			"key" : "BUID",
+			"required": true,
+			"validationRules": {
+				"MAXLENGTH" : 25,
+				"PATTERN": "[A-Za-z0-9\\s]+"
+			}
+		},
+		{
+			"label": "Company Name",
+			"key" : "Company Name",
+			"required": true,
+			"validationRules": {
+				"MAXLENGTH" : 100,
+				"FORBIDDEN_PATTERN": "[|*\\:?/<>]"
+			}
+		},
+		{
+			"label": "Company ID",
+			"key" : "Company ID",
+			"validationRules": {
+				"MAXLENGTH" : 25,
+				"PATTERN": "[A-Za-z0-9_\\s]+"
+			}
+		},
+		{
+			"label": "Display Name",
+			"key" : "Display Name",
+			"validationRules": {
+				"MAXLENGTH" : 25,
+				"FORBIDDEN_PATTERN": "[|*\\:?/<>]"
+			}
+		}
+	]
+}

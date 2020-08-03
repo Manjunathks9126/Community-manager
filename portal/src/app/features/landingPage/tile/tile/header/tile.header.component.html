@@ -1,0 +1,9 @@
+<div (click)="handleOnClick(tileHeader.src)" class="cm-tile-header">
+    <div class="cm-tile-header-icon">
+        <span *ngIf="tileHeader.iconImageSrc" class="ot-icon-lg" [ngStyle]="{background: 'url(' + tileHeader.iconImageSrc + ')'}"></span>
+    </div>
+    <div  class="cm-tile-title" style="cursor: pointer;">
+         <div style="overflow:hidden"><span *ngIf="!isSearchEnabled" class="cm-title-text">{{tileHeader.displayText}}<span style="margin-left: .3em;" *ngIf="tileHeader.showCount"> {{tprCount}}</span></span></div>
+        <ot-search *ngIf="tileHeader.searchEnabled" (onSearch)="handleOnSearch($event)" (isEnabled)="handleSearchEnableEvent($event)"></ot-search>
+    </div>
+</div>

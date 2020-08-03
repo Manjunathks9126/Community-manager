@@ -1,0 +1,6 @@
+<div class="cm-tile-content ot-background-white" [perfectScrollbar]="config" (psYReachEnd)="onScrollEvent($event)">
+    <div *ngIf="!contentLoaded" class="custom-loader-container">
+        <div class="loader"></div>
+    </div>
+    <tradingPartner-tile *ngIf="tileContent?.displaySrc == '1210718'" [tpDirectoryContent]="tileContentDetails"></tradingPartner-tile>
+</div>

@@ -1,0 +1,185 @@
+<div style="height: calc(100% - 4em);">
+  <div class="ot-faceted-content">
+    <!-- Search panel -->
+    <div class="ot-filter-container" *ngIf="isSearchClicked">
+      <div class="ot-toolbar-container">
+        <h2>{{'tpdir.search.title'| translate}}</h2>
+      </div>
+      <ot-accordion [multiple]="false">
+        <ot-accordionTab header="{{'common.company'| translate}}" [selected]="true">
+          &nbsp;&nbsp;&nbsp;
+          <ot-radioButton name="nameGroup" value="companyName" label="{{'tpdir.read.companyName'| translate}}" [(ngModel)]="searchAttribute"></ot-radioButton>
+          <!-- <ot-radioButton name="nameGroup" value="displayName" label="{{'tpdir.read.displayName'| translate}}" [(ngModel)]="searchAttribute"></ot-radioButton> -->
+          <div class="ot-ui-g">
+            <div class="ot-ui-g-12">
+              <input [disabled]="searchAttribute!='companyName' && searchAttribute!='displayName'" type="text" (keyup.enter)="searchData()"
+                placeholder="{{(searchAttribute=='companyName' ? 'tpdir.read.companyName' : '')| translate}}" [(ngModel)]="companyName"
+              />
+              <!-- <input *ngIf="searchAttribute=='displayName'" type="text"  (keyup.enter)="searchData()" placeholder="{{'tpdir.read.displayName'| translate}}" [(ngModel)]="companyName" /> -->
+            </div>
+          </div>
+
+
+          <!--  <ot-radioButton name="nameGroup" value="companyId" label="{{'tpdir.read.companyID'| translate}}" [(ngModel)]="searchAttribute"></ot-radioButton>
+          <div class="ot-ui-g">
+            <div class="ot-ui-g-12">
+              <input type="text" [disabled]="searchAttribute!='companyId'" (keyup.enter)="searchData()" placeholder="{{'tpdir.read.companyID'| translate}}"
+                [(ngModel)]="partnerCompanyId" />
+            </div>
+          </div>-->
+
+          &nbsp;&nbsp;&nbsp;
+          <ot-radioButton name="nameGroup" value="ediAddress" label="{{'tpdir.read.ediAddresses'| translate}}" [(ngModel)]="searchAttribute"></ot-radioButton>
+          <div class="ot-ui-g">
+            <div class="ot-ui-g-3">
+              <input type="text" maxlength="4" [disabled]="searchAttribute!='ediAddress'" placeholder="{{'tpdir.search.qualifier'| translate}}"
+                [(ngModel)]="qualifier" />
+            </div>
+            <div class="ot-ui-g-9">
+              <input type="text" maxlength="39" [disabled]="searchAttribute!='ediAddress'" (keyup.enter)="searchData()" placeholder="{{'tpdir.search.ediAddress'| translate}}"
+                [(ngModel)]="ediAddress" />
+            </div>
+          </div>
+          <button class="ot-micro-primary" type="button" (click)="searchData()" [disabled]="(!((searchAttribute=='companyName' || searchAttribute=='displayName') && companyName && companyName.trim().length>0)
+            && !(searchAttribute=='ediAddress' && ediAddress && ediAddress.trim().length>0) && !(searchAttribute=='companyId' && partnerCompanyId && partnerCompanyId.trim().length>0)) || (searchAttribute=='ediAddress' && qualifier && !ediAddress)">{{'common.Apply'| translate}}
+          </button>
+          <button class="ot-micro-secondary" type="button" (click)="clearSearchCriteria()">{{'common.Cancel'| translate}}
+          </button>
+        </ot-accordionTab>
+      </ot-accordion>
+    </div>
+    <!-- Search panel ends -->
+
+    <!-- Filter panel starts -->
+    <div class="ot-filter-container" *ngIf="isFilterClicked">
+      <div class="ot-toolbar-container">
+        <h2>{{'common.filter.header'| translate}}</h2>
+      </div>
+      <ot-accordion [multiple]="false">
+        <ot-accordionTab header="{{'common.company'| translate}}" [selected]="true">
+
+          <div class="ot-ui-g">
+            <div class="ot-ui-g-12"> {{'common.status'| translate}} </div>
+          </div>
+          <div class="ot-ui-g filterStatus">
+
+            <div class="ot-col-md-12" *ngFor="let status of filterOptions.companyStatus; let i =index">
+
+              <ot-checkbox name="status{{i}}" value="{{status}}" [label]="formatStatus(status)" [(ngModel)]="selectedstatus"></ot-checkbox>
+
+            </div>
+          </div>
+          <button class="ot-micro-primary" type="button" (click)="filterData()" [disabled]="!filterHasData()">{{'common.Apply'| translate}}
+          </button>
+          <button class="ot-micro-secondary" type="button" (click)="displayFilterPanel()">{{'common.Cancel'| translate}}
+          </button>
+        </ot-accordionTab>
+      </ot-accordion>
+    </div>
+    <!-- Filter panel ends -->
+
+    <div [ngClass]="(isFilterClicked||isSearchClicked)? 'ot-datatabale-container-shrinked' : 'ot-datatable-container'">
+      <div class="ot-chipset-header" [style.height.em]="isFilterApplied ? 3 : 0" [style.display]="isFilterApplied  ? 'block' : 'none'">
+        <div id="comapanyName" class="ot-chipset" *ngIf="selectedFilters.companyName!=undefined&&selectedFilters.companyName.length>0">
+          {{'tpdir.read.companyName'| translate}}: {{selectedFilters.companyName}}
+          <span class="ot-image-close-chipset" (click)='clearCompanyChipset()'></span>
+        </div>
+        <div id="comapanyDispName" class="ot-chipset" *ngIf="selectedFilters.displayName!=undefined&&selectedFilters.displayName.length>0">
+          {{'tpdir.read.displayName'| translate}}: {{selectedFilters.displayName}}
+          <span class="ot-image-close-chipset" (click)='clearCompanyChipset()'></span>
+        </div>
+        <div id="partnerComapanyId" class="ot-chipset" *ngIf="selectedFilters.partnerCompanyId!=undefined&&selectedFilters.partnerCompanyId.length>0">
+          {{'tpdir.read.companyID'| translate}}: {{selectedFilters.partnerCompanyId}}
+          <span class="ot-image-close-chipset" (click)='clearCompanyIdChipset()'></span>
+        </div>
+        <div id="ediAddress" class="ot-chipset" *ngIf="(selectedFilters.qualifier!=undefined&&selectedFilters.qualifier.length>0) || (selectedFilters.ediAddress!=undefined&&selectedFilters.ediAddress.length>0)">
+          {{'tpdir.search.ediAddress'| translate}}: {{selectedFilters.qualifier}} {{(selectedFilters.qualifier && selectedFilters.ediAddress)?":":""}}
+          {{selectedFilters.ediAddress}}
+          <span class="ot-image-close-chipset" (click)='clearEdiChipset()'></span>
+        </div>
+
+        <div class="ot-chipset" *ngIf="selectedFilters.status!=undefined&&selectedFilters.status.length>0">
+          {{'tpdir.read.status'| translate}}:
+          <span *ngFor="let status of selectedFilters.status" style="margin-right:10px">{{status}}</span>
+          <span class="ot-image-close-chipset" (click)='clearStatusChipset()'></span>
+        </div>
+        <div *ngIf="numberOfFiltersApplied>2" class="ot-clear-all-chipset" (click)="clearFilter()">
+
+          <span class="ot-image-close-chipset"></span> {{'common.clear.filter'|translate}}
+        </div>
+      </div>
+
+      <div class="ot-toolbar-container">
+        <span (click)="displaySearchPanel()" [ngClass]="isSearchClicked ? 'ot-toolbar-item-selected' : 'ot-toolbar-item'">
+          <div class="ot-icon ot-icon-toolbar ot-icon-toolbar-search" tooltip="{{'common.tooltip.search'|translate}}"></div>
+        </span>
+        <span class="ot-vertical-line"></span>
+        <span *ngIf="selectedData?.length>0" class="ot-toolbar-item ot-panel-span" (click)="exportToCsv(tpdt)">{{'common.Export'| translate}}
+        </span>
+        <span *ngxPermissionsOnly="permissions.enablingOnboarding">
+          <span class="ot-toolbar-item ot-panel-span" tooltip="{{'tradingpartnerreltationship.actions.tooltip'|translate}}" (click)="approveRejectDialogbox('approve')"
+            *ngIf="pendingStatus==true&&selectedData?.length>0&&selectedData?.length<=maxSelection">{{'tradingpartnerreltationship.approve.title'|translate}}
+          </span>
+          <span class="ot-toolbar-item ot-panel-span" tooltip="{{'tradingpartnerreltationship.actions.tooltip'|translate}}" (click)="terminateDialogbox('terminate')"
+            *ngIf="terminateStatus==true&&selectedData?.length>0&&selectedData?.length<=maxSelection">{{'tradingpartnerreltationship.terminate.title'|translate}}</span>
+          <span class="ot-toolbar-item ot-panel-span" tooltip="{{'tradingpartnerreltationship.actions.tooltip'|translate}}" (click)="approveRejectDialogbox('reject')"
+            *ngIf="pendingStatus==true&&selectedData?.length>0&&selectedData?.length<=maxSelection">{{'tradingpartnerreltationship.reject.title'|translate}}</span>
+        </span>
+      </div>
+      <div [style.height]="!(isFilterApplied) ?'calc( 100% - 2.625em)':'calc( 100% - 5.625em)'">
+        <ot-dataTable [locale]="currentLanguage" name="tpr-list-datatable" #tpdt [(value)]="tplist" [rows]="filterOptions?.rowsPerPage" [paginator]="true" [(selection)]="selectedData"
+          [headerCheckboxToggleAllPages]="false" (onHeaderCheckboxToggle)="handleRowSelect($event)" scrollable="false" [lazy]="true"
+          [responsive]="false" (onLazyLoad)="lazyLoadTPList($event)" [totalRecords]="totalRecords" (onSort)="sortTpData($event)"
+          (onRowSelect)="onSelect()" (onRowUnselect)="onSelect()" [rowsPerPageOptions]="[30,60,100]" [scrollHeight]="isFilterApplied">
+          <ot-column [style]="{'width':'3%'}" selectionMode="multiple"></ot-column>
+
+          <ot-column [style]="{'width':'20%'}" field="companyName" header="{{'tpdir.tprView.companyName'| translate}}">
+            <ng-template let-col let-company="rowData" pTemplate="body">
+              <a class="ot-block-anchor" (click)="redirectToEdit(company.companyId,company.displayName)">
+                {{company.companyName}}
+              </a>
+            </ng-template>
+          </ot-column>
+          <ot-column [style]="{'width':'15%'}" field="displayName" header="{{'tpdir.tprView.displayName'| translate}}"></ot-column>
+
+          <ot-column [style]="{'width':'15%'}" field="ediAddress" header="{{'tpdir.tprView.partnerEDIAddress'| translate}}"></ot-column>
+          <ot-column [style]="{'width':'10%'}" field="vanProvider" header="{{'tpdir.tprView.partnerVAN'| translate}}"></ot-column>
+          <ot-column [style]="{'width':'15%'}" field="yourAddress" header="{{'tpdir.tprView.yourEDIAddress'| translate}}"></ot-column>
+          <ot-column [style]="{'width':'7%'}" field="yourRole" header="{{'tpdir.tprView.yourRole'| translate}}"></ot-column>
+          <ot-column [style]="{'width':'7%'}" field="tprType" header="{{'tpdir.tprView.tprType'| translate}}"></ot-column>
+          <ot-column [style]="{'width':'10%'}" field="status" header="{{'tpdir.tprView.status'| translate}}"></ot-column>
+        </ot-dataTable>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ot-dialoguebox header=" {{'tradingpartnerreltationship.approve.title'| translate}}"  iconClass=" ot-warning-icon"  name="confirmApprove"
+  acceptButton="{{'common.confirm'| translate}}"  rejectButton="{{'common.Cancel' | translate}}">
+  <div dialog-message>
+    {{'tradingpartnerreltationship.approve.dialogue.title'| translate}}
+    <br>
+    <br> {{'tradingpartnerreltationship.confirmation.message'| translate}}
+  </div>
+</ot-dialoguebox>
+
+<ot-dialoguebox header=" {{'tradingpartnerreltationship.terminate.title'| translate}}"  iconClass=" ot-warning-icon"  name="confirmTerminate"
+  acceptButton="{{'common.confirm'| translate}}"  rejectButton="{{'common.Cancel' | translate}}">
+  <div dialog-message>
+    {{'tradingpartnerreltationship.terminate.dialogue.title'| translate}}
+    <br>
+    <br> {{'tradingpartnerreltationship.confirmation.message'| translate}}
+  </div>
+</ot-dialoguebox>
+<ot-dialoguebox header=" {{'tradingpartnerreltationship.reject.title'| translate}}"  iconClass=" ot-warning-icon"  name="confirmReject"
+   acceptButton="{{'common.confirm'| translate}}"  rejectButton="{{'common.Cancel' | translate}}">
+  <div dialog-message>
+    {{'tradingpartnerreltationship.reject.dialogue.title'| translate}}
+    <br>
+    <br> {{'tradingpartnerreltationship.confirmation.message'| translate}}
+    <div class="ot-form-group">
+      <label class="ot-required">{{'tradingpartnerreltationship.reject.message'| translate}}</label>
+      <textarea name="rejectReason" required [(ngModel)]=rejectReason id="rejectReason" cols="10" rows="5" trim="blur"></textarea>
+    </div>
+  </div>
+</ot-dialoguebox>

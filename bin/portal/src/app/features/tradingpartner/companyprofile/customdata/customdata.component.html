@@ -1,0 +1,4 @@
+<div [style.height]="'calc(100%)'">
+    <custom-task-executor *ngIf="customTaskFlag" [customGrpData]="FieldGroups" (customTask)="onSaveFn($event)" 
+    (cancleData)="reloadGroupData()" (returnToPage)="cancle($event)" (fileNotification)="handleFileNotification($event)"></custom-task-executor> 
+</div>

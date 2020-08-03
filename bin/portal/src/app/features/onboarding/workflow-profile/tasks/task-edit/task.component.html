@@ -1,0 +1,49 @@
+<div class="cm-onboarding-container-custom " [perfectScrollbar]="scrollConfig">
+    <form #taskForm="ngForm" style="height: 100%;">
+        <div class="ot-faceted-content">
+
+            <div class="ot-row cm-row-onboarding ">
+                <div class="ot-col-sm-5">
+                    <label class="ot-form-control-label ot-required">{{'onboarding.task.name'|translate}}</label>
+                    <input required type="text" maxlength="20" name="taskName" [(ngModel)]="task.displayName" #taskName="ngModel">
+                </div>
+                <div *ngIf="!taskName && (taskName.dirty || taskName.touched)">
+                    {{!taskName && (taskName.dirty || taskName.touched)}}
+                    <div class="ot-error">{{'onboarding.onboarding.task.taskNameValidation'|translate}}</div>
+                </div>
+
+            </div>
+
+            <div class="ot-row cm-row-onboarding ">
+                <hr>
+                <h3>{{'onboarding.task.fgTitle'|translate}}</h3>
+            </div>
+            <div class="ot-row cm-row-onboarding">
+                <div class="ot-col-sm-5">
+                    <label class="ot-form-control-label">{{'onboarding.task.fgLabel'|translate}}</label>
+                    <ot-multi-select name="fieldGroupList" [options]="fieldGroupListOption" optionLabel="label" dataKey="value" [returnKeyOnly]="true"
+                        styleClass="cm-p-dropdown" [(ngModel)]="selectedFieldGroups"></ot-multi-select>
+                </div>
+            </div>
+            <div class="ot-row cm-row-onboarding">
+                <div class="ot-col-sm-5">
+                    <label class="ot-form-control-label cm-font-italic">
+                        {{'onboarding.task.info'|translate}}</label>
+                </div>
+            </div>
+        </div>
+
+    </form>
+</div>
+<footer class="ot-page-footer-container footer">
+    <div class="ot-form-footer">
+        <ng-container *ngIf="createFlag=='false'; else footer">
+            <button type="button" class="ot-primary" [disabled]="!taskForm.form.dirty ||!task.displayName" (click)="saveTask(task.taskId)">{{'common.save'|translate}}</button>
+            <button type="button" class="ot-secondary" [routerLink]="['../../']" skipLocationChange>{{'common.Cancel'|translate}}</button>
+        </ng-container>
+        <ng-template #footer>
+            <button type="button" class="ot-primary" [disabled]="!taskForm.form.valid&&!task.displayName" (click)="createTask()">{{'common.save'|translate}}</button>
+            <button type="button" class="ot-secondary" [routerLink]="['../']" skipLocationChange>{{'common.Cancel'|translate}}</button>
+        </ng-template>
+    </div>
+</footer>

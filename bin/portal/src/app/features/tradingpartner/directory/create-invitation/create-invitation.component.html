@@ -1,0 +1,31 @@
+<div *ngIf="!registrationTasksListURL && requesterTaskSchema" class="custom-main-container">
+    <div class="ot-ui-g ot-page-header-container">
+        <p class="ot-page-header-title">
+            {{'tpdir.create.title'|translate}}:&nbsp;{{invitation?.invitationName}}</p>
+    </div>
+    <div class="invitn-dc-container">
+        <json-schema-form [schemaJson]="requesterTaskSchema" [inputUrl]=""
+            (singleFormOutput)="processInvitation($event)" (formValidation)="formValidation($event)"></json-schema-form>
+    </div>
+    <footer class="ot-page-footer-container footer">
+        <div class="ot-form-footer">
+            <button class="ot-primary" type="button" [disabled]="!isFormValid" (click)="initiateInvitation()">{{ (
+                tpSelfServiceMode ? 'common.invite' : 'common.continue' ) | translate }}</button>
+            <button class="ot-secondary" type="button" (click)="cancel()"
+                tooltip="{{'common.Cancel'|translate}}">{{'common.Cancel'|translate}}</button>
+        </div>
+    </footer>
+</div>
+
+<div *ngIf="registrationTasksListURL" class="custom-main-container">
+    <div class="company-registration-container">
+        <workflow-executor [submitUrl]="submitUrl" inputDataUrl="" [taskListUrl]="registrationTasksListURL"
+            [contextData]="contextData"></workflow-executor>
+    </div>
+    <ot-dialoguebox iconClass="ot-warning-icon" header="{{'common.dialogmsg'|translate}}" name="cancelRegistration"
+        acceptButton="{{'common.confirm'|translate}}" rejectButton="{{'common.Cancel'|translate}}">
+        <div dialog-message>
+            {{'common.cancelmsg' | translate}}
+        </div>
+    </ot-dialoguebox>
+</div>

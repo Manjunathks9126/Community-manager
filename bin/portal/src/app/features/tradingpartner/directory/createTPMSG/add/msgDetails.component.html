@@ -1,0 +1,338 @@
+<div #container [ngClass]="!showMapFlag ? 'cm-onbaording-facet-custom':'cm-onbaording-facet'" [perfectScrollbar]="scrollConfig">
+
+    <div [hidden]="!showMapFlag">
+
+        <form #msgForm="ngForm">
+
+            <div class="ot-row ot-row-custom">
+                <!--  <form #msgForm="ngForm"> -->
+                <div class="ot-col-sm-12 clear-bottom">
+                    <span>{{'tpmsg.legends.sendReceiverDetails'|translate}}</span>
+                </div>
+                <div class="ot-col-sm-3">
+                    <label class="ot-form-control-label ot-required">
+                        {{'tpmsg.fields.ediStnd'|translate}}</label>
+                    <div class="ot-col-sm-12">
+                        <ot-select-dropdown name="ediStnd" styleClass="cm-p-dropdown" [(ngModel)]="workFlow.provisioningRequestData.registrationData.tradingAddress.ediStadard"
+                            [disabled]="true" [editable]="false" required></ot-select-dropdown>
+                    </div>
+                </div>
+                <div class="ot-col-sm-3">
+                    <label class="ot-form-control-label ot-required">
+                        {{'tpmsg.fields.connectivityType'|translate}}</label>
+                    <div class="ot-col-sm-12">
+                        <ot-select-dropdown name="connectivityType" styleClass="cm-p-dropdown" [(ngModel)]="workFlow.provisioningRequestData.registrationData.tradingAddress.connectivityType"
+                            [disabled]="true" [editable]="false" required></ot-select-dropdown>
+                    </div>
+                </div>
+                <div class="ot-col-sm-3">
+                    <label class="ot-form-control-label ot-required">
+                        {{'tpmsg.fields.vanName'|translate}}</label>
+                    <div class="ot-col-sm-12">
+                        <ot-select-dropdown name="vanProvider" [options]="vanProvidersList" placeholder="{{'common.default.select.txt'| translate}}"
+                            styleClass="cm-p-dropdown" [disabled]="vanDisableFlag" [editable]="false" [(ngModel)]="workFlow.provisioningRequestData.registrationData.tradingAddress.vanProvider"
+                            #vanProvider="ngModel" required></ot-select-dropdown>
+                    </div>
+                </div>
+                <!--  </form>    till here valid Okay -->
+            </div>
+
+
+            <div class="ot-row ot-row-custom" #entriesError>
+                <div class="ot-col-sm-5" style="margin-bottom:1em;">
+                    <button class="ot-primary" (click)="showMap('open')" type="button">{{'tpdir.create.form.selectMap'|translate}}</button>
+                </div>
+                <div class="ot-col-sm-12">
+                    <label class="ot-form-control-label ot-required" style="font-style: italic;float:left">{{'tpmsg.fields.selectAtLeastOneMap'|translate}}</label>
+                    <div *ngIf="tableEntryError" style="float:left;margin-left:1.5em">
+                        <div class="ot-error">{{'tpdir.create.validationMessages.tableEntries'|translate}}</div>
+                    </div>
+                </div>
+
+                <div id="mapTable" class="ot-col-sm-12 clear-bottom">
+
+                    <div [style.height]="!(isFilterApplied) ?'calc( 100% - 4em )':'calc( 100% - 6em)'">
+                        <ot-dataTable class="msgdetails-datatable" [locale]="currentLanguage" #tpdt [(value)]="selectedMaps"
+                            [headerCheckboxToggleAllPages]="false" [lazy]="true" [responsive]="true" [scrollHeight]="isFilterApplied">
+                            <ot-column [style]="{'width':'15%'}" field="mapName" header="{{'tpdir.read.mapName'| translate}}"></ot-column>
+                            <ot-column [style]="{'width':'10%'}" field="docType" header="{{'tpdir.read.docType'| translate}}"></ot-column>
+                            <ot-column [style]="{'width':'15%'}" field="docVersion" header="{{'tpdir.read.docVersion'| translate}}"></ot-column>
+                            <ot-column [style]="{'width':'8%'}" field="direction" header="{{'tpdir.read.direction'| translate}}"></ot-column>
+                            <!-- <ot-column [style]="{'width':'8%'}" field="usedBy" header="Used by"></ot-column> -->
+                            <ot-column id="tableEntries" [style]="{'width':'18%'}" field="tableEntries" header="{{'tpdir.read.tableEntries'| translate}}">
+                                <ng-template let-col let-map="rowData" pTemplate="body" let-i="rowIndex">
+                                    <div class="cm-custom-template-datatable required" *ngIf="map.direction == 'Outbound' else inboundRow">
+
+                                        <input type="text" [(ngModel)]="map.tableEntries" name="tableEntries{{i}}"
+                                            (change)="trimTableEntries()" style="margin-right: 1em;width:48%!important;"
+                                            placeholder="{{'tpdir.read.preXrefLookup'| translate}}" maxlength="200">
+                                        <input type="text" [(ngModel)]="map.acr" name="acr{{i}}" (change)="trimTableEntries()"
+                                            style="margin-right: 1em;width:48%!important" placeholder="{{'tpdir.read.applicationCrossReference'| translate}}"
+                                            maxlength="200">
+                                    </div>
+                                    <ng-template #inboundRow>
+                                        <div class="cm-custom-template-datatable required">
+                                            <input type="text" [(ngModel)]="map.edi_dc40_test" name="edi_test{{i}}"
+                                                (change)="trimTableEntries()" style="margin-right: 1em;width:48%!important;"
+                                                placeholder="{{'tpdir.read.EDI_DC40_TEST'| translate}}" maxlength="200">
+                                            <input type="text" [(ngModel)]="map.edi_dc40_prod" name="edi_prod{{i}}"
+                                                (change)="trimTableEntries()" style="margin-right: 1em;width:48%!important"
+                                                placeholder="{{'tpdir.read.EDI_DC40_PROD'| translate}}" maxlength="200">
+                                        </div>
+                                    </ng-template>
+                                    &nbsp;
+
+                                </ng-template>
+                            </ot-column>
+                        </ot-dataTable>
+                    </div>
+
+                </div>
+            </div>
+
+
+            <div class="ot-row ot-row-custom">
+                <div class="ot-col-sm-12 ">
+                    <h4>{{'tpmsg.legends.prodDetails'|translate}}</h4>
+                </div>
+            </div>
+            <div class="ot-row ot-row-custom">
+                <div class="ot-col-sm-3">
+                    <label class="ot-form-control-label ot-required"> {{'tpmsg.fields.yourProdAdd'|translate}}</label>
+                    <div class="ot-col-sm-12">
+                        <ot-select-dropdown name="yourProd" [editable]="false" (psYReachEnd)="onScrollToEnd($event)"
+                            [hideLoader]="loaderFlag" placeholder="{{'common.default.select.txt'| translate}}"
+                            styleClass="cm-p-dropdown" [options]="your_prod_addrs" [(ngModel)]="sel_prod_address" required></ot-select-dropdown>
+                    </div>
+                </div>
+                <div class="ot-col-sm-3">
+                    <label class="ot-form-control-label ot-required">{{'tpmsg.fields.yourProdGSID'|translate}}</label>
+                    <div class="ot-col-sm-12">
+                        <input type="text" [ngClass]="prodGsID.errors &&prodGsID.invalid &&(prodGsID.dirty || prodGsID.touched) ? 'ot-error':'ot-text'"
+                            name="prodGsID" [(ngModel)]="workFlow.provisioningRequestData.customer.tradingAddresses.prod.gsId"
+                            #prodGsID="ngModel" required>
+                        <div *ngIf="prodGsID?.errors && prodGsID?.invalid && (prodGsID?.dirty || prodGsID?.touched)">
+                            <div class="ot-error">{{'tpdir.create.validationMessages.prodGsIDReq'|translate}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="ot-row ot-row-custom">
+                <div class="ot-col-sm-3">
+                    <label class="ot-form-control-label ot-required">
+                        {{'tpmsg.fields.tpProdAdd'|translate}}</label>
+                    <div class="ot-col-sm-3">
+                        <input type="text" name="tpqualifier" [disabled]="true" maxlength="4" [(ngModel)]="workFlow.provisioningRequestData.registrationData.tradingAddress.prodtp.qualifier" />
+                    </div>
+                    <div class="ot-col-sm-1" style="padding-left: calc(4% - .5em);">
+                        <span class="cm-edi-saparator">:</span></div>
+                    <div class="ot-col-sm-8">
+                        <input type="text" name="tpaddress" maxlength="34" [disabled]="true" [(ngModel)]="workFlow.provisioningRequestData.registrationData.tradingAddress.prodtp.address" />
+                    </div>
+                </div>
+                <div class="ot-col-sm-3">
+                    <label class="ot-form-control-label ot-required">{{'tpmsg.fields.tpProdGSID'|translate}}</label>
+                    <div class="ot-col-sm-12">
+                        <input type="text" [ngClass]="tpProdgsID.errors &&tpProdgsID.invalid &&(tpProdgsID.dirty || tpProdgsID.touched) ? 'ot-error':'ot-text'"
+                            name="tpProdgsID" [(ngModel)]="workFlow.provisioningRequestData.registrationData.tradingAddress.prodtp.gsId"
+                            #tpProdgsID="ngModel" required>
+                        <div *ngIf="tpProdgsID?.errors && tpProdgsID?.invalid && (tpProdgsID?.dirty || tpProdgsID?.touched)">
+                            <div class="ot-error">{{'tpdir.create.validationMessages.tpProdGsIDReq'|translate}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- form kept here  </form> worked till here -->
+
+            <hr>
+            <div class="ot-row ot-row-custom">
+                <div class="ot-col-sm-12 ">
+                    <h4>{{'tpmsg.legends.testDetails'|translate}}</h4>
+                </div>
+            </div>
+            <div class="ot-row-custom">
+                <ot-checkbox name="copyProdCheck" (click)="copyProdDetails()" binary="true" label="Same as production details"
+                    [(ngModel)]="workFlow.provisioningRequestData.registrationData.tradingAddress.testTpAsProdTp"></ot-checkbox>
+            </div>
+            <div class="ot-row ot-row-custom">
+                <div class="ot-col-sm-3">
+                    <label class="ot-form-control-label ot-required">{{'tpmsg.fields.yourTestAdd'|translate}}</label>
+                    <div class="ot-col-sm-12">
+                        <ot-select-dropdown name="ediStnd1" [editable]="false" (psYReachEnd)="onScrollToEnd($event)"
+                            [hideLoader]="loaderFlag" styleClass="cm-p-dropdown" placeholder="{{'common.default.select.txt'| translate}}"
+                            [options]="your_prod_addrs" [(ngModel)]="sel_test_address" required></ot-select-dropdown>
+                    </div>
+                </div>
+                <div class="ot-col-sm-3">
+                    <label class="ot-form-control-label ot-required">{{'tpmsg.fields.yourTpGSID'|translate}}</label>
+                    <div class="ot-col-sm-12">
+                        <input type="text" [ngClass]="yourTpGSID.errors &&yourTpGSID.invalid &&(yourTpGSID.dirty || yourTpGSID.touched) ? 'ot-error':'ot-text'"
+                            name="yourTpGSID" [(ngModel)]="workFlow.provisioningRequestData.customer.tradingAddresses.test.gsId"
+                            #yourTpGSID="ngModel" required>
+                        <div *ngIf="yourTpGSID?.errors && yourTpGSID?.invalid && (yourTpGSID?.dirty || yourTpGSID?.touched)">
+                            <div class="ot-error">{{'tpdir.create.validationMessages.testGsIdReq'|translate}}</div>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="ot-col-sm-4">
+                    <div class="form-ot-checkbox">
+                        <ot-checkbox name="customerTestISAindicator" label="{{'tpmsg.fields.youUseISA'|translate}}"
+                            binary="true" [(ngModel)]="customerTestISAindicator"></ot-checkbox>
+                    </div>
+                </div> -->
+            </div>
+            <div class="ot-row ot-row-custom">
+                <div class="ot-col-sm-3">
+                    <label class="ot-form-control-label ot-required">
+                        {{'tpmsg.fields.tpTestAdd'|translate}}</label>
+                    <div class="ot-col-sm-3">
+                        <input type="text" name="tpqualifier1" maxlength="4" [(ngModel)]="workFlow.provisioningRequestData.registrationData.tradingAddress.testtp.qualifier"
+                            (ngModelChange)="workFlow.provisioningRequestData.registrationData.tradingAddress.testtp.qualifier = $event.toUpperCase()" />
+                    </div>
+                    <div class="ot-col-sm-1" style="padding-left: calc(4% - .5em);">
+                        <span class="cm-edi-saparator">:</span></div>
+                    <div class="ot-col-sm-8">
+                        <input type="text" [ngClass]="tpaddress1.errors &&tpaddress1.invalid &&(tpaddress1.dirty || tpaddress1.touched) ? 'ot-error':'ot-text'"
+                            name="tpaddress1" maxlength="34" required [(ngModel)]="workFlow.provisioningRequestData.registrationData.tradingAddress.testtp.address"
+                            (ngModelChange)="workFlow.provisioningRequestData.registrationData.tradingAddress.testtp.address = $event.toUpperCase()"
+                            #tpaddress1="ngModel" />
+                        <div *ngIf="tpaddress1?.errors && tpaddress1?.invalid && (tpaddress1?.dirty || tpaddress1?.touched)">
+                            <div class="ot-error">{{'tpdir.create.validationMessages.tptestAddressReq'|translate}}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ot-col-sm-3">
+                    <label class="ot-form-control-label ot-required">{{'tpmsg.fields.tpTestGSID'|translate}}</label>
+                    <div class="ot-col-sm-12">
+                        <input type="text" [ngClass]="gsID.errors &&gsID.invalid &&(gsID.dirty || gsID.touched) ? 'ot-error':'ot-text'"
+                            name="gsID" [(ngModel)]="workFlow.provisioningRequestData.registrationData.tradingAddress.testtp.gsId"
+                            #gsID="ngModel" required>
+                        <div *ngIf="gsID?.errors && gsID?.invalid && (gsID?.dirty || gsID?.touched)">
+                            <div class="ot-error">{{'tpdir.create.validationMessages.tpTestGsIDReq'|translate}}</div>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="ot-col-sm-4">
+                    <div class="form-ot-checkbox">
+                        <ot-checkbox name="tpTestISAindicator" label="TP uses Test ISA Indicator" binary="true"
+                            [(ngModel)]="tpTestISAindicator"></ot-checkbox>
+                    </div>
+                </div> -->
+            </div>
+            <!--  worked till here    -->
+
+            <hr>
+            <div class="ot-row ot-row-custom">
+                <div class="ot-col-sm-12 ">
+                    <h4>{{'tpmsg.legends.msgDetails'|translate}}</h4>
+                </div>
+            </div>
+            <div class="ot-row-custom">
+                <ot-checkbox name="functionalAck" required binary="true" label="{{'tpmsg.fields.reqFunctionAck'|translate}}"
+                    binary="true" [(ngModel)]="functionalAck"></ot-checkbox>
+            </div>
+            <div class="ot-row ot-row-custom">
+                <div class="ot-col-sm-12">
+                    <div class="ot-col-sm-3">
+                        <label class="ot-form-control-label ot-required">
+                            {{'tpmsg.fields.segTerminator'|translate}}</label>
+                        <div class="ot-col-sm-12">
+                            <ot-select-dropdown name="segmentSeparator" #segmentSeparator="ngModel" placeholder="{{'common.default.select.txt'| translate}}"
+                                styleClass="cm-p-dropdown" [options]="seg_terminator" [error]="seg_terminantorFlag"
+                                [(ngModel)]="workFlow.provisioningRequestData.registrationData.tgtsProfiles.messageDetails.segmentTerminator"
+                                (onChange)="checkSeparatorValue()" [editable]="false" required></ot-select-dropdown>
+                        </div>
+                    </div>
+
+                    <div class="ot-col-sm-3">
+                        <label class="ot-form-control-label ot-required">
+                            {{'tpmsg.fields.elemSeprator'|translate}}</label>
+                        <div class="ot-col-sm-12">
+                            <ot-select-dropdown name="elementSeprator" #elementSeprator="ngModel" placeholder="{{'common.default.select.txt'| translate}}"
+                                styleClass="cm-p-dropdown" [options]="elem_separator" [error]="elem_separatorFlag"
+                                [(ngModel)]="workFlow.provisioningRequestData.registrationData.tgtsProfiles.messageDetails.elementSeparator"
+                                (onChange)="checkSeparatorValue()" [editable]="false" required></ot-select-dropdown>
+                        </div>
+                    </div>
+
+                    <div class="ot-col-sm-3">
+                        <label class="ot-form-control-label ot-required">
+                            {{'tpmsg.fields.sublemTerminator'|translate}}</label>
+                        <div class="ot-col-sm-12">
+                            <ot-select-dropdown name="subElementSeparator" #subElementSeparator="ngModel" placeholder="{{'common.default.select.txt'| translate}}"
+                                styleClass="cm-p-dropdown" [options]="sub_elem_separator" [error]="sub_elem_terminatorFlag"
+                                [(ngModel)]="workFlow.provisioningRequestData.registrationData.tgtsProfiles.messageDetails.subelementTerminator"
+                                (onChange)="checkSeparatorValue()" [editable]="false" required></ot-select-dropdown>
+                        </div>
+                    </div>
+                </div>
+                <div class="ot-col-sm-12" style="margin-top: 1em;">
+                    <label class="ot-form-control-label ot-error" *ngIf="separatorErrorFlag">{{'tpmsg.fields.separatorValidationMSG'|translate}}</label>
+                </div>
+            </div>
+
+            <hr>
+            <div class="ot-row ot-row-custom">
+                <div class="ot-col-sm-12 ">
+                    <h4>{{'tpmsg.legends.setupDetails'|translate}}</h4>
+                </div>
+            </div>
+            <div class="ot-row-custom" *ngIf="showSetup">
+                <ot-radioButton name="testing" required value="TESTING" label="{{'tpmsg.setupdetails.testFirst'|translate}}"
+                    [(ngModel)]="workFlow.provisioningRequestData.setup"></ot-radioButton>
+            </div>
+            <div class="ot-row-custom">
+                <ot-radioButton name="final" required value="FINAL" label="{{'tpmsg.setupdetails.setupNow'|translate}}"
+                    [(ngModel)]="workFlow.provisioningRequestData.setup"></ot-radioButton>
+            </div>
+            <input type="hidden" [(ngModel)]="mapSelected" name="mapSelected" />
+        </form>
+    </div>
+
+
+    <!-- Popup Table -->
+    <div [hidden]="showMapFlag" style="height:100%;width:100%;background:#fff;overflow-y: hidden;overflow-x: hidden">
+        <div class="ot-ui-g ot-page-header-container">
+            <p class="ot-page-header-title">
+                Maps</p>
+        </div>
+        <div [style.height]="'calc(100% - 4em)'">
+            <ot-dataTable class="msgdetails-datatable-pick" [locale]="currentLanguage" [(value)]="provisioningMap" [(selection)]="tempSelectedMaps"
+                [headerCheckboxToggleAllPages]="false" [scrollHeight]="isFilterApplied" scrollable="false" [lazy]="false"
+                [responsive]="false" [rows]="15" dataKey="mapName" [totalRecords]="provisioningMap?.length" [paginator]="true">
+                <ot-column [style]="{'width':'3%'}" selectionMode="multiple"></ot-column>
+                <ot-column [style]="{'width':'15%'}" field="mapName" header="{{'tpdir.read.mapName'| translate}}"></ot-column>
+                <ot-column [style]="{'width':'15%'}" field="documentStandard" header="{{'tpdir.read.docStandard'| translate}}"></ot-column>
+                <ot-column [style]="{'width':'10%'}" field="docType" header="{{'tpdir.read.docType'| translate}}"></ot-column>
+                <ot-column [style]="{'width':'15%'}" field="docVersion" header="{{'tpdir.read.docVersion'| translate}}"></ot-column>
+                <ot-column [style]="{'width':'8%'}" field="direction" header="{{'tpdir.read.direction'| translate}}"></ot-column>
+
+                <!-- <ot-column [style]="{'width':'8%'}" field="usedBy" header="Used by"></ot-column> -->
+                <!-- <ot-column [style]="{'width':'0%'}" field="tableEntries" header=""></ot-column> -->
+            </ot-dataTable>
+        </div>
+    </div>
+</div>
+<!--   -->
+<footer [hidden]="!showMapFlag" class="ot-page-footer-container footer">
+    <div class="ot-form-footer">
+        <button class="ot-secondary" type="button" (click)="previous()">{{'common.previous'|translate}}</button>
+        <button class="ot-primary" type="button" [disabled]="!msgForm.form.valid" (click)="next()">{{'common.next'|translate}}</button>
+        <button class="ot-secondary" type="button" (click)="cancel()">{{'common.Cancel'|translate}}</button>
+    </div>
+</footer>
+
+<footer [hidden]="showMapFlag" class="ot-page-footer-container footer">
+    <div class="ot-form-footer">
+        <button class="ot-primary" type="button" [disabled]="checkMapSize()" (click)="showMap('apply')">{{'common.Apply'|translate}}</button>
+        <button class="ot-secondary" type="button" (click)="showMap('cancel')">{{'common.Cancel'|translate}}</button>
+    </div>
+</footer>
+<ot-dialoguebox iconClass="ot-warning-icon" header="{{'common.cancelSetupHeader' |translate}}" name="cancelSetup"
+  acceptButton="{{'common.confirm' |translate}}"
+  rejectButton="{{'common.Cancel' |translate}}">
+  <div dialog-message>
+    {{'common.cancelSetupText' |translate}}
+  </div>
+</ot-dialoguebox>

@@ -1,0 +1,932 @@
+{
+  "otherInfo": {
+    "title": "Weitere Informationen",
+    "licenseStatus": "Lizenzstatus",
+    "certificationStatus": "Zertifizierungsstatus",
+    "certifyingAgency": "Zertifizierungsstelle",
+    "licenseDocument": "Lizenzdokument",
+    "certificate": "Zertifikat",
+    "productsCertified": "Produkte zertifiziert",
+    "certificationLevel": "Zertifizierungsebene",
+    "certificationRating": "Zertifizierungsbewertung",
+    "certificationExpiration": "Zertifikatsablaufdatum"
+  },
+  "ediAndDocs": {
+    "title": "EDI(s) & Dokument(e)"
+  },
+  "graph": {
+    "title": "HP-Grafik"
+  },
+  "status": {
+    "bpr": {
+      "Approved": "Genehmigt",
+      "Testing": "Testen",
+      "Error": "Fehler",
+      "Requested": "Angefordert",
+      "Rejected": "Abgelehnt"
+    },
+    "company": {
+      "active": "Aktiv",
+      "inactive": "Inaktiv",
+      "Error": "Fehler",
+      "Draft": "Entwurf",
+      "Testing": "Testen",
+      "In Progress": "In Bearbeitung",
+      "marked_for_deletion": "Zum Löschen markiert"
+    }
+  },
+  "common": {
+    "cancelSetupHeader": "Setup",
+    "cancelSetupText": "Möchten Sie diese neue Einrichtung wirklich abbrechen?",
+    "endOfResult": "Ende der Ergebnisse erreicht",
+    "attachFile": "Datei anfügen",
+    "confirm": "OK",
+    "clear": "Löschen",
+    "success": "Erfolg",
+    "company": "Firma",
+    "breadCrumb.home": "Startseite",
+    "filter.header": "Eingrenzen nach",
+    "project.title": "Community Manager",
+    "submit.title": "Senden",
+    "Apply": "Übernehmen",
+    "Cancel": "Abbrechen",
+    "reset": "Zurücksetzen",
+    "clear.filter": "Alle löschen",
+    "create": "Erstellen",
+    "invite": "Einladen",
+    "next": "Weiter",
+    "previous": "Zurück",
+    "save": "Speichern",
+    "continue": "Weiter",
+    "edit": "Bearbeiten",
+    "connect": "Verbinden",
+    "errorMessage": "Anfrage konnte nicht bearbeitet werden. Wenden Sie sich an den Support von GXS.",
+    "TotalCount": "Datensätze gesamt:",
+    "Export": "Exportieren",
+    "exportTooltip": "Ausgewählte Zeilen exportieren",
+    "exportAll": "Alle exportieren",
+    "exportAllTooltip": "Alle Zeilen exportieren",
+    "exportSubmitted": "Exportanforderung wurde gesendet. Sobald die Daten verfügbar sind, werden Sie per E-Mail benachrichtigt.",
+    "Delete": "Löschen",
+    "New": "Neu",
+    "yes": "Ja",
+    "no": "Nein",
+    "sure": "Sicher",
+    "status": "Status",
+    "companyStatus": "Firmenstatus",
+    "bprStatus": "BPR-Status",
+    "pageNotFound": "Die Seite wurde nicht gefunden. Wenden Sie sich an den OpenText-Support.",
+    "default.select.txt": "Auswählen",
+    "default.select.invitation.txt": "Einladung auswählen",
+    "duplicate": "Duplikat vorhanden",
+    "dialogmsg": "Registrierung beenden",
+    "cancelmsg": "Der Registrierungsvorgang wird nicht fortgesetzt. Ihre Daten werden nicht gespeichert.",
+    "close": "Schließen",
+    "genericErrorMsg": "Server kann Anfrage nicht verarbeiten",
+    "tooltip": {
+      "search": "Suchen",
+      "tpgraph": "HP-Grafik",
+      "filter": "Filter",
+      "addTP": "Ihrer Community neue Partner hinzufügen",
+      "addInvitation": "Neue Einladung erstellen",
+      "addcontact": "Neuen Kontakt erstellen",
+      "refresh": "Aktualisieren",
+      "close": "Schließen",
+      "addField": "Benutzerdefiniertes Feld hinzufügen",
+      "addFieldGroup": "Feldgruppe hinzufügen",
+      "addChoice": "Auswahl hinzufügen",
+      "delete": "Löschen",
+      "download": "Herunterladen",
+      "importfields": "Import custom data across TPs"
+    },
+    "question": {
+      "sure": "Sicher?",
+      "duplicate.create": "Diese Firma ist bereits vorhanden. Vorgang wirklich fortsetzen?"
+    },
+    "noRecords": "Keine Datensätze verfügbar",
+    "noDataFound": "Keine Daten gefunden",
+    "errorDetails": "Fehlerdetails",
+    "endOfRecords": "Ende der Datensätze erreicht",
+    "workflowSuccess": "Workflow erfolgreich initiiert",
+    "workflowId": "Workflow-ID: {0}",
+    "notFound": "Kein geeignetes Formular gefunden. Wenden Sie sich an den OpenText-Support.",
+    "workflowNotfound": "Workflow nicht gefunden",
+    "unsuccessful": "war nicht erfolgreich"
+  },
+  "globalDirectory": {
+    "title": "Globales Partnerverzeichnis",
+    "ediId": "EDI-ID",
+    "location": "Ort",
+    "documents": "Dokument(e)",
+    "direction": "Richtung",
+    "version": "Version",
+    "docType": "Dokumenttyp",
+    "NoWrkFlow": "Kein Workflow verfügbar",
+    "tpName": "Handelspartnername",
+    "notificationSuccessMsg": "Benachrichtigung erfolgreich gesendet",
+    "message": "Nachricht",
+    "messageHeader": "Benachrichtigung senden",
+    "showMore": "Mehr anzeigen",
+    "showLess": "Weniger anzeigen",
+    "messageBody": "Dear user,<BR><BR>Your company profile information is incomplete. Please access the company profile by navigating to Account manager-> My Company and Services, and complete the missing information.Should you have any questions about the profile update, please contact your local Business Network Support team. The following link provides information for all support regions and services:<BR><a href='http://www.opentext.com/support'>http://www.opentext.com/support</a> <BR><BR>Regards,<BR>Grid Administrator"
+  },
+  "tpdir": {
+    "title": "Meine Handels-Community",
+    "breadCrumb.home": "Startseite",
+    "Viewby": "Anzeigen nach",
+    "options": {
+      "bpr": "Geschäftsbeziehung",
+      "tpr": "Handelsbeziehung",
+      "itp": "Eingeladene Partner"
+    },
+    "tprView": {
+      "companyName": "Firmenname",
+      "displayName": "Anzeigename",
+      "partnerEDIAddress": "EDI-Adresse des Partners",
+      "partnerVAN": "Partner-VAN/Dienstanbieter",
+      "yourEDIAddress": "Ihre EDI-Adresse",
+      "yourRole": "Ihre Rolle",
+      "tprType": "Typ der Handelspartnerbeziehung",
+      "status": "Status"
+    },
+    "read": {
+      "status": "Status",
+      "companyName": "Firmenname",
+      "companyID": "Firmen-ID",
+      "displayName": "Anzeigename",
+      "ediAddress": "EDI-ID(s)",
+      "ediAddresses": "EDI-Adresse",
+      "ediCount": "Verknüpfte ID(s)",
+      "ActiveContacts": "Aktive Kontakte",
+      "ActiveDate": "Datum der Aktivierung",
+      "TPRActiveDate": "Erstellt am",
+      "Active": "Aktiv",
+      "Onboarding": "Onboarding",
+      "tprcount": "Handelsbeziehungen",
+      "country": "Land",
+      "viewEDI": "IDs anzeigen",
+      "viewDOC": "Dokumente anzeigen",
+      "ediMsg": "Verknüpfte EDI-ID(s)",
+      "mapName": "Diagrammname",
+      "docStandard": "Dokumentstandard",
+      "docType": "Dokumenttyp",
+      "docVersion": "Dokumentversion",
+      "direction": "Richtung",
+      "usedBy": "Verwendet von",
+      "tableEntries": "Tabelleneinträge",
+      "buId": "Firmen-ID",
+      "dateFormatMMDDYYYY": "MM/TT/JJJJ",
+      "from": "Von",
+      "to": "Bis",
+      "dateValidation": "Von und Bis sind erforderlich",
+      "badRequest": "Fehlerhafte Anforderung",
+      "preXrefLookup": "PreXrefLookup",
+      "applicationCrossReference": "Anwendungsquerverweis",
+      "EDI_DC40_TEST": "EDI_DC40_TEST",
+      "EDI_DC40_PROD": "EDI_DC40_PROD",
+      "displayDefault": "Anzeigename auf Standardwert festgelegt"
+    },
+    "create": {
+      "title": "Neuer Handelspartner",
+      "addtp": "Neuen Partner hinzufügen",
+      "bulktp": "Mehrere Partner einladen",
+      "model": {
+        "title": "Zum Onboarding des Partners verwendeten Workflow auswählen",
+        "addtp": "Was möchten Sie jetzt erledigen?",
+        "continue": "Weiter"
+      },
+      "bulk": {
+        "title": "Partner per Massenvorgang hochladen",
+        "instruction": "Laden Sie die Liste der einzuladenden Partner hoch. Jeder Partner erhält eine Einladung, um sich für den ausgewählten Dienst zu registrieren.",
+        "selectfile": "Datei auswählen",
+        "supported": "Unterstützte Dateien",
+        "templateDown": "Vorlagendatei herunterladen",
+        "selected": "Ausgewählte Datei",
+        "totalrecord": "Datensätze gesamt",
+        "wrongfile": "Andere Datei auswählen",
+        "limit": "Auf 1000 Partner pro Datei begrenzen",
+        "note": "Hinweis",
+        "notemsg": "Hinweis: Nach der Verarbeitung der Uploaddatei erhalten Sie eine E-Mail mit den Ergebnissen."
+      },"bulkimport": {
+        "title": "Import custom fields",
+        "instruction": "Please upload a file to add or change custom field values, including Company Display Name, for your trading partners.",
+        "selectfile": "Datei auswählen",
+        "supported": "Unterstützte Dateien",
+        "templateDown": "Vorlagendatei herunterladen",
+        "selected": "Ausgewählte Datei",
+        "totalrecord": "Datensätze gesamt",
+        "wrongfile": "Andere Datei auswählen",
+        "limit": "Auf 1000 Partner pro Datei begrenzen",
+        "note": "Hinweis",
+        "notemsg": "Hinweis: Nach der Verarbeitung der Uploaddatei erhalten Sie eine E-Mail mit den Ergebnissen."
+      },"notificationMsgs": {
+        "bulkimport.success": "Import file submitted successfully.",
+        "bulk.success": "Die Einladungsdatei wurde erfolgreich gesendet. Falls Fehler auftreten, werden Sie per E-Mail dahingehend benachrichtigt.",
+        "unique": "Zum Unterscheiden dieser Firma von anderen gleichnamigen Firmen eindeutigen Firmennamen angeben"
+      },
+      "validationMessages": {
+        "cnamerequired": "Firmenname ist erforderlich",
+        "addr1required": "Adresszeile 1 ist erforderlich",
+        "dnamerequired": "Anzeigename ist erforderlich",
+        "tableEntries": "EDI_DC40_TEST,EDI_DC40_PROD und Anwendungsquerverweis sind erforderlich",
+        "countryrequired": "„Land“ ist ein Pflichtfeld",
+        "cityrequired": "„Ort“ ist ein Pflichtfeld",
+        "cIdequired": "Firmen-ID ist erforderlich",
+        "cIdInvalid": "Firmen-ID ist ungültig",
+        "fnamerequired": "„Vorname“ ist ein Pflichtfeld",
+        "lnamerequired": "„Nachname“ ist ein Pflichtfeld",
+        "emailrequired": "E-Mail ist erforderlich",
+        "phonerequired": "Telefon ist erforderlich",
+        "staterequired": "„Bundesstaat“ ist ein Pflichtfeld",
+        "postrequired": "Postleitzahl ist erforderlich",
+        "ediexist": "EDI-Adresse ist bereits vorhanden",
+        "maxEDIlength": "EDI-Adresse darf nicht länger sein als 34",
+        "emailinvalid": "Ungültige E-Mail-Adresse",
+        "companyEmailInvalid": " Firmen-E-Mail ist ungültig",
+        "prodGsIDReq": "Produktions-GS-ID ist erforderlich",
+        "tpProdGsIDReq": "GS-ID der Produktion des Partners ist erforderlich",
+        "testGsIdReq": "GS-ID testen ist erforderlich",
+        "tpTestGsIDReq": "Partnertest-GS-ID ist erforderlich",
+        "companyIdValidation": "Ungültige Firmen-ID",
+        "tptestAddressReq": "Partnertest-ISA-ID ist erforderlich",
+        "partnerId": "Partner-ID ist erforderlich"
+      },
+      "form": {
+        "keyTitle": "Diagramme",
+        "selectMap": "Diagramm auswählen",
+        "cfirstName": "Vorname",
+        "clastName": "Nachname",
+        "cemail": "E-Mail-Adresse",
+        "cphone": "Firmentelefon",
+        "userPhone": "Telefon",
+        "formTitle": "Unternehmensinformationen",
+        "displayName": "Anzeigename",
+        "companyName": "Firmenname",
+        "tradingPartnerType": "Handelspartnertyp",
+        "companyId": "Firmen-ID",
+        "website": "Website",
+        "additionalInformation": "Weitere Informationen",
+        "dunsNumber": "DUNS-Nummer",
+        "globalLocationNumber": "Global Location Number (GLN)",
+        "vatId": "Umsatzsteuer-Identifikationsnummer(n)",
+        "federalTaxId": "Umsatzsteuer-Identifikationsnummer/EIN",
+        "naics": "NAICS",
+        "sic": "Standard Industrial Classification (SIC)",
+        "addressLine1": "Adresszeile 1",
+        "addressLine2": "Adresszeile 2",
+        "city": "Ort",
+        "state": "Bundesstaat/Provinz/Region",
+        "postalCode": "Postleitzahl",
+        "country": "Land",
+        "phone": "Firmentelefon",
+        "email": "Firmen-E-Mail-Adresse"
+      }
+    },
+    "createTpMsg": {
+      "ediInfo": "EDI-Informationen",
+      "qualifier": "Qualifizierer",
+      "isaId": "ISA-ID",
+      "gsId": "GS-ID",
+      "vanProvider": "VAN/Dienstanbieter",
+      "mailbox": "Briefkasten",
+      "verify": "Überprüfen",
+      "ediTesting": "Wird dies auch zum Testen verwendet?",
+      "tpApprove": "Prüfen Sie die folgenden Informationen. Wählen Sie Genehmigen aus, um die Produktionseinrichtung zu erstellen.",
+      "approveBtn": "Genehmigen",
+      "approveLabel": "Ich genehmige den produktionsbezogenen Handel mit diesem Partner.",
+      "title": "Produktionseinrichtung genehmigen"
+    },
+    "company": {
+      "info": "Unternehmensinformationen",
+      "created": "Erstellt",
+      "updated": "Letzte Aktualisierung",
+      "status": "Status",
+      "registration": "Registrierung",
+      "overview": "Übersicht",
+      "divisions": "Abteilungen",
+      "edicommns": "EDI & Komm.",
+      "customdata": "Benutzerdefinierte Daten",
+      "files": "Dateien",
+      "activities": "Aktivitäten",
+      "auditLog": "Auditprotokoll",
+      "auditLog.title": "Auditprotokoll",
+      "onboarding.title": "Onboarding-Verlauf",
+      "notes": "Hinweise",
+      "errorStatus": "Beim Onboarding dieses Handelspartners ist offenbar ein Fehler aufgetreten.",
+      "errorLink": "Zum Anzeigen klicken",
+      "moreDetails": " mehr Details.",
+      "profile": {
+        "display.name": "Anzeigename",
+        "addline1": "Adresszeile 1",
+        "addline2": "Adresszeile 2",
+        "companyName": "Firmenname",
+        "city": "Ort",
+        "state": "Bundesstaat/Provinz/Region",
+        "company.id": "Firmen-ID",
+        "postal.code": "Postleitzahl",
+        "country": "Land",
+        "website": "Website",
+        "phone": " Firmentelefon",
+        "email": "Firmen-E-Mail-Adresse",
+        "additional.info": "Weitere Informationen",
+        "social.media": "Soziale Medien",
+        "duns.no": "DUNS-Nummer",
+        "global.location.number": "Global Location Number (GLN)",
+        "vat.id": "USt.-ID",
+        "federal.tax": "Umsatzsteuer-Identifikationsnummer/EIN",
+        "naics": "NAICS",
+        "sic": "SIC",
+        "homeZone": "Heimbereich",
+        "addressInformation": "Adressinformationen",
+        "noEDI": "Kein EDI für Verbindung verfügbar.",
+        "updateSuccess": "Erfolgreich aktualisiert",
+        "fieldsSet": "Felder auf Standardwert festgelegt"
+      },
+      "contacts": {
+        "title": "Kontakte",
+        "name": "Kontaktname",
+        "email": "E-Mail-Adresse",
+        "business.function": "Geschäftsfunktion",
+        "status": "Status",
+        "last.updated": "Letzte Aktualisierung",
+        "lastAccessDate": "Letztes Zugriffsdatum",
+        "from": "Von",
+        "to": "Bis",
+        "dateFormatMMDDYYYY": "MM/TT/JJJJ",
+        "dateFormatValidation": "Bis kann nicht kleiner als Von sein",
+        "lastAccessed": "Letzter Zugriff",
+        "dateRange": "Datenbereich",
+        "statusOptions": [
+          "Aktiv",
+          "Inaktiv",
+          "Im Softlock"
+        ]
+      },
+      "user": {
+        "title": "Benutzer",
+        "userTitle": "Titel",
+        "firstName": "Vorname",
+        "lastName": "Nachname",
+        "email": "E-Mail-Adresse",
+        "phone": "Telefon",
+        "mobile": "Mobil",
+        "fax": "Fax",
+        "addressLine1": "Adresszeile 1",
+        "addressLine2": "Adresszeile 2",
+        "city": "Ort",
+        "state": "Bundesstaat/Provinz/Region",
+        "postalCode": "Postleitzahl",
+        "country": "Land",
+        "selectUserID": "Benutzer-ID auswählen"
+      },
+      "history": {
+        "title": "Verlauf",
+        "auditlog": {
+          "title": "Auditprotokoll",
+          "date": "Datum",
+          "userName": "Benutzername",
+          "log": "Auditprotokoll",
+          "viewDetails": "Details anzeigen",
+          "attributes": "Auditattribute"
+        },
+        "onboarding": {
+          "link.label": "Onboarding-Verlauf",
+          "title": "Onboarding-Verlauf für",
+          "tpsetup": "Einrichtungsdetails",
+          "compInfo": {
+            "title": "Unternehmensinformationen",
+            "name": "Firmenname",
+            "code": "Firmencode",
+            "id": "BUID",
+            "service": "Dienstinformationen",
+            "companyId": "Firmen-ID"
+          },
+          "provInfo": {
+            "title": "Bereitstellungsdetails",
+            "workflow": "Workflow-Name",
+            "invCode": "Einladungscode",
+            "reqId": "Anforderungs-ID",
+            "requestor": "Antragsteller",
+            "submitted": "Eingereicht am",
+            "approved": "Genehmigt am",
+            "status": "Status",
+            "trackingdetails": "Tracking-ID",
+            "workflowId": "Workflow-ID",
+            "userId": "Benutzer-ID"
+          },
+          "prodInfo": {
+            "title": "Produktionsdetails"
+          },
+          "testInfo": {
+            "title": "Testdetails"
+          },
+          "serviceInfo": {
+            "title": "Dienstdetails"
+          },
+          "senderRecieverInformation": {
+            "title": "Absender-/Empfängerinformationen",
+            "vanName": "VAN/Dienstanbietername",
+            "selectedMaps": "Ausgewählte Diagramme",
+            "prodAddress": "Ihre Prod.-Adresse",
+            "prodGsId": "Ihre Prod.-GS-ID",
+            "tpProdAddress": "TP-Prod.-Adresse",
+            "tpProdGsId": "TP-Prod.-GS-ID",
+            "tpAddreess": "TP-Test-ISA-Qualifizierer: ISA-ID für TP-Test",
+            "tpISAIndicator": "TP verwendet ISA-Indikator testen"
+          }
+        }
+      },
+      "taskregistration": {
+        "title": "Vielen Dank!",
+        "details": "Nach Verarbeitung Ihrer Registrierung werden Sie per E-Mail benachrichtigt.",
+        "failed": "Registrierung fehlgeschlagen"
+      }
+    },
+    "search": {
+      "title": "Suchen",
+      "companyName": "Firma/Anzeigename",
+      "ediAddress": "EDI-Adresse",
+      "qualifier": "Qualifizierer",
+      "mapName": "Diagrammname"
+    }
+  },
+  "servicecontacts": {
+    "title": "Dienstkontakte",
+    "header": "Dienstbenachrichtigungen",
+    "breadCrumb.home": "Startseite",
+    "read": {
+      "notification": "Benachrichtigung",
+      "desc": "Beschreibung",
+      "service": "Service",
+      "recipient": "Empfänger"
+    }
+  },
+  "edicomms": {
+    "title": "EDI & Komm.",
+    "addrs": {
+      "title": "EDI-Adressen",
+      "partnerEDIAddressQual": "Partner-EDI-Adresse (Qual:ID)",
+      "yourEDIAddressQual": "Ihre EDI-Adresse (Qual:ID)",
+      "gsId": "GS-ID",
+      "connectivity": "Verbindung",
+      "direction": "Richtung",
+      "billing": "Abrechnung",
+      "billinglink": "Abrechnung anzeigen",
+      "comms": "Verbindung",
+      "commslink": "Komm. anzeigen",
+      "transactionCharges": "Transaktionsgebühren",
+      "receivermailboxstorage": "Postfachspeicher des Empfängers",
+      "sendPayeeLabel": "Sendung bezahlt durch",
+      "receivePayeeLabel": "Empfang bezahlt durch",
+      "storagePayeeLabel": "Bezahlt durch",
+      "createdDate": "Erstellt am",
+      "billingSplitLabel": "Abrechnung",
+      "sender": "ABSENDER",
+      "receiver": "EMPFÄNGER"
+    },
+    "map": {
+      "title": "Diagramm"
+    },
+    "search": {
+      "title": "Suchen",
+      "from": "Von",
+      "to": "Bis",
+      "dateFormatMMDDYYYY": "MM/TT/JJJJ",
+      "dateRange": "Datenbereich"
+    },
+    "connectivity": {
+      "title": "Verbindung"
+    },
+    "transactions": {
+      "title": "Transaktionen"
+    },
+    "maps": {
+      "title": "Diagramme"
+    },
+    "wrk": {
+      "title": "Arbeitsanforderungen"
+    }
+  },
+  "tpmsg": {
+    "fields": {
+      "ediStnd": "EDI-Standard",
+      "connectivityType": "Verbindungstyp",
+      "vanName": "VAN/Dienstanbietername",
+      "yourProdAdd": "Ihre Produktions-ID",
+      "yourProdGSID": "Ihre Produktions-GS-ID",
+      "tpProdAdd": "Produktionsadresse des Partners",
+      "tpProdGSID": "GS-ID der Produktion des Partners",
+      "sameAsProd": "Entspricht der Produktion",
+      "yourTestAdd": "Ihre Testadresse",
+      "yourTpGSID": "Ihre Test-GS-ID",
+      "tpTestAdd": "Partnertest-ISA-Qualifizierer: ISA-ID testen",
+      "tpTestGSID": "Partnertest-GS-ID",
+      "youUseISA": "ISA-Indikator testen verwenden",
+      "tpUsesISA": "Partner verwendet ISA-Indikator testen",
+      "reqFunctionAck": "Funktionale Bestätigung anfordern",
+      "segTerminator": "Trennzeichen für Segment",
+      "elemSeprator": "Trennzeichen für Element",
+      "sublemTerminator": "Trennzeichen für Teilelement",
+      "ediAddress": "Partnerqualifizierer: ID",
+      "companyPhone": "Firmentelefon",
+      "selectAtLeastOneMap": "(Mindestens ein Diagramm auswählen)",
+      "selectVAN": "VAN/Netzwerk auswählen",
+      "selectYourAddresses": "Ihre EDI-Adresse(n) auswählen",
+      "splitCharges": "Kosten aufteilen",
+      "splitChargeMSG": "Wie werden die Transaktionsgebühren bezahlt?",
+      "sendingpaidBy": "Sendung wird bezahlt durch",
+      "receingpaidBy": "Empfang wird bezahlt durch",
+      "sender": "Absender",
+      "receiver": "Postfachspeicher des Empfängers",
+      "receiverMailboxStorageMSG": "Wer bezahlt für den Postfachspeicher des Empfängers?",
+      "allChargesPaidBy": "Alle Gebühren werden bezahlt durch",
+      "separatorValidationMSG": "Trennzeichenwerte muss eindeutig sein"
+    },
+    "tprValidation": {
+      "details": "Details:",
+      "ediAddress": "EDI-Adresse:",
+      "companyName": "Firmenname:",
+      "tprExistMsg": "Handelspartner bereits vorhanden",
+      "multipleTprExistMsg": "Handelspartnerschaft(en) bereits vorhanden.",
+      "singleHubEdiMsg": "Sie haben mit dieser ID bereits eine Handelspartnerschaft.",
+      "multipleHubEdiMsg": " Handelspartnerschaft(en) bereits zwischen diesem Partner und einer oder mehreren Ihrer ausgewählten IDs vorhanden.",
+      "tpEdis": "TP-EDI-Adresse:",
+      "yourEdis": "Ihre EDI-Adresse:"
+    },
+    "legends": {
+      "contactInfo": "Kontaktinformationen",
+      "setupDetails": "Einrichtungsoption auswählen",
+      "companyInfo": "Firmendetails",
+      "msgDetails": "Nachrichtendetails",
+      "summary": "Zusammenfassung",
+      "testDetails": "Testdetails",
+      "prodDetails": "Produktionsdetails",
+      "billingOptions": "Abrechnungsoptionen",
+      "billingInfo": "Abrechnungsinformationen",
+      "sendReceiverDetails": "Absender-/Empfängerinformationen",
+      "serchEDIonNetwork": "EDI-Adresse eingeben, um zu überprüfen, ob der Partner in Ihrem Netzwerk bereits vorhanden",
+      "ediSameCompany": "EDI-Adresse gehört zum selben Unternehmen.",
+      "ediNotExists": "EDI-Adresse ist nicht vorhanden. Geben Sie die erforderlichen Informationen an.",
+      "ediVan": "EDI gehört zu Van-Anbieter {0}. Fahren Sie mit der Erstellung des neuen Handelspartners fort.",
+      "ediSP": "EDI gehört zum Dienstanbieter {0}. Fahren Sie fort, um einen neuen Handelspartner zu erstellen.",
+      "bprExists": "BPR bereits vorhanden mit {0}",
+      "mapsError": "Fehler beim Abrufen der Bereitstellungsdiagramme.",
+      "sendingPaidBy": "Sendung wird bezahlt von {0}",
+      "receivingPaidBy": "Empfang wird bezahlt von {0}",
+      "mailboxPaidBy": "Postfachspeicher des Empfängers bezahlt von {0}",
+      "allCharges": "Alle von {0} bezahlten Gebühren"
+    },
+    "setupdetails": {
+      "testFirst": "Ich möchte zunächst testen. Richten Sie die Vorproduktion nur zum sofortigen Senden und Empfangen von Testdaten ein. Kehren Sie zurück, und führen Sie die Produktionseinrichtung nach Testabschluss erneut aus.",
+      "setupNow": "Richten Sie nun alles ein. Richten Sie die Produktion und Vorproduktion (Test) ein, damit Sie sofort Test- bzw. Produktionsdaten senden und empfangen können."
+    },
+    "messages": {
+      "success": "Partner erfolgreich genehmigt",
+      "validationError": "Validierungsfehler",
+      "tprExists": "TPR bereits vorhanden"
+    }
+  },
+  "onboarding": {
+    "title": "Onboarding und Einladungen",
+    "invitationTab": "Einladungen",
+    "tasksTab": "Aufgaben",
+    "overview": "Übersicht",
+    "noWorkflows": "Keine Workflows verfügbar",
+    "noBulkWorkflows": "Das Hinzufügen mehrerer TPs ist derzeit nicht möglich.",
+    "invitationForm": {
+      "title": "Einladungen",
+      "invitationName": "Einladungsname",
+      "description": "Beschreibung",
+      "createdBy": "Erstellt durch",
+      "createdDate": "Datum",
+      "invitationType": {
+        "title": "Welcher Einladungstyp liegt vor?",
+        "unique": "Individuell",
+        "generic": "Allgemein"
+      },
+      "approvalType": {
+        "title": "Welchen Genehmigungstyp wünschen Sie für diesen Workflow?",
+        "automatic": "Automatisch",
+        "manual": "Manuell"
+      },
+      "ediOptions": {
+        "SYSTEM_GENERATES": "Automatisch von Trading Grid generiert",
+        "MANUAL_ENTER": "Handelspartner geben ihre eigene",
+        "MANUAL_ENTER_FROM_PRELOAD": "Wird beim Hinzufügen des TP manuell bereitgestellt",
+        "SYSTEM_GENERATES_FROM_PRELOAD": "Anhand einer vorab geladenen Adressliste zugewiesen",
+        "DURING_REG": "Gibt der Empfänger bei der Registrierung ein"
+      },
+      "scrollEvent": "Ende der Datensätze erreicht",
+      "invitationSaveSuccess": "Einladung erfolgreich erstellt.",
+      "invitationSaveFailure": "Fehler beim Erstellen der Einladung",
+      "invitationUpdateFailure": "Fehler beim Aktualisieren der Einladung",
+      "invitationUpdateSuccess": "Einladung erfolgreich aktualisiert.",
+      "inviteExpire": "Einladung läuft ab am",
+      "invitedtpvalue": "Handelspartner werden eingeladen",
+      "validationMsgs": {
+        "invitationName": "Einladungsname ist erforderlich",
+        "invalidInvitationName": "Einladungsname ungültig",
+        "invitationSubject": "Betreff ist erforderlich",
+        "senderEmailAddr": "Absender-E-Mail-Adresse ist erforderlich",
+        "invalidEmail": "Ungültige E-Mail-Adresse",
+        "maxAllowedEmail": "Sie können bis zu 10 E-Mail-Adressen hinzufügen.",
+        "emailMaxLength": "Maximal 50 Zeichen",
+        "dateValidation": "Ablaufdatum muss nach dem aktuellen Datum liegen oder diesem entsprechen",
+        "corruptImage": "Gültige Bilddatei hochladen"
+      },
+      "notification": {
+        "title": "Benachrichtigungen",
+        "notificationRecipientsLabel": "Wer möchte jedes Mal wissen, wann ein neuer Handelspartner eingerichtet wird?",
+        "confirmationEmailLabel": "Handelspartner nach dessen Einrichtung eine Bestätigungs-E-Mail senden?",
+        "notificationRecipientsHelpTxt": "Mehrere Empfänger mittels kommagetrennten Werten hinzufügen",
+        "recipientListMsg": "Empfänger werden benachrichtigt",
+        "add": "Hinzufügen"
+      },
+      "trOptions": {
+        "title": "Optionen für Handelsbeziehungen",
+        "trSetupLabel": "Handelsbeziehung nicht einrichten",
+        "inviteeEdiAddress": "Co-EDI-Adresse (auch als Hub bezeichnet) für Einladung (max. 20)",
+        "ediOptions": "Wie wird die EDI-Adresse des Partners bereitgestellt?"
+      },
+      "emailConfiguration": {
+        "title": "Einladungs-E-Mail konfigurieren",
+        "senderEmailAddr": "Absender-E-Mail-Adresse",
+        "invitationMsg": "Einladungsnachricht",
+        "invitationSubject": "Einladungsbetreff",
+        "addCCRecipients": "CC-Empfänger hinzufügen",
+        "language": "Sprache auswählen ",
+        "selectfile": "Datei auswählen",
+        "defaultlng": "Englisch",
+        "imageheader": "Bild für die Einladung"
+      },
+      "tooltip": {
+        "removeImage": "Bild entfernen"
+      }
+    },
+    "workflowForm": {
+      "title": "Workflow",
+      "workflowName": "Workflow-Name",
+      "description": "Beschreibung",
+      "status": "Status",
+      "service": "Service",
+      "createdDate": "Erstellt am",
+      "createdBy": "Erstellt durch",
+      "report": "Bericht",
+      "workflowUpdateSuccessMSg": "Workflow wurde erfolgreich aktualisiert",
+      "validationMsgs": {
+        "workflowName": "Workflow-Name ist erforderlich",
+        "description": "Workflow-Beschreibung ist erforderlich"
+      }
+    },
+    "download": {
+      "title": "Bericht herunterladen",
+      "downloadMSg": "Exportanforderung wurde gesendet. Sobald die Daten verfügbar sind, werden Sie per E-Mail benachrichtigt.",
+      "downloadError": "Keine Datensätze gefunden!"
+    },
+    "task": {
+      "name": "Aufgabenname",
+      "type": "Typ",
+      "stage": "Phase",
+      "createdBy": "Erstellt durch",
+      "createdDate": "Erstellt am",
+      "fgTitle": "Benutzerdefinierte Feldgruppen",
+      "fgLabel": "Feldgruppen auswählen, die Teil dieser Aufgabe sind",
+      "info": "Nur die übergeordneten Elemente können ausgewählt werden. Untergeordnete Feldgruppen werden automatisch ausgewählt.",
+      "add": "Benutzerdefinierte Aufgabe hinzufügen",
+      "taskNameValidation": "Aufgabenname ist erforderlich",
+      "customTaskUpdateSuccess": "Benutzerdefinierte Aufgabe aktualisiert.",
+      "customTaskCreateSuccess": "Benutzerdefinierte Aufgabe erstellt.",
+      "CustomTaskCreateFailure": "Fehler beim Erstellen der Aufgabe",
+      "deleteTaskSuccess": "Ausgewählte Aufgabe(n) wurden erfolgreich gelöscht.",
+      "deleteTaskFailure": "Fehler beim Löschen der Aufgabe(n)."
+    }
+  },
+  "customField": {
+    "title": "Benutzerdefinierte Felder verwalten",
+    "fieldGroups": {
+      "title": "Feldgruppen",
+      "add": "Feldgruppe hinzufügen",
+      "edit": "Feldgruppe bearbeiten",
+      "name": "Gruppenname",
+      "description": "Beschreibung",
+      "descValidation": "Die Beschreibung darf nicht länger als 4000 Zeichen sein",
+      "makeDependentOn": "Von einem benutzerdefinierten Feld abhängig machen",
+      "selectQuestion": "Benutzerdefiniertes Feld auswählen",
+      "answer": "Antwort",
+      "and": "Und",
+      "or": "Oder",
+      "roles.title": "Rollenzuweisung",
+      "roles": "Verfügbare Rollen",
+      "permissions": "Berechtigungen anzeigen",
+      "users": "Benutzer anzeigen"
+    },
+    "field": {
+      "name": "Feldname",
+      "id": "Feld-ID",
+      "type": "Feldtyp",
+      "add": "Benutzerdefiniertes Feld hinzufügen",
+      "edit": "Feld bearbeiten",
+      "default": "Standardwert",
+      "instructions": "Anweisungen:",
+      "maxFields": "Die maximale Anzahl der benutzerdefinierten Felder lautet <b>{{maxFields}}</b>.",
+      "sortAlphabatic": "Alphabetisch sortieren",
+      "firstDefault": "Ersten Wert als Standardantwort verwenden",
+      "makeDependentOn": "Von anderen benutzerdefinierten Feld abhängig machen",
+      "dependentFieldname": "Feldname",
+      "answer": "Antwort",
+      "and": "Und",
+      "or": "Oder",
+      "type.label": {
+        "Text": "Text",
+        "Text Area": "Textbereich",
+        "Number": "Nummer",
+        "Multiple Choice": "Mehrfachauswahl",
+        "Radio Button": "Optionsfeld",
+        "Drop-down": "Dropdown",
+        "Date": "Datum",
+        "File Upload": "Dateiupload",
+        "File Download": "Dateidownload"
+      }
+    },
+    "addFiled": {
+      "text": "Textfeld/Textbereich",
+      "number": "Nummer",
+      "multiChoice": "Mehrfachauswahl",
+      "radioButton": "Optionsfeldliste",
+      "dropdown": "Dropdown",
+      "date": "Datum",
+      "file_upload": "Dateiupload",
+      "file_download": "Dateidownload",
+      "download.instruction": "Datei anfügen, die der Benutzer herunterladen kann"
+    },
+    "label": "Beschriftung",
+    "identifier":"Identifier",
+    "mandatory": "Obligatorisch",
+    "dependency": "Abhängigkeit",
+    "dependent": "Abhängig von",
+    "validation": {
+      "fieldName": "Feld-ID ist erforderlich",
+      "fieldId": "Field Id is required",
+      "fieldIdInvalid": "Feld-ID ist ungültig",
+      "fieldGroupName": "Gruppenname ist erforderlich",
+      "defaultValue": "Gültigen Standardwert eingeben"
+    },
+    "validationMsgs": {
+      "emptyFiles": "Empty files cannot be uploaded",
+      "maxFiles": "Maximum of 5 files can be uploaded",
+      "fileType": "Executable files are not allowed",
+      "fileSize": "Files bigger than 25MB are not allowed",
+      "fileName": "File name cannot be more than 120 characters",
+      "identifier":"Identifier is Invalid"
+
+    },
+    "messages": {
+      "success": {
+        "addField": "Neues benutzerdefiniertes Feld erfolgreich hinzugefügt",
+        "addFieldGroup": ""
+      },
+      "failure": {
+        "addField": "",
+        "addFieldGroup": "",
+        "fieldMaxLimit": "Your company subscription only allows you to have {0} custom fields. Please contact your administrator or account manager in case you need to add more.",
+        "maxLimit": "Ihr Unternehmensabonnement erlaubt nur {0} benutzerdefinierte Feldgruppen. Wenden Sie sich an Ihren Administrator oder Kontenverwalter, wenn Sie mehr hinzufügen müssen.",
+        "roleFailure": {
+          "limit": "Es können max. 30 Rollen ausgewählt werden",
+          "edit": "Es ist mindestens eine Rolle mit Bearbeitungsberechtigung erforderlich",
+          "noUsers": ["Keine Datensätze"]
+        }
+      },
+      "warning": {
+        "choice": "Mindestens eine (1) Auswahl ist erforderlich",
+        "deleteChoice": "Durch Löschen dieser Auswahl wird sie für alle Partnerprofile gelöscht. Vorgang wirklich fortsetzen?",
+        "radioButtonChoice": "Auswahlmöglichkeiten für Feld Optionsfeld hinzufügen",
+        "dropdownChoice": "Mindestens eine (1) Auswahl ist erforderlich",
+        "identifierValidation":"Choice Identifier has already been taken"
+      },
+      "notificationTitle": {
+        "createGroupFail": "Fehler beim Hinzufügen der neuen Gruppe",
+        "updateGroupFail": "Fehler beim Aktualisieren der Gruppe",
+        "createFieldFail": "Failed to add new Field",
+        "deleteFail": "Fehler beim Löschen",
+        "noField": "Kein Feld vorhanden"
+      }
+    }
+  },
+  "customdata": {
+    "title": "Benutzerdefinierte Daten",
+    "requiremsg": " Erfordert einen gültigen Wert",
+    "multiSelectedMsg": "Insgesamt {0} Auswahlmöglichkeiten ausgewählt"
+  },
+  "createInvitation": {
+    "email": "E-Mail-Adresse",
+    "invited": "Handelspartner erfolgreich eingeladen"
+  },
+  "communitypage": {
+    "title": "Community Manager"
+  },
+  "globalSearch": {
+    "title": "Globales Partnerverzeichnis",
+    "ediIds": "EDI-ID(s)",
+    "searchBy": "Suchen nach",
+    "filterBy": "Eingrenzen nach"
+  },
+  "invitedTps": {
+    "companyName": "Firmenname",
+    "companyId": "Firmen-ID",
+    "email": "E-Mail-Adresse",
+    "type": "Typ",
+    "workflowName": "Workflow",
+    "invitationName": "Einladungsname",
+    "invitationCode": "Einladungscode",
+    "invitationStatus": "Status",
+    "invitedDate": "Einladungsdatum",
+    "daysOpen": "Tage offen",
+    "overview": "Übersicht",
+    "reinvite": "Erneut einladen",
+    "deleteInvite": "Einladung löschen",
+    "messages": {
+      "success": {
+        "reinviteMsg": "Erneute Einladung wurde erfolgreich gesendet.",
+        "deleteInvitationMsg": "Einladung wurde erfolgreich gelöscht."
+      },
+      "error": {
+        "reinviteMsg": "Fehler beim Senden der erneuten Einladung.",
+        "deleteInvitationMsg": "Fehler beim Löschen der Einladung."
+      },
+      "alert": {
+        "deleteInvitationMsg": "Möchten Sie diese Einladung wirklich löschen?",
+        "reinviteMsg": "Sie sind dabei, erneut eine Einladung an {0} zu senden. Die Einladung wird an {1} gesendet.",
+        "reinvite.confirm": " Vorgang wirklich fortsetzen?"
+      },
+      "alertHeader": {
+        "reinvite": "Einladung erneut an Handelspartner senden"
+      }
+    }
+  },
+  "preview": {
+    "text": "<p><b>{{companyName}}</b> hat eine Partnerschaft mit Ihrer Firma angefordert, um im OpenText Trading Grid zu handeln mit <b>{{service}}</b>.</p><p>{{invitationcontent}}</p><p>Damit dieser Dienst mit {{companyName}} verwendet werden kann, muss Ihre Firma sich bei Grid registrieren, bestimmte Firmeninformationen angeben und die Online-Nutzungsbedingungen akzeptieren. Die erste Person, die dies für Ihre Firma erledigt, avanciert zum Firmenadministrator und kann dem Konto Ihrer Firma zusätzliche Benutzer hinzufügen. Wenn Sie die richtige Person für diese Aktivität sind, registrieren Sie sich über den folgenden Link:</p><span class='ot-hyperlink-imitation'><a>{{completeRegistrationUrl}}/[InvitationCode]</a></span><p>Fall der obige Link nicht funktioniert, können Sie Grid erreichen unter <span class='ot-hyperlink-imitation'><a>{{registrationUrl}} </a></span> und den folgenden Einladungscode verwenden: [InvitationCode]</p><p>Als bestehender Benutzer melden Sie sich bei Grid an, um im Nachrichtencenter auf diese Einladung zuzugreifen. Auf diese Weise können Sie einen Teil des Registrierungsprozesses umgehen.</p><p>Nach dem Senden Ihrer Registrierung erhalten Sie eine E-Mail mit der Angabe, dass Sie für Grid aktiviert wurden. Bei Fragen zum Registrierungsvorgang oder zur Verwendung von Grid wenden Sie sich bitte an Ihr lokales Business Network-Support-Team. Der folgende Link bietet Informationen für alle Supportregionen und Dienste:</p><span class='ot-hyperlink-imitation'><a>http://www.opentext.com/support</a></span><br><p>Grüße,</p><p>OpenText Trading Grid-Administrator</p><p><b>Hinweis:</b>Diese E-Mail wurde automatisch generiert. Die an diese E-Mail-Adresse gesendeten Antworten werden nicht empfangen.</p><br><div class='cm-ts-invitation-preview-copyright'>Copyright © {{currentYear}}. OpenText. Alle Rechte vorbehalten.<br> Marken von Open Text.</div>",
+    "title": "Vorschau"
+  },
+  "tradingpartnerreltationship": {
+    "actions.tooltip": "Bis zu 10 Zeilen auswählen",
+    "confirmation.message": "Vorgang wirklich fortsetzen?",
+    "approve": {
+      "title": "Genehmigen",
+      "dialogue.title": "Sie sind dabei, die ausgewählte(n) Handelspartnerbeziehung(en) zu genehmigen.",
+      "success": "Die Handelspartnerbeziehung(en) wurden erfolgreich genehmigt."
+    },
+    "terminate": {
+      "title": "Beenden",
+      "dialogue.title": "Sie sind dabei, die ausgewählte(n) Handelspartnerbeziehung(en) zu beenden.",
+      "success": "Die Handelspartnerbeziehung(en) wurden erfolgreich beendet."
+    },
+    "reject": {
+      "title": "Ablehnen",
+      "dialogue.title": "Sie sind dabei, die ausgewählte(n) Handelspartnerbeziehung(en) abzulehnen.",
+      "message": "Ablehnungsgrund eingeben:",
+      "success": "Die Handelspartnerbeziehung(en) wurden erfolgreich abgelehnt."
+    },
+    "messages": {
+      "reject": "Ablehnungsgrund darf nicht länger sein als 256 Zeichen.",
+      "enterReason": "Geben Sie einen Ablehnungsgrund ein.",
+      "success.terminate": "Handelspartner wurden erfolgreich gekündigt.",
+      "success.reject": "Handelspartner erfolgreich abgelehnt",
+      "success.approve": "Handelspartner erfolgreich genehmigt.",
+      "failed": "Nicht alle Handelspartner wurden erfolgreich abgelehnt/genehmigt/gekündigt."
+    },
+    "title": "Partnerschaftsinformationen",
+    "status": "PartnerShip-Status",
+    "type": "Partnerschaftstyp",
+    "partneraddress": "Trading Partner",
+    "partnervan": "Partner-VAN/Dienstanbieter",
+    "partneredi": "EDI-Adresse des Partners",
+    "partneralias": "Partneralias",
+    "youredi": "Ihre EDI-Adresse",
+    "yourrole": "Ihre Rolle",
+    "youralias": "Ihr Alias",
+    "billingheader": "Abrechnungsinformationen",
+    "splitcharges": "Kosten aufteilen",
+    "transcharges": "Transaktionsgebühren",
+    "sendingby": "Sendung bezahlt durch",
+    "receivingby": "Empfang bezahlt durch",
+    "storageby": "Postfachspeicher des Empfängers bezahlt durch",
+    "allcharges": "Alle Gebühren bezahlt durch"
+  },
+  "datatable": {
+    "about": "Info",
+    "NoRecord": "Keine Datensätze gefunden"
+  },
+  "header": {
+    "userProfile": {
+      "title": "Mein Profil",
+      "downloads": "Meine Downloads",
+      "signout": "Abmelden"
+    },
+    "signOut": {
+      "confirmation": {
+        "title": "Abmelden",
+        "message": "Von TGO abmelden?"
+      }
+    }
+  }
+}

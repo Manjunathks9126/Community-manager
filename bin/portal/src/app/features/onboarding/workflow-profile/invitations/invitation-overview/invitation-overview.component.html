@@ -1,0 +1,181 @@
+<div class="cm-onboarding-container-custom " [perfectScrollbar]="scrollConfig">
+    <form #invitationForm="ngForm">
+        <div class="ot-faceted-content">
+            <div class="ot-row cm-row-onboarding ">
+                <div class="ot-col-sm-5">
+                    <label
+                        class="ot-form-control-label ot-required">{{'onboarding.invitationForm.invitationName'|translate}}</label>
+                    <label class="ot-form-value-label">{{invitation.invitationName}}</label>
+                </div>
+                <div class="ot-col-sm-5  ot-col-sm-offset-1  ">
+                    <label class="ot-form-control-label">{{'onboarding.invitationForm.description'|translate}}</label>
+                    <label class="ot-form-value-label">{{invitation.invitationComments}}</label>
+                </div>
+            </div>
+            <div class="ot-row cm-row-onboarding ">
+                <div class="ot-col-sm-5">
+                    <label
+                        class="ot-form-control-label ot-required">{{'onboarding.invitationForm.invitationType.title'|translate}}</label>
+                    <label class="ot-form-value-label">{{invitation.invitationType}}</label>
+                </div>
+                <div class="ot-col-sm-5 ot-col-sm-offset-1">
+                    <label
+                        class="ot-form-control-label ot-required">{{'onboarding.invitationForm.approvalType.title'|translate}}</label>
+
+                    <label class="ot-form-value-label">{{invitation.approvalType}}</label>
+                </div>
+            </div>
+            <div class="ot-row cm-row-onboarding ">
+                <div class="ot-col-sm-5">
+                    <label
+                        class="ot-form-control-label ot-required">{{'onboarding.invitationForm.inviteExpire'|translate}}</label>
+                    <label class="ot-form-value-label">{{invitation.invitationExpirationDate}}</label>
+                </div>
+            </div>
+
+            <!-- Notification -->
+            <div class="ot-row cm-row-onboarding ">
+                <hr>
+                <h3>{{'onboarding.invitationForm.notification.title' |translate}}</h3>
+            </div>
+            <div class="ot-row cm-row-onboarding ">
+                <div class="ot-col-sm-5 cm-onboarding-mail-box">
+                    <ul class="cm-display-recipients">
+                        <li *ngFor="let mail of listRecipients; let i= index;">
+                            <span> {{listRecipients[i]}}
+
+                            </span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="ot-col-sm-6  ot-col-sm-offset-1  cm-inlineDisplay">
+                    <ot-checkbox name="suppressUsermail" [disabled]="true" binary="true"
+                        [(ngModel)]="invitation.emailNotify"></ot-checkbox>
+                    <label class="ot-form-control-label">
+                        {{'onboarding.invitationForm.notification.confirmationEmailLabel' |translate}}
+                    </label>
+                </div>
+
+            </div>
+
+            <!-- Trading relationship options -->
+            <div class="ot-row cm-row-onboarding">
+                <hr>
+                <h3>{{'onboarding.invitationForm.trOptions.title' |translate}}</h3>
+            </div>
+            <div class="ot-row cm-row-onboarding ">
+                <div class="ot-col-sm-5  cm-inlineDisplay">
+                    <label class="ot-form-value-label">{{invitation.sendUserMail}}</label>
+                </div>
+            </div>
+            <div class="ot-row cm-row-onboarding">
+                <div class="ot-col-sm-4">
+                    <label
+                        [ngClass]="isEdiAddressMandatory ? 'ot-form-control-label ot-required':'ot-form-control-label'">
+                        {{'onboarding.invitationForm.trOptions.inviteeEdiAddress'|translate}}</label>
+                    <div class="invitation-ediAddreess-read-only-menu">
+                        <ot-multi-select name="inviteeEdiAddress" [readonlyMenuItems]="true"
+                            #inviteeEdiAddress="ngModel" [(ngModel)]="invitation.inviteeEdiAddress"></ot-multi-select>
+                    </div>
+                </div>
+                <div class="ot-col-sm-4  ot-col-sm-offset-2">
+                    <label
+                        class="ot-form-control-label ot-required">{{'onboarding.invitationForm.trOptions.ediOptions'|translate}}</label>
+                    <label class="ot-form-value-label">{{invitation.ediAddrCreateOptionLabel}}</label>
+                </div>
+            </div>
+
+            <!-- Configure Invitation Email -->
+            <div class="ot-row cm-row-onboarding">
+                <hr>
+                <h3>{{'onboarding.invitationForm.emailConfiguration.title' |translate}}</h3>
+            </div>
+            <div class="ot-row cm-row-onboarding">
+                <div class="ot-col-sm-5">
+                    <div>
+                        <div class="ot-col-sm-11">
+                            <label
+                                class="ot-form-control-label ot-required">{{'onboarding.invitationForm.emailConfiguration.senderEmailAddr'|translate}}</label>
+                            <label class="ot-form-value-label">{{invitation.senderEmailAddr}}</label>
+                        </div>
+
+                    </div>
+                    <div>
+                        <div class="ot-col-sm-11 cm-row-invitation">
+                            <label
+                                class="ot-form-control-label ot-required">{{'onboarding.invitationForm.emailConfiguration.invitationSubject'|translate}}</label>
+                            <label class="ot-form-value-label">{{invitation.subject}}</label>
+                        </div>
+                    </div>
+                    <div *ngIf="imageContent">
+                        <div class="cm-onboarding-invitn-header">
+                            <label
+                                class="ot-form-control-label ot-pull-left">{{'onboarding.invitationForm.emailConfiguration.imageheader' |translate}}</label>
+                            <div>
+                                <img [src]="'data:image/'+imageType+';base64,'+imageContent" height="200" width="400" />
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+
+                    </div>
+                </div>
+                <div class="ot-col-sm-6 ot-col-sm-offset-1 cm-invited-textbox">
+                    <div>
+                        <div>
+                            <div class="ot-col-sm-11 cm-row-invitation cm-invitation-recipients-label">
+                                <label
+                                    class="ot-form-control-label">{{'onboarding.invitationForm.emailConfiguration.addCCRecipients' |translate}}</label>
+                            </div>
+                            <div class="ot-col-sm-11 cm-onboarding-mail-box cm-row-invitation">
+                                <ul class="cm-display-recipients">
+                                    <li *ngFor="let mail of ccList; let i= index;">
+                                        <span> {{ccList[i]}}
+                                        </span>
+
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="ot-col-md-8">
+                            <div class="cm-onboarding-invitn-header">
+                                <label
+                                    class="ot-form-control-label ot-pull-left">{{'onboarding.invitationForm.emailConfiguration.invitationMsg' |translate}}</label>
+
+                            </div>
+                            <div class="cm-invtn-msg-Body">
+                                <div class="cm-invtn-msg-input">
+                                    <label
+                                        class="ot-form-control-label ot-pull-left">{{'onboarding.invitationForm.emailConfiguration.language' |translate}}
+                                    </label>
+                                    <label
+                                        class="ot-form-value-label">{{'onboarding.invitationForm.emailConfiguration.defaultlng' |translate}}</label>
+
+                                </div>
+                                <div>
+                                    <textarea class="ot-form-control ot-stnd-textarea"
+                                        readonly="readonly">{{invitation.content}}</textarea>
+                                </div>
+                            </div>
+                            <button type="button" class="ot-primary ot-pull-right" id="invitation"
+                                (click)="preview()">{{'preview.title'|translate}}</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </form>
+</div>
+
+<footer class="ot-page-footer-container footer">
+    <div class="ot-form-footer">
+        <button type="button" class="ot-primary"
+            (click)="editInvitation(invitation.invitationId)">{{'common.edit'|translate}}</button>
+        <button type="button" id="cancel" class="ot-secondary" [routerLink]="['../../']"
+            skipLocationChange>{{'common.Cancel'|translate}}</button>
+    </div>
+</footer>
