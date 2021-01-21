@@ -6,7 +6,7 @@
 	<version>20.02.00.${build.number}</version>
 	<packaging>war</packaging>
 	<properties>
-		<fasterxml.version>2.9.5</fasterxml.version>
+		<fasterxml.version>2.12.1</fasterxml.version>
 		<springframework.version>5.0.6.RELEASE</springframework.version>
 		<aspectj.version>1.8.1</aspectj.version>
 		<hibernate.version>5.2.12.Final</hibernate.version>
